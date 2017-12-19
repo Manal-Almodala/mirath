@@ -1,0 +1,17 @@
+mixin outputRating(rating)
+  - for(var i = 1; i <= rating; i++)
+    span.glyphicon.glyphicon-star
+  - for(var i = rating; i < 5; i++)  
+    span.glyphicon.glyphicon-star-empty
+
+mixin formatDate(timeStamp)
+  -
+    var monthNames = ["January", "February", "March", 
+                      "April", "May", "June", "July", "August",
+                      "September", "October", "November",  "December"];
+  - var date = new Date(timeStamp);
+  - var day = date.getDate();
+  - var month = monthNames[date.getMonth()];
+  - var year = date.getFullYear();
+  - var output = day + ' ' + month + ' ' + year;
+  = output

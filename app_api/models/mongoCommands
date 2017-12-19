@@ -1,0 +1,17 @@
+# MLAB_URI
+    mongodb://yasso96:yass7342@ds241395.mlab.com:41395/loc8r
+
+# configuring heroku to use MLAB_URI
+    heroku config:set MLAB_URI=mongodb://yasso96:yass7342@ds241395.mlab.com:41395/loc8r
+
+# exporting the local database 
+    mongodump -h localhost:27017 -d loc8r -o C:/data/temp/mongodump
+
+# importing the local database into production 
+    mongorestore -h ds241395.mlab.com:41395 -d loc8r -u yasso96 -p yass7342 C:/data/temp/mongodump/loc8r
+
+# connecting to production database
+    mongo ds241395.mlab.com:41395/loc8r -u yasso96 -p yass7342
+
+# starting the app in production
+    NODE_ENV=production nodemon
