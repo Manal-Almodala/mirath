@@ -2,6 +2,20 @@
 
 .arabic-content{
     font-family: 'Amiri';
-    direction:'rtl';
     text-align: right;
+    direction: rtl;
+}
+
+body{
+    text-align: right;
+    direction: rtl;
+}
+
+nav a{
+    font-size: large;
+    font-weight: bold;
+}
+
+.navbar-brand{
+    font-size: x-large;
 }

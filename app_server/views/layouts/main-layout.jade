@@ -3,29 +3,30 @@ html(lang='ar')
   head
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     title= title
-    link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
-    link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2//css/bootstrap.min.css")
     link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0-beta.2/minty/bootstrap.min.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
     
   body
-    .jumbotron.pt-3.pb-0
+    .jumbotron.pt-3.mb-0.pb-0
       .container(align="middle")
         img.img-responsive.pb-2(src="/images/logo.png" alt="Smiley fac")
-      #banner.page-header.mt-0
-        .row
-          .col-xs-12
-            h1.display-6.arabic-content الإستحقاقات القرءانيه 
-        .row
-          .col-xs-11.col-xs-pull-1.col-md-pull-1.col-lg-pull-1
-            p.arabic-content.display-8 تطبيق لحساب الميراث ,الزكاه ,الديه والفي حسب قوانينها المنصوص علبها في القرءان الكريم    
-      hr.my-3
-    .container
-      block content1
+      .container-fluid
+        #banner.page-header.mt-0
+          .row
+            .col-xs-12
+              h1.display-6.arabic-content الإستحقاقات القرءانيه 
+          .row
+            .col-xs-11.col-xs-pull-1.col-md-pull-1.col-lg-pull-1
+              p.arabic-content.display-8 تطبيق لحساب الميراث ,الزكاه ,الديه والفي حسب قوانينها المنصوص علبها في القرءان الكريم    
+      hr.my-1
+      .container-fluid.ml-0.pl-0.mr-0.pr-0
+        block content1
 
       footer
         .row
           .col-xs-12
             small &copy; Yassin Hassan 2017
     script(src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous")
-    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous")
+    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous")
+    
