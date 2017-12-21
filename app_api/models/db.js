@@ -13,7 +13,7 @@ var dbURI = {
     }
 };
 
-mongoose.connect(dbURI.get());
+//mongoose.connect(dbURI.get());
 
 mongoose.connection.on('connected', function () {
     console.log('Mongoose connected to ' + dbURI.get());
