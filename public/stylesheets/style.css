@@ -1,1 +1,7 @@
+@import url(http://fonts.googleapis.com/earlyaccess/amiri.css);
 
+.arabic-content{
+    font-family: 'Amiri';
+    direction:'rtl';
+    text-align: right;
+}
