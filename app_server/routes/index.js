@@ -1,17 +1,16 @@
 var express = require('express');
 var router = express.Router();
 var controllerLocations = require('../controllers/locations');
+var generalControllers = require('../controllers/general');
 var mirathControllers = require('../controllers/mirath');
 
-// routing locations pages 
-router.get('/', mirathControllers.getFirstPage);
-router.get('/location/:locationID', controllerLocations.locationInfo);
+// Routing the general pages 
+router.get('/', generalControllers.getHome);
+router.get('/about', generalControllers.getAboutPage);
 
-// routing review page 
-router.get('/location/:locationID/review', controllerLocations.addReviewForm);
-router.post('/location/:locationID/review', controllerLocations.addReview);
-
-// routing the other pages 
-//router.get('/about', controllerOthers.about);
+// Routing mirath pages 
+router.get('/mirath', mirathControllers.getHome);
+router.get('/mirath/data-entry', mirathControllers.getDataPage);
+router.get('/mirath/result', mirathControllers.getResultPage);
 
 module.exports = router;
