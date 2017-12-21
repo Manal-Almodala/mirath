@@ -2,27 +2,27 @@ doctype html
 html(lang='ar')
   head
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
-    title= title
+    title= pageHeader.title
     link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0-beta.2/minty/bootstrap.min.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
     
   body
     .jumbotron.pt-3.mb-0.pb-0
       .container(align="middle")
-        img.img-responsive.pb-2(src="/images/logo.png" alt="Smiley fac")
+        img.img-fluid.pb-2(src="/images/logo.png" alt="Smiley fac")
       .container-fluid
         #banner.page-header.mt-0
           .row
-            .col-xs-12
-              h1.display-6.arabic-content الإستحقاقات القرءانيه 
+            .col-sm-auto
+              h1.arabic-content الإستحقاقات القرءانيه 
           .row
-            .col-xs-11.col-xs-pull-1.col-md-pull-1.col-lg-pull-1
-              p.arabic-content.display-8 تطبيق لحساب الميراث ,الزكاه ,الديه والفي حسب قوانينها المنصوص علبها في القرءان الكريم    
+            .col-sm-10.offset-1
+              p.arabic-content تطبيق لحساب الميراث ,الزكاه ,الديه والفي حسب قوانينها المنصوص عليها في القرءان الكريم    
       hr.my-1
       .container-fluid.ml-0.pl-0.mr-0.pr-0
         block content1
 
-      footer
+      //footer
         .row
           .col-xs-12
             small &copy; Yassin Hassan 2017
