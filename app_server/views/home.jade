@@ -1,11 +1,19 @@
 extends layouts/main-layout
 
 block content1
-  #banner.page-header
-    .row
-      .col-md-6.col-sm-12
-        h1= title
-  .row
-    .col-md-6.col-sm-12
-      p !{content.replace(/\n/g,'<br/>')}
+  nav.navbar.navbar-expand-sm.navbar-dark.arabic-content(style='background-color: #0c864981;')
+    a.navbar-brand(href='/about') نبذه عن التطبيق       
+    button.navbar-toggler.hidden-lg-up(type='button', data-toggle='collapse', data-target='#collapsibleNavId', aria-controls='collapsibleNavId', aria-expanded='false', aria-label='Toggle navigation')
+      span.navbar-toggler-icon
+    #collapsibleNavId.collapse.navbar-collapse
+      ul.float-xs-right.navbar-nav.mt-2.mt-lg-0
+        li.nav-item.active
+          a.nav-link(href='/mirath') الميراث
+            span.sr-only (current)            
+        li.nav-item
+          a.nav-link(href='/zakah') الذكاة  
+        li.nav-item
+          a.nav-link(href='/deya') الديات
+        li.nav-item
+          a.nav-link(href='/faye') الفي  
       
