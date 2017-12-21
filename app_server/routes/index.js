@@ -1,9 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var controllerLocations = require('../controllers/locations');
+var mirathControllers = require('../controllers/mirath');
 
 // routing locations pages 
-router.get('/', controllerLocations.locationsList);
+router.get('/', mirathControllers.getFirstPage);
 router.get('/location/:locationID', controllerLocations.locationInfo);
 
 // routing review page 
