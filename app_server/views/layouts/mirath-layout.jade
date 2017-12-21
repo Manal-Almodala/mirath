@@ -1,30 +1,36 @@
 extends main-layout
 
 block content1
-  // Nav tabs
-  ul#mirathNav.nav.nav-tabs
-    li.nav-item
-      a.nav-link.active(href='#tab1Id') Home
-    |       
-    li.nav-item
-      a.nav-link(href='#tab2Id') Another link
-    |       
-    li.nav-item
-      a.nav-link.disabled(href='#tab2Id') Disabled
+  .row
+    .col-xs-12
+      // Nav tabs
+      ul#mirathNav.nav.nav-tabs.navbar-right.arabic-content.ml-0
+        li.nav-item
+          a.nav-link(href='/mirath/result') شاشة اﻷنصبه
+        |       
+        li.nav-item
+          a.nav-link(href='/mirath/data-entry') إدخال الورثه
+        |       
+        li.nav-item
+          a.nav-link.active(href='/') 
+            الشاشه الرئيسيه
+            | &nbsp;
+            span.glyphicon.glyphicon-home
+            
 
-  // Tab panes
-  .tab-content
-    #tab1Id.tab-pane.fade.in.active(role='tabpanel')
-    |       
-    #tab2Id.tab-pane.fade(role='tabpanel')
-    |       
-    #tab3Id.tab-pane.fade(role='tabpanel')
+      // Tab panes
+      .tab-content
+        #tab1Id.tab-pane.fade.in.active(role='tabpanel')
+        |       
+        #tab2Id.tab-pane.fade(role='tabpanel')
+        |       
+        #tab3Id.tab-pane.fade(role='tabpanel')
 
-  // Mirath nav script
-  script.
-      $('#mirathNav a').click(e => {
-      e.preventDefault();
-      $(this).tab('show');
-      });
+      // Mirath nav script
+      script.
+          $('#mirathNav a').click(e => {
+          e.preventDefault();
+          $(this).tab('show');
+          });
        
   block content2
