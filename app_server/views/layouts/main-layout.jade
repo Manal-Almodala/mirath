@@ -2,7 +2,7 @@ doctype html
 html(lang='ar')
   head
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
-    title= pageHeader.title
+    title App
     link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0-beta.2/minty/bootstrap.min.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
     
@@ -13,15 +13,14 @@ html(lang='ar')
       .container-fluid
         #banner.page-header.mt-0
           .row
-            .col-sm-auto
-              h1.arabic-content الإستحقاقات القرءانيه 
+            .col-12
+              h1.arabic-content اﻹستحقاقات في القرآن 
           .row
-            .col-sm-10.offset-1
-              p.arabic-content تطبيق لحساب الميراث ,الزكاه ,الديه والفي حسب قوانينها المنصوص عليها في القرءان الكريم    
+            .col-sm-12.mr-sm-5.mr-4
+              p.arabic-content تطبيق لحساب الميراث ,الزكاه ,الديه والفي حسب قوانينها المنصوص عليها في القرآن الكريم    
       hr.my-1
       .container-fluid.ml-0.pl-0.mr-0.pr-0
         block content1
-
       //footer
         .row
           .col-xs-12
