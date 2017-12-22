@@ -35,19 +35,15 @@ mixin createCards()
                       ],
                       "أصحاب فروض وعصبات": ["أب", "جد"]
                    };
-
   each people, cluster in alwartha 
-    .row
-      .col-sm-8
         .card.mb-3.mt-3
             h5.card-header.text-center.arabic-content(style='background-color: #c7f6a894') #{cluster}  
             .card-body.arabic-content
               .row
                 each person in people
-                  .col-sm-4
+                  .col-12.col-sm-6.col-lg-6
                     .input-group.mb-2
                       span.input-group-addon
                         input(aria-label='Checkbox for following text input', type='checkbox')             
                       span.input-group-addon #{person}            
                       input.form-control(aria-label='Text input with checkbox', type='text')  
-                         
