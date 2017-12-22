@@ -19,3 +19,10 @@ nav a{
 .navbar-brand{
     font-size: x-large;
 }
+
+.card,.card *{
+    border-color: #0c864981;
+    text-align: center;
+}
+
+
