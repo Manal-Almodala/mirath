@@ -15,3 +15,38 @@ mixin formatDate(timeStamp)
   - var year = date.getFullYear();
   - var output = day + ' ' + month + ' ' + year;
   = output
+
+mixin createCards()
+  -
+    var alwartha = { 
+                      "العصبات": 
+                      [
+                        "ابن", "ابن ابن",
+                        "أخ شقيق", "أخ ﻷب", "ابن أخ شقيق",
+                        "ابن أخ ﻷب", "عم ﻷب", 
+                        "عم شقيق", "ابن عم شقيق", "ابن عم ﻷب"
+                      ], 
+                      "أصحاب الفروض": 
+                      [
+                        "زوج", "زوجه", "أخت شقيقه", 
+                        "أخت ﻷب","بنت", "بنت ابن", 
+                        "أم", "أم أم", "أم ﻷب",
+                        "إخوه ﻷم"
+                      ],
+                      "أصحاب فروض وعصبات": ["أب", "جد"]
+                   };
+
+  each people, cluster in alwartha 
+    .row
+      .col-sm-8
+        .card.mb-3.mt-3
+            h5.card-header.text-center.arabic-content(style='background-color: #c7f6a894') #{cluster}  
+            .card-body.arabic-content
+              .row
+                each person in people
+                  .col-sm-4
+                    .input-group.mb-2
+                      span.input-group-addon
+                        input(aria-label='Checkbox for following text input', type='checkbox')             
+                      span.input-group-addon #{person}            
+                      input.form-control(aria-label='Text input with checkbox', type='text')     
