@@ -37,7 +37,8 @@ mixin createCards()
                    };
   each people, cluster in alwartha 
         .card.mb-3.mt-3
-            h5.card-header.text-center.arabic-content(style='background-color: #c7f6a894') #{cluster}  
+            h5.card-header.text-center.arabic-content(
+              style='background-color: #c7f6a894') #{cluster}  
             .card-body.arabic-content
               .row
                 each person in people
