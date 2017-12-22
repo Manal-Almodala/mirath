@@ -34,9 +34,10 @@ var render =
     home: function(req, res, content)
     {
         res.render('mirath-home', { 
-            pageHeader:{
-            title: 'الميراث',
-            strapLine: 'Find places to work with wifi near you!'
+            pageHeader:
+            {
+                title: 'الميراث',
+                strapLine: 'Find places to work with wifi near you!'
             },
             sidebar: 'Looking for wifi and a seat?\n'
             + 'Loc8r helps you find places to work when out and about.'
@@ -47,15 +48,11 @@ var render =
 
     dataPage: function(req, res, content)
     {
-        res.render('mirath-data', { 
-            pageHeader:{
-            title: 'إدخال الورثه',
-            strapLine: 'Find places to work with wifi near you!'
-            },
-            sidebar: 'Looking for wifi and a seat?\n'
-            + 'Loc8r helps you find places to work when out and about.'
-            + 'Perhaps with coffee, cake or a pint?'
-            + "Let Loc8r help find the place you're looking for."
+        res.render('mirath-data', {
+            pageHeader: 
+            {
+                title: 'إدخال الورثه'
+            }
         });
     },
 
