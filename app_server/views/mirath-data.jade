@@ -2,10 +2,9 @@ extends layouts/mirath-layout
 include includes/sharedHTMLFunctions
 
 block content2
-  .container-fluid.pr-0.pl-0(align="middle")
+  .form.pr-0.pl-0(align="middle")
     .col-12.col-sm-10.col-lg-8
       +createCards()
     a.btn.btn-primary.btn-lg.arabic-content(href='/mirath/result',
      role='button', aria-disabled='true') أحسب اﻷنصبه
-  
 script(src="/javascripts/dataEntry.js")
