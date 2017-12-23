@@ -48,3 +48,17 @@ mixin createCards()
                         input(aria-label='Checkbox for following text input', type='checkbox')             
                       span.input-group-addon #{person}            
                       input.form-control(aria-label='Text input with checkbox', type='text')  
+
+mixin displayResultTable(alwratha)
+  table.table.table-hover
+    thead.text-primary.bg-light
+      tr
+        th الوارث    
+        th عدد اﻷفراد     
+        th نصيب الفرد
+    tbody
+      each relative in alwratha
+        tr
+          th(scope='row') #{relative.relationship}      
+          td #{relative.count}      
+          td #{relative.fortune}    
