@@ -60,13 +60,52 @@ var render =
     {
         res.render('mirath-result', { 
             pageHeader:{
-            title: 'اﻷنصبه',
-            strapLine: 'Find places to work with wifi near you!'
+                title: 'اﻷنصبه',
             },
-            sidebar: 'Looking for wifi and a seat?\n'
-            + 'Loc8r helps you find places to work when out and about.'
-            + 'Perhaps with coffee, cake or a pint?'
-            + "Let Loc8r help find the place you're looking for."
+            alwratha:[
+                {
+                    relationship: "ابن",
+                    count:"3",
+                    fortune: "النصف"
+                },
+                {
+                    relationship: "أب",
+                    count:"1",
+                    fortune: "الربع"
+                },
+                {
+                    relationship: "بنت",
+                    count:"3",
+                    fortune: "الربع"
+                }
+            ]
+            
+        });
+    },
+
+    detailPage: function(req, res, content)
+    {
+        res.render('mirath-detail', { 
+            pageHeader:{
+                title: 'تفاصيل حساب اﻷنصبه',
+            },
+            alwratha:[
+                {
+                    relationship: "ابن",
+                    count:"3",
+                    fortune: "النصف"
+                },
+                {
+                    relationship: "أب",
+                    count:"1",
+                    fortune: "الربع"
+                },
+                {
+                    relationship: "بنت",
+                    count:"3",
+                    fortune: "الربع"
+                }
+            ]
         });
     },
 }
