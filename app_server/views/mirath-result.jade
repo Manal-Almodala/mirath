@@ -1,8 +1,14 @@
 extends layouts/mirath-layout
+include includes/sharedHTMLFunctions
 
 block content2
   .container-fluid.pr-0.pl-0(align="middle")
     .col-12.col-sm-10.col-lg-8
+      .card.mb-3.mt-3
+        h5.card-header.text-center.arabic-content(
+          style='background-color: #c7f6a894') توزيع الميراث (اﻷنصيه)  
+        .card-body.arabic-content
+          +displayResultTable(alwratha)
     .row
       .col-6
         a.btn.btn-primary.btn-lg.arabic-content(href='/mirath/result',
