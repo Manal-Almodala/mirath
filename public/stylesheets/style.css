@@ -27,4 +27,14 @@ nav a{
     text-align: center;
 }
 
+.input-group-addon.input-group-addon-checkbox{
+    border-left: 0;
+    border-right: 1px solid #0c864981;
+    border-radius: 0rem 0.4rem 0.4rem 0rem;
+}
+
+.form-control.textarea-right{
+    border-radius: 0.4rem 0rem 0rem 0.4rem;
+}
+
 
