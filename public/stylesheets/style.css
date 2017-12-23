@@ -2,13 +2,15 @@
 
 .arabic-content{
     font-family: 'Amiri';
-    text-align: right;
-    direction: rtl;
 }
 
 body{
     text-align: right;
     direction: rtl;
+}
+
+.ltr-content{
+    direction: ltr;
 }
 
 nav a{
