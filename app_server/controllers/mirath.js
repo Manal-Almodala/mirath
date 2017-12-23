@@ -26,6 +26,11 @@ module.exports =
     getResultPage: function(req, res)
     {
         render.resultPage(req,res);
+    },
+
+    getDetailPage: function(req, res)
+    {
+        render.detailPage(req,res);
     }
 };
 
@@ -37,12 +42,7 @@ var render =
             pageHeader:
             {
                 title: 'الميراث',
-                strapLine: 'Find places to work with wifi near you!'
             },
-            sidebar: 'Looking for wifi and a seat?\n'
-            + 'Loc8r helps you find places to work when out and about.'
-            + 'Perhaps with coffee, cake or a pint?'
-            + "Let Loc8r help find the place you're looking for."
         });
     },
 
