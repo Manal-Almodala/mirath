@@ -12,5 +12,6 @@ router.get('/about', generalControllers.getAboutPage);
 router.get('/mirath', mirathControllers.getHome);
 router.get('/mirath/data-entry', mirathControllers.getDataPage);
 router.get('/mirath/result', mirathControllers.getResultPage);
+router.get('/mirath/result/detail', mirathControllers.getDetailPage);
 
 module.exports = router;
