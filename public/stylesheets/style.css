@@ -8,6 +8,7 @@
 body{
     text-align: right;
     direction: rtl;
+    font-size-adjust: inherit;
 }
 
 .ltr-content{
@@ -36,6 +37,24 @@ nav a{
 
 .form-control.textarea-right{
     border-radius: 0.4rem 0rem 0rem 0.4rem;
+}
+
+@media screen and (min-width: 240px) {
+    h1 {
+        font-size: 1.6rem;
+    }
+}
+
+@media screen and (min-width: 360px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+}
+
+@media screen and (min-width: 480px) {
+    h1 {
+        font-size: 2rem;
+    }
 }
 
 
