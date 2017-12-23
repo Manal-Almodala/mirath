@@ -1,7 +1,8 @@
 @import url(http://fonts.googleapis.com/earlyaccess/amiri.css);
+@import url(http://fonts.googleapis.com/earlyaccess/droidarabicnaskh.css);
 
 .arabic-content{
-    font-family: 'Amiri';
+    font-family:  Amiri, Droid Arabic Naskh, Times New Roman, Times;
 }
 
 body{
