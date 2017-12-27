@@ -20,7 +20,107 @@ module.exports =
 
     getDataPage: function(req, res)
     {
-        render.dataPage(req,res);
+        var listOfAlwratha = 
+        { 
+            "العصبات": 
+            [
+                {
+                    relationship: "ابن",
+                    singular: false
+                },
+                {
+                    relationship: "ابن ابن",
+                    singular: false
+                },
+                {
+                    relationship: "أخ شقيق",
+                    singular: false
+                },
+                {
+                    relationship: "أخ ﻷب",
+                    singular: false
+                },
+                {
+                    relationship: "ابن أخ شقيق",
+                    singular: false
+                },
+                {
+                    relationship: "ابن أخ ﻷب",
+                    singular: false
+                },
+                {
+                    relationship: "عم شقيق",
+                    singular: false
+                },
+                {
+                    relationship: "عم ﻷب",
+                    singular: false
+                },
+                {
+                    relationship: "ابن عم شقيق",
+                    singular: false
+                },
+                {
+                    relationship: "ابن عم ﻷب",
+                    singular: false
+                },
+            ], 
+            "أصحاب الفروض": 
+            [
+                {
+                    relationship: "زوج",
+                    singular: true
+                }, 
+                {
+                    relationship: "زوجه",
+                    singular: false
+                }, 
+                {
+                    relationship: "أخت شقيقه",
+                    singular: false
+                }, 
+                {
+                    relationship: "أخت ﻷب",
+                    singular: false
+                }, 
+                {
+                    relationship: "بنت",
+                    singular: false
+                }, 
+                {
+                    relationship: "بنت ابن",
+                    singular: false
+                }, 
+                {
+                    relationship: "أم",
+                    singular: true
+                }, 
+                {
+                    relationship: "أم أم",
+                    singular: true
+                }, 
+                {
+                    relationship: "أم ﻷب",
+                    singular: true
+                }, 
+                {
+                    relationship: "إخوه ﻷم",
+                    singular: false
+                }, 
+            ],
+            "أصحاب فروض وعصبات": 
+            [
+                {
+                    relationship: "أب",
+                    singular: true
+                },
+                {
+                    relationship: "جد",
+                    singular: true
+                }
+            ]
+        };
+        render.dataPage(req, res, listOfAlwratha);
     },
 
     getResultPage: function(req, res)
@@ -47,14 +147,15 @@ var render =
         });
     },
 
-    dataPage: function(req, res, content)
+    dataPage: function(req, res, alwratha)
     {
         res.render('mirath-data', {
             pageHeader: 
             {
                 title: 'إدخال الورثه'
             },
-            items: navItems  
+            items: navItems,
+            listOfAlwartha: alwratha
         });
     },
 
@@ -92,7 +193,7 @@ var render =
                 title: 'تفاصيل حساب اﻷنصبه',
             },
             items: navItems,            
-            alwratha:[
+            alwrathaDetail:[
                 {
                     relationship: "ابن",
                     count:"3",
