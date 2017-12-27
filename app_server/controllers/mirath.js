@@ -43,6 +43,7 @@ var render =
             {
                 title: 'الميراث',
             },
+            items: navItems           
         });
     },
 
@@ -52,7 +53,8 @@ var render =
             pageHeader: 
             {
                 title: 'إدخال الورثه'
-            }
+            },
+            items: navItems  
         });
     },
 
@@ -62,6 +64,7 @@ var render =
             pageHeader:{
                 title: 'اﻷنصبه',
             },
+            items: navItems,            
             alwratha:[
                 {
                     relationship: "ابن",
@@ -79,7 +82,6 @@ var render =
                     fortune: "الربع"
                 }
             ]
-            
         });
     },
 
@@ -89,6 +91,7 @@ var render =
             pageHeader:{
                 title: 'تفاصيل حساب اﻷنصبه',
             },
+            items: navItems,            
             alwratha:[
                 {
                     relationship: "ابن",
@@ -109,3 +112,18 @@ var render =
         });
     },
 }
+
+var navItems = [
+    {
+        name:"الميراث",
+        url: "/mirath"  
+    },
+    {
+        name:"إدخال الورثه",
+        url: "/mirath/data-entry"
+    },
+    {
+        name:"شاشة اﻷنصبه",
+        url: "/mirath/result"
+    }
+];
