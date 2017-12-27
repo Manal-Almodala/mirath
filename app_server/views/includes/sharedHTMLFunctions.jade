@@ -44,10 +44,10 @@ mixin createCards()
                 each person in people
                   .col-12.col-sm-6.col-lg-6
                     .input-group.mb-2
-                      span.input-group-addon.input-group-addon-checkbox
+                      span.input-group-addon.addon-checkbox-right
                         input(aria-label='Checkbox for following text input', type='checkbox')             
                       span.input-group-addon #{person}            
-                      input.form-control.textarea-right(aria-label='Text input with checkbox', type='text')  
+                      input.form-control.addon-textarea-right(aria-label='Text input with checkbox', type='text')  
 
 mixin displayResultTable(alwratha)
   table.table.table-hover
@@ -61,4 +61,16 @@ mixin displayResultTable(alwratha)
         tr
           th(scope='row') #{relative.relationship}      
           td #{relative.count}      
-          td #{relative.fortune}    
+          td #{relative.fortune} 
+
+mixin displayNavItems(items)
+  each item, index in items
+    -if(index === 0)
+      li.nav-item.active
+        a.nav-link(href= item.url) #{item.name}
+          span.sr-only (current)
+    -else            
+      li.nav-item
+        a.nav-link(href= item.url) #{item.name}   
+      
+      
