@@ -1,4 +1,5 @@
 extends layouts/main-layout
+include ./includes/sharedHTMLFunctions
 
 block content1
   nav.navbar.navbar-expand-sm.navbar-dark.arabic-content.bg-primary
@@ -7,13 +8,5 @@ block content1
       span.navbar-toggler-icon
     #collapsibleNavId.collapse.navbar-collapse
       ul.float-xs-right.navbar-nav.mt-2.mt-lg-0
-        li.nav-item.active
-          a.nav-link(href='/mirath') الميراث
-            span.sr-only (current)            
-        li.nav-item
-          a.nav-link(href='/zakah') الذكاة  
-        li.nav-item
-          a.nav-link(href='/deya') الديات
-        li.nav-item
-          a.nav-link(href='/faye') الفي  
+        +displayNavItems(items)
       
