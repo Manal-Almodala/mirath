@@ -29,14 +29,14 @@ nav a{
     text-align: center;
 }
 
-.input-group-addon.input-group-addon-checkbox{
+.addon-checkbox-right{
     border-left: 0;
-    border-right: 1px solid #0c864981;
-    border-radius: 0rem 0.4rem 0.4rem 0rem;
+    border-right: 1px solid #0c864981 !important;
+    border-radius: 0rem 0.4rem 0.4rem 0rem !important;
 }
 
-.form-control.textarea-right{
-    border-radius: 0.4rem 0rem 0rem 0.4rem;
+.addon-textarea-right{
+    border-radius: 0.4rem 0rem 0rem 0.4rem !important; 
 }
 
 @media screen and (min-width: 240px) {
