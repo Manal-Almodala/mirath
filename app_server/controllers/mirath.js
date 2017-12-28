@@ -220,7 +220,7 @@ var navItems = [
         url: "/"  
     },
     {
-        name:"الميراث",
+        name:"آيات الميراث",
         url: "/mirath"  
     },
     {
