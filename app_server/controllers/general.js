@@ -34,6 +34,10 @@ var render =
             },
             items: [
                 {
+                    name:"نبذه عن البرنامج",
+                    url: "/about"  
+                },
+                {
                     name:"الميراث",
                     url: "/mirath"
                 },

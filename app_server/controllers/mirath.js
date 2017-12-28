@@ -216,6 +216,10 @@ var render =
 
 var navItems = [
     {
+        name:"الشاشه الرئيسيه",
+        url: "/"  
+    },
+    {
         name:"الميراث",
         url: "/mirath"  
     },
