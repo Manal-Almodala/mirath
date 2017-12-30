@@ -18,19 +18,21 @@ mixin formatDate(timeStamp)
 
 mixin createCards(listOfWratha)
   each people, cluster in listOfWratha 
-        .card.mb-3.mt-3
-            h5.card-header.text-center.arabic-content(
-              style='background-color: #c7f6a894') #{cluster}  
-            .card-body.arabic-content
-              .row
-                each person in people
-                  .col-12.col-sm-6.col-lg-6
-                    .input-group.mb-2
-                      span.input-group-addon.addon-checkbox-right
-                        input(aria-label='Checkbox for following text input', type='checkbox')             
-                      span.input-group-addon.removed-border-right #{person.relationship}  
-                      -if(!person.singular)          
-                        input.form-control.addon-textarea-right(aria-label='Text input with checkbox', type='text')  
+    .card.mb-3.mt-3
+        h5.card-header.text-center.arabic-content(
+          style='background-color: #c7f6a894') #{cluster}  
+        .card-body.arabic-content
+          .row
+            each person in people
+              .col-12.col-sm-6.col-lg-6
+                .input-group.mb-2
+                  span.input-group-addon.addon-checkbox-right
+                    input(id=person.relationship, 
+                      aria-label='Checkbox for following text input', type='checkbox')             
+                  span.input-group-addon.removed-border-right #{person.relationship}  
+                  -if(!person.singular)          
+                    input.form-control.addon-textarea-right(name=person.relationship, 
+                      type='text', disabled, placeholder=0)  
 
 mixin displayResultTable(alwratha)
   table.table.table-hover
