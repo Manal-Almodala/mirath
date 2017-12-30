@@ -34,8 +34,8 @@ var render =
             },
             items: [
                 {
-                    name:"نبذه عن البرنامج",
-                    url: "/about"  
+                    name:"الشاشه الرئيسيه",
+                    url: "/"  
                 },
                 {
                     name:"الميراث",
@@ -52,7 +52,11 @@ var render =
                 {
                     name:"الفي",
                     url: "/faye'"
-                }
+                },
+                {
+                    name:"عن البرنامج",
+                    url: "/about"  
+                },
             ]
         });
     },

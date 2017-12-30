@@ -225,11 +225,7 @@ var render =
 
 var navItems = [
     {
-        name:"الشاشه الرئيسيه",
-        url: "/"  
-    },
-    {
-        name:"آيات الميراث",
+        name:"الميراث",
         url: "/mirath"  
     },
     {
@@ -239,5 +235,9 @@ var navItems = [
     {
         name:"شاشة اﻷنصبه",
         url: "/mirath/result"
-    }
+    },
+    {
+        name:"الشاشه الرئيسيه",
+        url: "/"  
+    },
 ];
