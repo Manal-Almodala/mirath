@@ -2,9 +2,11 @@ extends layouts/mirath-layout
 include includes/sharedHTMLFunctions
 
 block content2
-  .form.pr-0.pl-0(align="middle")
-    .col-12.col-sm-10.col-lg-8
-      +createCards(listOfAlwartha)
-    a.btn.btn-primary.btn-lg.arabic-content(href='/mirath/result',
-     role='button', aria-disabled='true') أحسب اﻷنصبه
-script(src="/javascripts/dataEntry.js")
+  center
+    form.pr-0.pl-0(id="alwrathaData", action= "/mirath/data-entry", 
+      method="POST")
+      .col-12.col-sm-10.col-lg-8
+        +createCards(listOfAlwartha)
+      button.btn.btn-primary.btn-lg.arabic-content(id="submit",
+        type="submit", aria-disabled='true') أحسب اﻷنصبه
+  script(src="/javascripts/dataEntry.js")
