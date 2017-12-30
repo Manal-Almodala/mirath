@@ -27,8 +27,7 @@ mixin createCards(listOfWratha)
               .col-12.col-sm-6.col-lg-6
                 .input-group.mb-2
                   span.input-group-addon.addon-checkbox-right
-                    input(id=person.relationship, 
-                      aria-label='Checkbox for following text input', type='checkbox')             
+                    input(aria-label='Checkbox for following text input', type='checkbox')             
                   span.input-group-addon.removed-border-right #{person.relationship}  
                   -if(!person.singular)          
                     input.form-control.addon-textarea-right(name=person.relationship, 
