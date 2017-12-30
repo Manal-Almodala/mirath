@@ -123,6 +123,15 @@ module.exports =
         render.dataPage(req, res, listOfAlwratha);
     },
 
+    processAlwrathaData: function(req, res)
+    {
+        if(req.body.ابن == 1)
+        {
+            console.log("yes");
+        }  
+        res.send();
+    },
+
     getResultPage: function(req, res)
     {
         render.resultPage(req,res);
