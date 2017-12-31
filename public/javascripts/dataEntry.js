@@ -1,7 +1,5 @@
 $("#alwrathaData").submit(function(event) {
-   //alert($("form").serializeArray());
-   //alert("Submitted");
-
+   event.preventDefault();
 });
 
 $("input[type='checkbox']").change(function() {

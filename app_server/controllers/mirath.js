@@ -125,10 +125,7 @@ module.exports =
 
     processAlwrathaData: function(req, res)
     {
-        if(req.body.ابن == 1)
-        {
-            console.log("yes");
-        }  
+        console.log(req.body); 
         res.send();
     },
 
