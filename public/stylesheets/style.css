@@ -47,6 +47,11 @@ nav a{
     padding-right: 0rem !important;
 }
 
+.invalid
+{
+    color: red;
+    border-color: red;
+}
 @media screen and (min-width: 240px) {
     h1 {
         font-size: 1.6rem;
