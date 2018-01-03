@@ -2,7 +2,12 @@ var express = require('express');
 var router = express.Router();
 var controllerLocations = require('../controllers/locations');
 var controllerReviews = require('../controllers/reviews');
+var controllerMirath = require('../controllers/mirath');
 
+// routing mirath api 
+router.get('/mirath/alwratha', controllerMirath.readAlwrathaList);
+router.post('/mirath/alwratha', controllerMirath.addAlwrathaData);
+router.get('/mirath/result', controllerMirath.calculateMirath);
 // routing locations api 
 router.get('/location', controllerLocations.readLocationsList);
 router.post('/location', controllerLocations.createLocation);
