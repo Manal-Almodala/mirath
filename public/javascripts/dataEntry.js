@@ -1,6 +1,7 @@
 class Alwratha{
     constructor(data){
         this.data = data;
+        this._invalidData = new Array(this.data.length);
     }
 
     get data()
@@ -11,6 +12,16 @@ class Alwratha{
     set data(value)
     {
         this._data = value;
+    }
+
+    get invalidData()
+    {
+        return this._invalidData;
+    }
+    
+    addInvalidData(invalidElement)
+    {
+        this._invalidData.push(invalidElement);
     }
 
     get dataIsValid()
@@ -28,9 +39,10 @@ class Alwratha{
     {
         var isValid = true;
         this.data.forEach(warith => {
-            if(isNaN(warith.value))
+            if(isNaN(warith.value) || warith.value == "")
             {
                 isValid = false;
+                this.addInvalidData(warith.name);
             }  
         }); 
         return isValid;
@@ -43,6 +55,8 @@ class Alwratha{
             if(warith.value <= 0)
             {
                 isValid = false;
+                this.addInvalidData(warith.name);
+
             }  
         }); 
         return isValid;
@@ -50,10 +64,16 @@ class Alwratha{
 }
 
 $("#alwrathaData").submit(function(event) {
-    var  alwratha = new Alwratha($("#alwrathaData").serializeArray());
+    $("input").removeClass("invalid");
+    var alwratha = new Alwratha($("#alwrathaData").serializeArray());
     if(!alwratha.dataIsValid)
     {
+        alwratha.invalidData.forEach(warithName => {
+            var inputSelector = "input[name='" + warithName +"']"; 
+            $(inputSelector).addClass("invalid"); 
+        }); 
         event.preventDefault();
+
     }
 });
 
