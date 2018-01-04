@@ -1,4 +1,5 @@
-class Alwratha{
+class Alwratha
+{
     constructor(data){
         this.data = data;
         this._invalidData = new Array(this.data.length);
