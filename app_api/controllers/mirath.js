@@ -6,6 +6,7 @@ var alwratha = new Alwratha();
 module.exports = {
     readAlwrathaList: function(req, res){
         var alwrathaList = alwratha.getList();
+        if(alwrathaList)
         helperModule.sendJsonResponse(res, 200, alwrathaList);
     },
     addAlwrathaData: function(req, res){

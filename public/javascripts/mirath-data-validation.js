@@ -62,19 +62,30 @@ class Alwratha
         }); 
         return isValid;
     }
+
+    isEmpty()
+    {
+        let isDataEmpty = false;
+        if(jQuery.isEmptyObject(this.data));
+        {
+            isDataEmpty = true;
+            alert("الرجاء إدخال معلومات الورثه ومن ثم إضغط علي ذر الحساب");
+        }
+        return isDataEmpty;
+    }
 }
 
 $("#alwrathaData").submit(function(event) {
     $("input").removeClass("invalid");
     var alwratha = new Alwratha($("#alwrathaData").serializeArray());
-    if(!alwratha.dataIsValid)
+    
+    if(alwratha.isEmpty() || !alwratha.dataIsValid)
     {
         alwratha.invalidData.forEach(warithName => {
             var inputSelector = "input[name='" + warithName +"']"; 
             $(inputSelector).addClass("invalid"); 
         }); 
         event.preventDefault();
-
     }
 });
 
