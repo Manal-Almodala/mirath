@@ -164,30 +164,30 @@ var render =
         });
     },
 
-    resultPage: function(req, res, content)
+    resultPage: function(req, res, result)
     {
         res.render('mirath-result', { 
             pageHeader:{
                 title: 'اﻷنصبه',
             },
             items: navItems,            
-            alwratha:[
-                {
-                    relationship: "ابن",
+            result:{
+                "ابن":
+                { 
                     count:"3",
                     fortune: "النصف"
                 },
+                "أب":
                 {
-                    relationship: "أب",
                     count:"1",
                     fortune: "الربع"
                 },
+                "بنت":
                 {
-                    relationship: "بنت",
                     count:"3",
                     fortune: "الربع"
                 }
-            ]
+            }
         });
     },
 

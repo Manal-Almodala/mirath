@@ -33,7 +33,7 @@ mixin createCards(listOfWratha)
                     input.form-control.addon-textarea-right(name=person.relationship, 
                       type='text', disabled, placeholder=0)  
 
-mixin displayResultTable(alwratha)
+mixin displayResultTable(result)
   table.table.table-hover
     thead.text-primary.bg-light
       tr
@@ -41,11 +41,11 @@ mixin displayResultTable(alwratha)
         th عدد اﻷفراد     
         th نصيب الفرد
     tbody
-      each relative in alwratha
+      each value, key in result
         tr
-          th(scope='row') #{relative.relationship}      
-          td #{relative.count}      
-          td #{relative.fortune} 
+          th(scope='row') #{key}      
+          td #{value.count}      
+          td #{value.fortune} 
 
 mixin displayNavItems(items)
   nav.navbar.navbar-expand-sm.navbar-dark.bg-primary.arabic-content
