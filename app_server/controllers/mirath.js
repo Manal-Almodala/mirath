@@ -84,7 +84,7 @@ module.exports =
                 }
                 else
                 {
-                    console.log("API returned an error");
+                    console.log(error);
                 }
             }
         );    

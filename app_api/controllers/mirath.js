@@ -1,7 +1,7 @@
 const helperModule = require('./shared-functions');
 const Alwratha = require("../models/mirath/alwratha");
-
 var alwratha = new Alwratha();
+const mirathRules = require("../models/mirath/rules");
 
 module.exports = {
     readAlwrathaList: function(req, res){
@@ -21,25 +21,14 @@ module.exports = {
         helperModule.sendJsonResponse(res, 201, alwratha.data);
     },
 
-    calculateMirath: function(req, res){
-        alwratha.result = {
-            "ابن":
-            { 
-                count:"3",
-                fortune: "النصف"
-            },
-            "أب":
-            {
-                count:"1",
-                fortune: "الربع"
-            },
-            "بنت":
-            {
-                count:"3",
-                fortune: "الربع"
-            }
-        };
+    calculateMirath: function(req, res)
+    {
+        for (var warith in alwratha.data) 
+        {
+            alwratha.data[warith].fortune.money = mirathRules[warith];
+            //mirathResult[warith].count = 1;
+        }
         
-        helperModule.sendJsonResponse(res, 200, alwratha.result);
+        helperModule.sendJsonResponse(res, 200, alwratha.data);
     },
 };
