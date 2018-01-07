@@ -20,117 +20,74 @@ module.exports =
 
     getDataPage: function(req, res)
     {
-        var listOfAlwratha = 
-        { 
-            "العصبات": 
-            [
-                {
-                    relationship: "ابن",
-                    singular: false
-                },
-                {
-                    relationship: "ابن ابن",
-                    singular: false
-                },
-                {
-                    relationship: "أخ شقيق",
-                    singular: false
-                },
-                {
-                    relationship: "أخ ﻷب",
-                    singular: false
-                },
-                {
-                    relationship: "ابن أخ شقيق",
-                    singular: false
-                },
-                {
-                    relationship: "ابن أخ ﻷب",
-                    singular: false
-                },
-                {
-                    relationship: "عم شقيق",
-                    singular: false
-                },
-                {
-                    relationship: "عم ﻷب",
-                    singular: false
-                },
-                {
-                    relationship: "ابن عم شقيق",
-                    singular: false
-                },
-                {
-                    relationship: "ابن عم ﻷب",
-                    singular: false
-                },
-            ], 
-            "أصحاب الفروض": 
-            [
-                {
-                    relationship: "زوج",
-                    singular: true
-                }, 
-                {
-                    relationship: "زوجه",
-                    singular: false
-                }, 
-                {
-                    relationship: "أخت شقيقه",
-                    singular: false
-                }, 
-                {
-                    relationship: "أخت ﻷب",
-                    singular: false
-                }, 
-                {
-                    relationship: "بنت",
-                    singular: false
-                }, 
-                {
-                    relationship: "بنت ابن",
-                    singular: false
-                }, 
-                {
-                    relationship: "أم",
-                    singular: true
-                }, 
-                {
-                    relationship: "أم أم",
-                    singular: true
-                }, 
-                {
-                    relationship: "أم ﻷب",
-                    singular: true
-                }, 
-                {
-                    relationship: "إخوه ﻷم",
-                    singular: false
-                }, 
-            ],
-            "أصحاب فروض وعصبات": 
-            [
-                {
-                    relationship: "أب",
-                    singular: true
-                },
-                {
-                    relationship: "جد",
-                    singular: true
+        var requestOptions, apiUri;
+        apiUri = apiOptions.server + '/api/mirath/alwratha';
+        requestOptions = {
+            method: 'GET',
+            json: {},
+            qs: {}
+        }
+        
+        request(apiUri, requestOptions, 
+            function(error, response, listOfAlwratha)
+            {
+                if(response.statusCode === 200){
+                    render.dataPage(req, res, listOfAlwratha);
                 }
-            ]
-        };
-        render.dataPage(req, res, listOfAlwratha);
+                else
+                {
+                    console.log("API returned an error");
+                }
+            }
+        );    
     },
 
     processAlwrathaData: function(req, res)
     { 
-        res.send();
+        var requestOptions, apiUri;
+        apiUri = apiOptions.server + '/api/mirath/alwratha';
+        requestOptions = {
+            method: 'POST',
+            json: req.body,
+            qs: {}
+        }
+        
+        request(apiUri, requestOptions, 
+            function(error, response)
+            {
+                if(response.statusCode === 201){
+                    res.redirect(apiOptions.server + "/mirath/result")
+                }
+                else
+                {
+                    console.log("API returned an error");
+                }
+            }
+        );    
     },
 
     getResultPage: function(req, res)
     {
-        render.resultPage(req,res);
+        var requestOptions, apiUri;
+        apiUri = apiOptions.server + '/api/mirath/result';
+        requestOptions = {
+            method: 'GET',
+            json: {},
+            qs: {}
+        }
+        
+        request(apiUri, requestOptions, 
+            function(error, response, mirathResult)
+            {
+                if(response.statusCode === 200){
+                    render.resultPage(req, res, mirathResult);
+                }
+                else
+                {
+                    console.log("API returned an error");
+                }
+            }
+        );    
     },
 
     getDetailPage: function(req, res)
@@ -164,30 +121,14 @@ var render =
         });
     },
 
-    resultPage: function(req, res, result)
+    resultPage: function(req, res, mirathResult)
     {
         res.render('mirath-result', { 
             pageHeader:{
                 title: 'اﻷنصبه',
             },
             items: navItems,            
-            result:{
-                "ابن":
-                { 
-                    count:"3",
-                    fortune: "النصف"
-                },
-                "أب":
-                {
-                    count:"1",
-                    fortune: "الربع"
-                },
-                "بنت":
-                {
-                    count:"3",
-                    fortune: "الربع"
-                }
-            }
+            result: mirathResult
         });
     },
 
