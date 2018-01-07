@@ -127,5 +127,26 @@ class Alwratha
         }
         return alwrathaList;
     }
+
+    hasDirectChild()
+    {
+        var directChildren = ["بنت", "ابن"];
+        var hasDirectChild = false;
+        adirectChildren.forEach(child => {
+            if(this.data.hasOwnProperty(child))
+            {
+                hasDirectChild = true;
+                return;
+            }
+        });
+
+        return hasDirectChild;
+    }
+
+    hasSonsChild()
+    {
+        return(this.data.hasOwnProperty("ابن ابن"));
+    }
+
 };
 module.exports = Alwratha;
