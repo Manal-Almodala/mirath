@@ -32,6 +32,9 @@ mixin createCards(listOfWratha)
                   -if(!person.singular)          
                     input.form-control.addon-textarea-right(name=person.relationship, 
                       type='text', disabled, placeholder=0)  
+                  -else         
+                    input.form-control.addon-textarea-right(name=person.relationship, 
+                      type='text', hidden, disabled, value=1)  
 
 mixin displayResultTable(result)
   table.table.table-hover
