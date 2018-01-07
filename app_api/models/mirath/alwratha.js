@@ -1,9 +1,10 @@
+const Warith = require("./warith");
+
 class Alwratha 
 {
     constructor()
     {
         this.data = {};
-        this.result = {};
     }
 
     get data()
@@ -13,28 +14,8 @@ class Alwratha
 
     set data(alwrathaData)
     {
-        this._data = alwrathaData;
-        for (var person in this._data) {
-            if (this._data.hasOwnProperty(person)) {
-                this.setEmptyCountToOne(person);
-                this._data[person] = parseInt(this._data[person], 10);
-            }
-        };
-    }
-
-    get result()
-    {
-        return this._result;
-    }
-
-    set result(value)
-    {
-        this._result = value;
-    }
-
-    setEmptyCountToOne(person)
-    {
-        if(this.data[person] === "")
+        var alwrathaData = {};
+        for(var person in alwrathaForm)
         {
             this._data[person] = 1;
         }
