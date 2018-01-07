@@ -3,6 +3,7 @@ class Alwratha
     constructor()
     {
         this.data = {};
+        this.result = {};
     }
 
     get data()
@@ -19,6 +20,16 @@ class Alwratha
                 this._data[person] = parseInt(this._data[person], 10);
             }
         };
+    }
+
+    get result()
+    {
+        return this._result;
+    }
+
+    set result(value)
+    {
+        this._result = value;
     }
 
     setEmptyCountToOne(person)
