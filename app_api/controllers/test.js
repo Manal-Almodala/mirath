@@ -1,15 +1,9 @@
-require("../models/alwratha");
+if(1 == 0)
+{
+    console.log("equal");  
+}
 
 
-if(isNaN("1"))
-{
-    console.log("case 1");  
-}
-if(parseInt("R",10) === 'NaN')
-{
-    console.log("case 2");  
-}
-console.log(parseInt("R", 10))
 
 
 

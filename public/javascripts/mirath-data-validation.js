@@ -65,18 +65,21 @@ class Alwratha
 
     isEmpty()
     {
-        let isDataEmpty = false;
-        if(jQuery.isEmptyObject(this.data));
+        if(this.data.length > 0)
         {
-            isDataEmpty = true;
-            alert("الرجاء إدخال معلومات الورثه ومن ثم إضغط علي ذر الحساب");
+            return false;
         }
-        return isDataEmpty;
+        else
+        {
+            alert("الرجاء إدخال معلومات الورثه ومن ثم إضغط علي ذر الحساب");
+            return true;
+        }
     }
 }
 
 $("#alwrathaData").submit(function(event) {
     $("input").removeClass("invalid");
+
     var alwratha = new Alwratha($("#alwrathaData").serializeArray());
     
     if(alwratha.isEmpty() || !alwratha.dataIsValid)
