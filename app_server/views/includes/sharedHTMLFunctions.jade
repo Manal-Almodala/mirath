@@ -44,11 +44,11 @@ mixin displayResultTable(result)
         th عدد اﻷفراد     
         th نصيب الفرد
     tbody
-      each value, key in result
+      each warith, warithName in result
         tr
-          th(scope='row') #{key}      
-          td #{value.count}      
-          td #{value.fortune} 
+          th(scope='row') #{warithName}      
+          td #{warith.count}      
+          td #{warith.fortune.money} 
 
 mixin displayNavItems(items)
   nav.navbar.navbar-expand-sm.navbar-dark.bg-primary.arabic-content
