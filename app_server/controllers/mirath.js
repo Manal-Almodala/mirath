@@ -1,7 +1,7 @@
 var request = require('request');
 
 var apiOptions = {
-    _server : "https://loc8r-yasso.herokuapp.com",
+    _server : "https://estihgagat.herokuapp.com",
     
     get server() {
             if (process.env.NODE_ENV !== 'production') { 
