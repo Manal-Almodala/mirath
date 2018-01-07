@@ -12,13 +12,16 @@ class Alwratha
         return this._data;
     }
 
-    set data(alwrathaData)
+    set data(alwrathaForm)
     {
         var alwrathaData = {};
         for(var person in alwrathaForm)
         {
-            this._data[person] = 1;
+            let warith = new Warith();
+            warith.count = parseInt(alwrathaForm[person], 10);
+            alwrathaData[person] = warith;
         }
+        this._data = alwrathaData;
     }
 
     getList()
