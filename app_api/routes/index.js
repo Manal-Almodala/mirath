@@ -1,8 +1,8 @@
-var express = require('express');
-var router = express.Router();
-var controllerLocations = require('../controllers/locations');
-var controllerReviews = require('../controllers/reviews');
-var controllerMirath = require('../controllers/mirath');
+const express = require('express');
+const router = express.Router();
+const controllerLocations = require('../controllers/locations');
+const controllerReviews = require('../controllers/reviews');
+const controllerMirath = require('../controllers/mirath').controllers;
 
 // routing mirath api 
 router.get('/mirath/alwratha', controllerMirath.readAlwrathaList);
