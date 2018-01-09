@@ -1,9 +1,12 @@
 const helperModule = require('./shared-functions');
 const Alwratha = require("../models/mirath/alwratha");
+
 var alwratha = new Alwratha();
+module.exports.model = alwratha;
+
 const mirathRules = require("../models/mirath/rules");
 
-module.exports = {
+module.exports.controllers = {
     readAlwrathaList: function(req, res){
         var alwrathaList = alwratha.getList();
         if(alwrathaList)
@@ -23,12 +26,14 @@ module.exports = {
 
     calculateMirath: function(req, res)
     {
+        console.log(alwratha.hasDirectChild);
         for (var warith in alwratha.data) 
         {
             alwratha.data[warith].fortune.money = mirathRules[warith];
-            //mirathResult[warith].count = 1;
         }
         
         helperModule.sendJsonResponse(res, 200, alwratha.data);
     },
 };
+
+
