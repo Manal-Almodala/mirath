@@ -1,5 +1,4 @@
 const Warith = require("./warith");
-
 class Alwratha 
 {
     constructor()
@@ -128,24 +127,24 @@ class Alwratha
         return alwrathaList;
     }
 
-    hasDirectChild()
+    get hasDirectChild()
     {
         var directChildren = ["بنت", "ابن"];
-        var hasDirectChild = false;
-        adirectChildren.forEach(child => {
+        this._hasDirectChild = false;
+        directChildren.forEach(child => {
             if(this.data.hasOwnProperty(child))
             {
-                hasDirectChild = true;
+                this._hasDirectChild = true;
                 return;
             }
         });
-
-        return hasDirectChild;
+        return this._hasDirectChild;
     }
 
-    hasSonsChild()
+    get hasSonsChild()
     {
-        return(this.data.hasOwnProperty("ابن ابن"));
+        this._hasSonsChild = this.data.hasOwnProperty("ابن ابن");
+        return this._hasSonsChild;
     }
 
 };
