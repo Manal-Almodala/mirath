@@ -1,20 +1,24 @@
+const alwratha = require("../../controllers/mirath").model;
+
 module.exports = 
 {
-    "ابن": function(){
-        let fortune  = {};
+    get "ابن"(){
+        var fortune  = 0;
         return fortune 
     },
 
-    "ابن ابن": function(){
+    get "ابن ابن"(){
         var fortune = 0;
         return fortune 
     },
     get "زوج"(){
         var fortune = 0.5;
-        /*if(hasDirectChild(this.alwratha) || hasSonsChild(this.alwratha))
+
+        if(alwratha.hasDirectChild || alwratha.hasSonsChild)
         {
             fortune = 0.25;
-        }*/
+        }
+
         return fortune;
     },
 };
