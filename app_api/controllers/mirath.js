@@ -25,6 +25,8 @@ module.exports.controllers = {
 
     addAlwrathaData: function(req, res){
         alwratha.data = req.body;
+        altarika.money = 10;
+        altarika.property = 15;
         helperModule.sendJsonResponse(res, 201, alwratha.data);
     },
 
