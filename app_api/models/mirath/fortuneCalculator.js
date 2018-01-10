@@ -1,4 +1,5 @@
-const alwratha = require("../../controllers/mirath").model;
+const alwratha = require("../../controllers/mirath").alwratha;
+const altarika = require("../../controllers/mirath").altarika;
 const Fortune = require("./warith").fortune;
 
 module.exports = 
@@ -35,6 +36,7 @@ module.exports =
         }
 
         fotune.ratio /= alwratha.data["زوجه"].count;
+        fortune
         return fortune  
     },
 
@@ -57,3 +59,7 @@ module.exports =
     },
 };
 
+function SetMoneyAndProperty(ratio)
+{
+
+}
