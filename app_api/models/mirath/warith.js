@@ -16,6 +16,12 @@ class Fortune
             property: 0
         }
     }
+
+    calculate(tarika)
+    {
+        this.money = this.ratio * tarika.money;
+        this.property = this.ratio * tarika.property;
+    }
 }
 module.exports.warith = Warith;
 module.exports.fortune = Fortune;
