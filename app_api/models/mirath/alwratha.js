@@ -1,4 +1,4 @@
-const Warith = require("./warith");
+const Warith = require("./warith").warith;
 class Alwratha 
 {
     constructor()
@@ -69,6 +69,17 @@ class Alwratha
                     singular: false
                 },
             ], 
+            "أصحاب فروض وعصبات": 
+            [
+                {
+                    relationship: "أب",
+                    singular: true
+                },
+                {
+                    relationship: "جد",
+                    singular: true
+                }
+            ],
             "أصحاب الفروض": 
             [
                 {
@@ -111,17 +122,6 @@ class Alwratha
                     relationship: "إخوه ﻷم",
                     singular: false
                 }, 
-            ],
-            "أصحاب فروض وعصبات": 
-            [
-                {
-                    relationship: "أب",
-                    singular: true
-                },
-                {
-                    relationship: "جد",
-                    singular: true
-                }
             ]
         }
         return alwrathaList;
@@ -145,6 +145,26 @@ class Alwratha
     {
         this._hasSonsChild = this.data.hasOwnProperty("ابن ابن");
         return this._hasSonsChild;
+    }
+
+    get hasBrothersOrSisters()
+    {
+        const brothersSisters = ["أخ شقيق", "أخ ﻷب", "أخت شقيقه",
+                                 ,"أخت ﻷب", "إخوه ﻷم"];
+        this._hasBrothersOrSisters = false;
+        let count = 0;
+        brothersSisters.forEach(brotherOrSister => {
+            if(this.data.hasOwnProperty(brotherOrSister))
+            {
+                count++;
+                if(count > 1)
+                {
+                    this._hasBrothersOrSisters = true;
+                    return;
+                }  
+            }
+        });
+        return this._hasBrothersOrSisters;
     }
 
 };
