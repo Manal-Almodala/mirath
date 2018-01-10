@@ -1,4 +1,4 @@
-const alwratha = require("../../controllers/mirath").model;
+const alwratha = require("../../controllers/mirath").alwratha;
 
 class Tarika
 {

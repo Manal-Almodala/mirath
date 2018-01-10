@@ -1,20 +1,10 @@
-class Warith
-{
-    constructor(){
-        this.count = 0;
-        this.fortune = new Fortune();
-    }
-}
-
 class Fortune
 {
     constructor()
     {
-        this.fortune = {
-            ratio: 0.0,
-            money: 0,
-            property: 0
-        }
+        this.ratio = 0;
+        this.money = 0;
+        this.property = 0;
     }
 
     calculate(tarika)
@@ -23,5 +13,13 @@ class Fortune
         this.property = this.ratio * tarika.property;
     }
 }
-module.exports.warith = Warith;
 module.exports.fortune = Fortune;
+
+class Warith
+{
+    constructor(){
+        this.count = 0;
+        this.fortune = new Fortune();
+    }
+}
+module.exports.warith = Warith;
