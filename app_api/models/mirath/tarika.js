@@ -1,12 +1,10 @@
-const alwratha = require("../../controllers/mirath").alwratha;
-
 class Tarika
 {
     constructor()
     {
         this.money = 0;
         this.property = 0;
-        this._remainder = {
+        this.remainder = {
             money: 0,
             property: 0,
         }
@@ -30,20 +28,6 @@ class Tarika
     set property(value)
     {
         this._property = value;
-    }
-
-    get remainder()
-    {
-        let consumedMoney = 0, consumedProperty = 0;
-        for(var warith in alwratha.data)
-        {
-            consumedMoney += warith.count * warith.fortune.money;
-            consumedProperty+= warith.count * warith.fortune.property;
-        }
-
-        this._remainder.money -= consumedMoney;
-        this._remainder.property -= consumedProperty;
-        return this._remainder;
     }
 }
 module.exports = Tarika; 
