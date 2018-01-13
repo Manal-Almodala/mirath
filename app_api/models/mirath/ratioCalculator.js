@@ -58,7 +58,7 @@ module.exports =
             fortuneRatio *= alwratha.data["أم"].fortune.hasRemainder; 
             alwratha.data["أم"].fortune.hasRemainder = true;
         }
-        else if(!alwratha.hasAshabFroad("أم"))
+        else if(!alwratha.hasAshabFroad(["أم", "أم أم", "أم ﻷب"]))
         {
             if(alwratha.data["أم"].fortune.hasRemainder)
             {
@@ -67,5 +67,56 @@ module.exports =
             alwratha.data["أم"].fortune.hasRemainder = true;
         }
         return fortuneRatio;
+    },
+
+    get "أم أم"(){
+        var fortuneRatio = 0.167;
+
+        if(alwratha.data.hasOwnProperty("أم"))
+        {
+            fortuneRatio = 0;
+        }
+        else if(!alwratha.hasAshabFroad(["أم أم", "أم ﻷب"]))
+        {
+            if(alwratha.data["أم أم"].fortune.hasRemainder)
+            {
+                fortuneRatio = 1; 
+            }
+            alwratha.data["أم أم"].fortune.hasRemainder = true;
+        }
+
+        if(!alwratha.data.hasOwnProperty("أب") && 
+            alwratha.data.hasOwnProperty("أم ﻷب"))
+        {
+            fortuneRatio *= 0.5;
+        }
+
+        return fortuneRatio; 
+    },
+
+    get "أم ﻷب"(){
+        var fortuneRatio = 0.167;
+
+        if(alwratha.data.hasOwnProperty("أم") ||
+            alwratha.data.hasOwnProperty("أب"))
+        {
+            fortuneRatio = 0;
+        }
+        else if(!alwratha.hasAshabFroad(["أم أم", "أم ﻷب"]))
+        {
+            if(alwratha.data["أم ﻷب"].fortune.hasRemainder)
+            {
+                fortuneRatio = 1; 
+            }
+            alwratha.data["أم ﻷب"].fortune.hasRemainder = true;
+        }
+
+        if(!alwratha.data.hasOwnProperty("أم") && 
+            alwratha.data.hasOwnProperty("أم أم"))
+        {
+            fortuneRatio *= 0.5;
+        }
+
+        return fortuneRatio; 
     },
 };

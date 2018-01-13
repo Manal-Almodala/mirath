@@ -167,14 +167,21 @@ class Alwratha
         return this._hasBrothersOrSisters;
     }
 
-    hasAshabFroad(excludedWarith)
+    hasAshabFroad(excludedWaratha)
     {
-        var ashabFroad = this.getList()["أصحاب الفروض"];
-        ashabFroad.splice(ashabFroad.indexOf(excludedWarith),1);
-        
+        var tempArray = this.getList()["أصحاب الفروض"];
+        var ashabFroad = [];
+
+        tempArray.forEach(person => {
+            if(excludedWaratha.indexOf(person.relationship) == -1)
+            {
+                ashabFroad.push(person.relationship);
+            }
+        });
+       
         var hasAshabFroad = false;
         ashabFroad.forEach(person => {
-            if(this.data.hasOwnProperty(person.relationship))
+            if(this.data.hasOwnProperty(person))
             {
                 hasAshabFroad = true;
                 return;

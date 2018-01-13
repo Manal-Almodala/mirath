@@ -1,3 +1,3 @@
-var flag = false;
-
-console.log(true * 2);
+var arr = ["first", "second"];
+console.log(arr.indexOf("d"));
+    

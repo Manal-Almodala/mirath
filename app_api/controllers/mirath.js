@@ -9,7 +9,7 @@ var altarika = new Tarika();
 module.exports.alwratha = alwratha;
 module.exports.altarika = altarika;
 
-const fortuneCalculator = require("../models/mirath/fortuneCalculator");
+const ratioCalculator = require("../models/mirath/ratioCalculator");
 
 module.exports.controllers = {
     readAlwrathaList: function(req, res){
@@ -35,7 +35,7 @@ module.exports.controllers = {
     {
         for (var warith in alwratha.data) 
         {
-            alwratha.data[warith].fortune.ratio = fortuneCalculator[warith];
+            alwratha.data[warith].fortune.ratio = ratioCalculator[warith];
             alwratha.data[warith].fortune.calculate(altarika);
         }
 
@@ -45,7 +45,7 @@ module.exports.controllers = {
         {
             if(alwratha.data[warith].fortune.hasRemainder)
             {
-                alwratha.data[warith].fortune.ratio = fortuneCalculator[warith];
+                alwratha.data[warith].fortune.ratio = ratioCalculator[warith];
                 alwratha.data[warith].fortune.addRemainderWorth(altarika);
             }
         }
