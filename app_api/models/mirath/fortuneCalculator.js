@@ -1,68 +1,71 @@
 const alwratha = require("../../controllers/mirath").alwratha;
-const altarika = require("../../controllers/mirath").altarika;
-const Fortune = require("./warith").fortune;
 
 module.exports = 
 {
     get "ابن"(){
-        var fortune = new Fortune();
-        fortune.calculate(altarika);
-        return fortune;
+        var fortuneRatio = 0;
+        return fortuneRatio;
     },
 
     get "أب"(){
-        var fortune = new Fortune();
-        fortune.calculate(altarika);
-        return fortune;
+        var fortuneRatio = 0;
+        return fortuneRatio;
     },
 
     get "ابن ابن"(){
-        var fortune = new Fortune();
-        fortune.calculate(altarika);
-        return fortune;
+        var fortuneRatio = 0;
+        return fortuneRatio;
     },
 
     get "زوج"(){
-        var fortune = new Fortune();
-        fortune.ratio = 0.5;
+        var fortuneRatio = 0.5;
 
         if(alwratha.hasDirectChild || alwratha.hasSonsChild)
         {
-            fortune.ratio = 0.25;
+            fortuneRatio = 0.25;
         }
 
-        fortune.calculate(altarika);
-        return fortune;
+        return fortuneRatio;
     },
 
     get "زوجه"(){
-        var fortune = new Fortune();
+        var fortuneRatio = 0.25;
 
-        fortune.ratio = 0.25;
         if(alwratha.hasDirectChild || alwratha.hasSonsChild)
         {
-            fortune.ratio = 0.125;
+            fortuneRatio = 0.125;
         }
-        fortune.ratio /= alwratha.data["زوجه"].count;
+        fortuneRatio /= alwratha.data["زوجه"].count;
 
-        fortune.calculate(altarika);
-        return fortune; 
+        return fortuneRatio; 
     },
 
+    get "أخ شقيق"(){
+        var fortuneRatio = 0;
+        return fortuneRatio; 
+    },
+    
     get "أم"(){
-        var fortune = new Fortune();
+        var fortuneRatio = 0.333;
 
-        fortune.ratio = 0.333;
         if(alwratha.hasBrothersOrSisters || alwratha.hasDirectChild 
             || alwratha.hasSonsChild)
         {
-            fortune.ratio = 0.167;
+            fortuneRatio = 0.167;
         }
-        /* Add two more cases 
-         * 1. 1/3 + the remainder 
-         * 2. 1/3 of the remainder 
-        */
-        fortune.calculate(altarika);
-        return fortune;
+        else if(alwratha.hasFatherAndSpouse)
+        {
+            fortuneRatio *= alwratha.data["أم"].fortune.hasRemainder; 
+            alwratha.data["أم"].fortune.hasRemainder = true;
+        }
+        else if(!alwratha.hasAshabFroad("أم"))
+        {
+            if(alwratha.data["أم"].fortune.hasRemainder)
+            {
+                fortuneRatio = 1; 
+            }
+            alwratha.data["أم"].fortune.hasRemainder = true;
+        }
+        return fortuneRatio;
     },
 };

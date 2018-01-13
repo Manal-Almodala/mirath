@@ -156,7 +156,7 @@ class Alwratha
         brothersSisters.forEach(brotherOrSister => {
             if(this.data.hasOwnProperty(brotherOrSister))
             {
-                count++;
+                count += this.data[brotherOrSister].count;
                 if(count > 1)
                 {
                     this._hasBrothersOrSisters = true;
@@ -167,5 +167,30 @@ class Alwratha
         return this._hasBrothersOrSisters;
     }
 
+    hasAshabFroad(excludedWarith)
+    {
+        var ashabFroad = this.getList()["أصحاب الفروض"];
+        ashabFroad.splice(ashabFroad.indexOf(excludedWarith),1);
+        
+        var hasAshabFroad = false;
+        ashabFroad.forEach(person => {
+            if(this.data.hasOwnProperty(person.relationship))
+            {
+                hasAshabFroad = true;
+                return;
+            }
+        });
+        return hasAshabFroad;
+    }
+
+    get hasFatherAndSpouse()
+    {
+        var hasFatherAndHusband = this.data.hasOwnProperty("أب") 
+            && this.data.hasOwnProperty("زوج");
+        var hasFatherAndWife = this.data.hasOwnProperty("أب") 
+            && this.data.hasOwnProperty("زوجه"); 
+
+        return (hasFatherAndHusband || hasFatherAndWife);
+    }
 };
 module.exports = Alwratha;
