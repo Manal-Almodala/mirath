@@ -1,5 +1,4 @@
 const Warith = require("./warith").warith;
-const helper = require("./helper");
 
 class Alwratha 
 {
@@ -147,17 +146,6 @@ class Alwratha
         return ashabFroad
     }
 
-    get hasDirectChild()
-    {
-        const directChildren = ["بنت", "ابن"];
-        return helper.isObjectHasSecond(this.data, directChildren);
-    }
-
-    get hasSonsChild()
-    {
-        return this.data.hasOwnProperty("ابن ابن");
-    }
-
     get hasBrothersOrSisters()
     {
         const brothersAndSisters = ["أخ شقيق", "أخ ﻷب", "أخت شقيقه",
@@ -180,6 +168,21 @@ class Alwratha
         return hasBrothersOrSisters;
     }
 
+    includesAnyOf(people)
+    {
+        var isTargetIncluded = false;
+        for(var person of people)
+        {
+            if(this.data.hasOwnProperty(person))
+            {
+                isTargetIncluded = true;
+                break;
+            }
+        }
+
+        return isTargetIncluded;
+    }
+
     hasAshabFroad(excludedWaratha)
     {
         var tempArray = this.getAshabAlfroad();
@@ -192,7 +195,7 @@ class Alwratha
             }
         });
 
-        return helper.isObjectHasSecond(this.data, ashabFroad);
+        return this.includesAnyOf(ashabFroad);
     }
 
     get hasFatherAndSpouse()
@@ -209,7 +212,14 @@ class Alwratha
     {
         const warithenWithFather = ["ابن", "ابن ابن", "زوج", "زوجه",
         "أم", "أم أم", "بنت", "بنت ابن"];
-        return !helper.isObjectHasSecond(this.data, warithenWithFather);
+        return !this.includesAnyOf(warithenWithFather);
+    }
+
+    get isGrandfatherTheOnlyWarith()
+    {
+        const warithenWithGrandfather = ["ابن", "ابن ابن", "زوج", "زوجه",
+        "أم", "أم أم", "أم ﻷب", "بنت", "بنت ابن"];
+        return !this.includesAnyOf(warithenWithGrandfather);
     }
 };
 

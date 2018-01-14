@@ -1,5 +1,4 @@
 const alwratha = require("../../controllers/mirath").alwratha;
-const helper = require("./helper");
 
 module.exports = 
 {
@@ -15,11 +14,11 @@ module.exports =
         {
             fortuneRatio = 1;
         }
-        else if(helper.isObjectHasSecond(alwratha.data, ["ابن", "ابن ابن"]))
+        else if(alwratha.includesAnyOf(["ابن", "ابن ابن"]))
         {
             fortuneRatio = 0.167;
         }
-        else if(alwratha.hasAshabFroad(["جد", "أم ﻷب", "إخوه ﻷم", 
+        else if(alwratha.hasAshabFroad(["أب", "جد", "أم ﻷب", "إخوه ﻷم", 
             "أخت ﻷب","أخت شقيقه"]))
         {
             if(alwratha.data["أب"].fortune.hasRemainder)
@@ -27,6 +26,34 @@ module.exports =
                 fortuneRatio = 1; 
             }
             alwratha.data["أب"].fortune.hasRemainder = true;
+        }
+
+        return fortuneRatio;
+    },
+
+    get "جد"(){
+        var fortuneRatio = 0;
+
+        if(alwratha.data.hasOwnProperty("أب"))
+        {
+            fortuneRatio = 0;
+        }
+        else if(alwratha.isGrandfatherTheOnlyWarith)
+        {
+            fortuneRatio = 1;
+        }
+        else if(alwratha.includesAnyOf(["ابن", "ابن ابن"]))
+        {
+            fortuneRatio = 0.167;
+        }
+        else if(alwratha.hasAshabFroad(["جد", "إخوه ﻷم", 
+            "أخت ﻷب","أخت شقيقه"]))
+        {
+            if(alwratha.data["جد"].fortune.hasRemainder)
+            {
+                fortuneRatio = 1; 
+            }
+            alwratha.data["جد"].fortune.hasRemainder = true;
         }
 
         return fortuneRatio;
@@ -40,7 +67,7 @@ module.exports =
     get "زوج"(){
         var fortuneRatio = 0.5;
 
-        if(alwratha.hasDirectChild || alwratha.hasSonsChild)
+        if(alwratha.includesAnyOf(["بنت", "ابن", "ابن ابن"]))
         {
             fortuneRatio = 0.25;
         }
@@ -51,7 +78,7 @@ module.exports =
     get "زوجه"(){
         var fortuneRatio = 0.25;
 
-        if(alwratha.hasDirectChild || alwratha.hasSonsChild)
+        if(alwratha.includesAnyOf(["بنت", "ابن", "ابن ابن"]))
         {
             fortuneRatio = 0.125;
         }
@@ -68,8 +95,8 @@ module.exports =
     get "أم"(){
         var fortuneRatio = 0.333;
 
-        if(alwratha.hasBrothersOrSisters || alwratha.hasDirectChild 
-            || alwratha.hasSonsChild)
+        if(alwratha.hasBrothersOrSisters || alwratha.includesAnyOf(
+            ["بنت", "ابن", "ابن ابن"]))
         {
             fortuneRatio = 0.167;
         }
