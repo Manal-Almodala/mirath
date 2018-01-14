@@ -122,72 +122,86 @@ class Alwratha
                     relationship: "إخوه ﻷم",
                     singular: false
                 }, 
-            ]
+            ],
+            "أصحاب فروض وعصبات": 
+            [
+                {
+                    relationship: "أب",
+                    singular: true
+                },
+                {
+                    relationship: "جد",
+                    singular: true
+                }
+            ],
         }
         return alwrathaList;
     }
 
+    getAshabAlfroad()
+    {
+        var tempArray = this.getList()["أصحاب الفروض"];
+        var ashabFroad = [];
+
+        for(var object of tempArray)
+        {
+            ashabFroad.push(object.relationship);
+        }
+
+        for(var object of this.getList()["أصحاب فروض وعصبات"])
+        {
+            ashabFroad.push(object.relationship);
+        }
+      
+        return ashabFroad
+    }
+
     get hasDirectChild()
     {
-        var directChildren = ["بنت", "ابن"];
-        this._hasDirectChild = false;
-        directChildren.forEach(child => {
-            if(this.data.hasOwnProperty(child))
-            {
-                this._hasDirectChild = true;
-                return;
-            }
-        });
-        return this._hasDirectChild;
+        const directChildren = ["بنت", "ابن"];
+        return helper.isObjectHasSecond(this.data, directChildren);
     }
 
     get hasSonsChild()
     {
-        this._hasSonsChild = this.data.hasOwnProperty("ابن ابن");
-        return this._hasSonsChild;
+        return this.data.hasOwnProperty("ابن ابن");
     }
 
     get hasBrothersOrSisters()
     {
-        const brothersSisters = ["أخ شقيق", "أخ ﻷب", "أخت شقيقه",
+        const brothersAndSisters = ["أخ شقيق", "أخ ﻷب", "أخت شقيقه",
                                  ,"أخت ﻷب", "إخوه ﻷم"];
-        this._hasBrothersOrSisters = false;
+        var hasBrothersOrSisters = false;
         let count = 0;
-        brothersSisters.forEach(brotherOrSister => {
+        for(var brotherOrSister of brothersAndSisters)
+        {
             if(this.data.hasOwnProperty(brotherOrSister))
             {
                 count += this.data[brotherOrSister].count;
                 if(count > 1)
                 {
-                    this._hasBrothersOrSisters = true;
-                    return;
+                    hasBrothersOrSisters = true;
+                    break;
                 }  
             }
-        });
-        return this._hasBrothersOrSisters;
+        }
+
+        return hasBrothersOrSisters;
     }
 
     hasAshabFroad(excludedWaratha)
     {
-        var tempArray = this.getList()["أصحاب الفروض"];
+        var tempArray = this.getAshabAlfroad();
         var ashabFroad = [];
 
         tempArray.forEach(person => {
-            if(excludedWaratha.indexOf(person.relationship) == -1)
+            if(excludedWaratha.indexOf(person) == -1)
             {
-                ashabFroad.push(person.relationship);
+                ashabFroad.push(person);
             }
         });
-       
-        var hasAshabFroad = false;
-        ashabFroad.forEach(person => {
-            if(this.data.hasOwnProperty(person))
-            {
-                hasAshabFroad = true;
-                return;
-            }
-        });
-        return hasAshabFroad;
+
+        return helper.isObjectHasSecond(this.data, ashabFroad);
     }
 
     get hasFatherAndSpouse()
