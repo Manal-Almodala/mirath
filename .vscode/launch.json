@@ -8,6 +8,12 @@
         {
             "type": "node",
             "request": "launch",
+            "name": "Launch Test",
+            "program": "${workspaceFolder}/app_api/controllers/test.js"
+        },
+        {
+            "type": "node",
+            "request": "launch",
             "name": "nodemon",
             "runtimeExecutable": "nodemon",
             "program": "${workspaceFolder}/app.js",

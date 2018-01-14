@@ -1,4 +1,5 @@
 const alwratha = require("../../controllers/mirath").alwratha;
+const helper = require("./helper");
 
 module.exports = 
 {
@@ -9,6 +10,25 @@ module.exports =
 
     get "أب"(){
         var fortuneRatio = 0;
+
+        if(alwratha.isFatherTheOnlyWarith)
+        {
+            fortuneRatio = 1;
+        }
+        else if(helper.isObjectHasSecond(alwratha.data, ["ابن", "ابن ابن"]))
+        {
+            fortuneRatio = 0.167;
+        }
+        else if(alwratha.hasAshabFroad(["جد", "أم ﻷب", "إخوه ﻷم", 
+            "أخت ﻷب","أخت شقيقه"]))
+        {
+            if(alwratha.data["أب"].fortune.hasRemainder)
+            {
+                fortuneRatio = 1; 
+            }
+            alwratha.data["أب"].fortune.hasRemainder = true;
+        }
+
         return fortuneRatio;
     },
 

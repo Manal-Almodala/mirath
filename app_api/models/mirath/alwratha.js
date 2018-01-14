@@ -1,4 +1,6 @@
 const Warith = require("./warith").warith;
+const helper = require("./helper");
+
 class Alwratha 
 {
     constructor()
@@ -69,17 +71,6 @@ class Alwratha
                     singular: false
                 },
             ], 
-            "أصحاب فروض وعصبات": 
-            [
-                {
-                    relationship: "أب",
-                    singular: true
-                },
-                {
-                    relationship: "جد",
-                    singular: true
-                }
-            ],
             "أصحاب الفروض": 
             [
                 {
@@ -213,5 +204,13 @@ class Alwratha
 
         return (hasFatherAndHusband || hasFatherAndWife);
     }
+
+    get isFatherTheOnlyWarith()
+    {
+        const warithenWithFather = ["ابن", "ابن ابن", "زوج", "زوجه",
+        "أم", "أم أم", "بنت", "بنت ابن"];
+        return !helper.isObjectHasSecond(this.data, warithenWithFather);
+    }
 };
+
 module.exports = Alwratha;
