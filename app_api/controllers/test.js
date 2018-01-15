@@ -1,10 +1,26 @@
 const helper = require("../models/mirath/helper");
-var arr1 = ["1", "2"];
-var arr2 = ["3", "4"];
-for(var element of arr2)
+function isEligibleAlone(warithAndMhgoben, ref)
 {
-    arr1.push(element);
+    var isEligibleAlone = true;
+    if(ref.length > warithAndMhgoben.length)
+    {
+        isEligibleAlone = false;
+    }
+    else
+    {
+        for(var warith of ref)
+        {
+            if(!warithAndMhgoben.includes(warith))
+            {
+                isEligibleAlone = false;
+                break;
+            }
+        }
+    }
+    return isEligibleAlone;   
 }
-console.log(arr1);
+
+console.log(isEligibleAlone(["1", "2"], ["1"]));
+console.log(isEligibleAlone(["1", "2"], ["1", "5"]));
 
     

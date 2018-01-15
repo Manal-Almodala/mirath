@@ -24,6 +24,16 @@ class Alwratha
         this._data = alwrathaData;
     }
 
+    get size()
+    {
+        var count  = 0;
+        for(var warith in this.data)
+        {
+            count++;
+        }
+        return count;
+    }
+
     getList()
     {
         var alwrathaList = {
@@ -196,6 +206,27 @@ class Alwratha
         });
 
         return this.includesAnyOf(ashabFroad);
+    }
+
+    isEligibleAlone(warithAndMhgoben)
+    {
+        var isAlone = true;
+        if(this.size > warithAndMhgoben.length)
+        {
+            isEligibleAlone = false;
+        }
+        else
+        {
+            for(var warith in this.data)
+            {
+                if(!warithAndMhgoben.includes(warith))
+                {
+                    isAlone = false;
+                    break;
+                }
+            }
+        }
+        return isAlone;   
     }
 
     get hasFatherAndSpouse()
