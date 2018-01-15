@@ -161,16 +161,83 @@ module.exports =
         return fortuneRatio;
     },
     
-    /********TBD*********/
+    /********TBT*/
     get "أخ شقيق"(){
         var fortuneRatio = 0;
-        return fortuneRatio; 
+
+        if(alwratha.includesAnyOf(["ابن", "ابن ابن", "أب", "جد"]))
+        {
+            fortuneRatio = 0;
+        }
+        else if(alwratha.isEligibleAlone(["أخ شقيق", "أخ ﻷب", "أخت ﻷب",
+            "ابن أخ شقيق", "ابن أخ ﻷب", "عم شقيق", "عم ﻷب", 
+            "ابن عم شقيق", "ابن عم ﻷب"]))
+        {
+            fortuneRatio = 1;
+        }
+        else if(alwratha.includesAnyOf(["أخت شقيقه"]))
+        {
+            fortuneRatio = 2 * this["أخت شقيقه"];
+        }
+        else
+        {
+            fortuneRatio = setRemainderRatio("أخ شقيق", fortuneRatio, 1);
+        }
+
+        return fortuneRatio / alwratha.data["أخ شقيق"].count;
+    },
+
+    /********TBD*********/
+    get "أخت شقيقه"(){
+        var fortuneRatio = 0.5;
+        var count = alwratha.data["أخت شقيقه"].count;
+        var hasSiblingBrother = alwratha.includesAnyOf(["أخ شقيق"]);
+
+        if(alwratha.includesAnyOf(["ابن", "ابن ابن", "أب", "جد"]))
+        {
+            fortuneRatio = 0;
+        }
+        else if(alwratha.isEligibleAlone(peopleBlockedBySiblingSister()
+                .push("أخت شقيقه")))
+        {
+            if(count > 1)
+            {
+                fortuneRatio = 0.667;
+            }
+            fortuneRatio = setRemainderRatio("أخت شقيقه", fortuneRatio, 1);;
+        }
+        else if(count > 1 && !hasSiblingBrother)
+        {
+            fortuneRatio = 0.5;
+        }
+        else if(!alwratha.includesAnyOf(["أخ شقيق"]) && 
+                alwratha.includesAnyOf(["بنت", "بنت ابن"]))
+        {
+            fortuneRatio = 0;
+            fortuneRatio = setRemainderRatio("أخت شقيقه", fortuneRatio, 1);
+        }
+        else if(!alwratha.includesAnyOf(["أخ شقيق"]) && count > 1)
+        {
+            fortuneRatio = 0.667;
+        }
+        else
+        {
+            fortuneRatio = 0.333;
+        }
+
+        return fortuneRatio / count;
     },
 
     /********TBD*********/
     get "أخ ﻷب"(){
         var fortuneRatio = 0;
         return fortuneRatio;
+    },
+
+    /********TBD*********/
+    get "أخت ﻷب"(){
+        var fortuneRatio = 0;
+        return fortuneRatio; 
     },
 
     get "إخوه ﻷم"(){
@@ -300,3 +367,22 @@ function setRemainderRatio(person, fortuneRatio, value)
 
     return fortuneRatio;
 }
+
+function peopleBlockedBySiblingSister()
+{
+    var people = [];
+
+    if(alwratha.includesAnyOf(["بنت", "بنت ابن"]))
+    {
+        people = ["أخ ﻷب", "أخت ﻷب","ابن أخ شقيق", "ابن أخ ﻷب",
+                  "عم شقيق", "عم ﻷب", "ابن عم شقيق", "ابن عم ﻷب"];
+    }
+    else if(alwratha.data["أخت شقيقه"].count > 1 
+            && !alwratha.includesAnyOf(["أخ ﻷب"]))
+    {
+        people = ["أخت ﻷب"];
+    }
+
+    return people;
+}
+
