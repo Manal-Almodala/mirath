@@ -1,4 +1,4 @@
-const helperModule = require('./shared-functions');
+const helper = require('./helper');
 
 const Alwratha = require("../models/mirath/alwratha");
 var alwratha = new Alwratha();
@@ -9,18 +9,18 @@ var altarika = new Tarika();
 module.exports.alwratha = alwratha;
 module.exports.altarika = altarika;
 
-const ratioCalculator = require("../models/mirath/ratioCalculator");
+const people = require("../models/mirath/people");
 
 module.exports.controllers = {
     readAlwrathaList: function(req, res){
-        var alwrathaList = alwratha.getList();
+        var alwrathaList = getAlwrathaList();
         if(alwrathaList)
         {
-            helperModule.sendJsonResponse(res, 200, alwrathaList);
+            helper.sendJsonResponse(res, 200, alwrathaList);
         }
         else
         {
-            helperModule.sendJsonResponse(res, 500, "No data was found");
+            helper.sendJsonResponse(res, 500, "No data was found");
         }     
     },
 
@@ -28,14 +28,16 @@ module.exports.controllers = {
         alwratha.data = req.body;
         altarika.money = 10;
         altarika.property = 15;
-        helperModule.sendJsonResponse(res, 201, alwratha.data);
+        helper.sendJsonResponse(res, 201, alwratha.data);
     },
 
     calculateMirath: function(req, res)
     {
         for (var warith in alwratha.data) 
         {
-            alwratha.data[warith].fortune.ratio = ratioCalculator[warith];
+            alwratha.data[warith].fortune.ratio = 
+                people[warith].calculateFotuneRatio();
+
             alwratha.data[warith].fortune.calculate(altarika);
         }
 
@@ -45,13 +47,36 @@ module.exports.controllers = {
         {
             if(alwratha.data[warith].fortune.hasRemainder)
             {
-                alwratha.data[warith].fortune.ratio = ratioCalculator[warith];
+                alwratha.data[warith].fortune.ratio = people[warith]
+                                                        .calculateFotuneRatio();
+
                 alwratha.data[warith].fortune.addRemainderWorth(altarika);
             }
         }
 
-        helperModule.sendJsonResponse(res, 200, alwratha.data);
-    },
+        helper.sendJsonResponse(res, 200, alwratha.data);
+    }
+};
+
+function getAlwrathaList()
+{
+    var list = {
+        "أصحاب فروض وعصبات": [],
+        "العصبات": [],
+        "أصحاب الفروض":[]
+    };
+
+    for(var person in people)
+    {
+        var relative = {
+            relationship: person,
+            isSingular: people[person].isSingular,
+        };
+
+        list[people[person].type].push(Object(relative));
+    }
+
+    return list;
 };
 
 function calculateTarikaRemainder()
@@ -70,6 +95,6 @@ function calculateTarikaRemainder()
 
     altarika.remainder.money = altarika.money - consumed.money;
     altarika.remainder.property = altarika.property - consumed.property;
-}
+};
 
 

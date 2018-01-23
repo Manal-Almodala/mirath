@@ -1,21 +1,21 @@
 var mongoose = require('mongoose');
-const helperModule = require('./shared-functions');
+const helper = require('./helper');
 
 var LocationModel = mongoose.model('Location');
 
 module.exports = {
     addReview: function(req, res){
-        if(helperModule.isIDInRequest(req, res , "locationID", "No location ID in request")){
+        if(helper.isIDInRequest(req, res , "locationID", "No location ID in request")){
             return;
         }
         LocationModel
             .findById(req.params.locationID)
             .select("reviews rating")
             .exec(function(error, location){
-                if(helperModule.isResError(error, res, 400)){ 
+                if(helper.isResError(error, res, 400)){ 
                     return; 
                 };
-                if(helperModule.isNoDocumentFound(res, location, 'Location was not found')){
+                if(helper.isNoDocumentFound(res, location, 'Location was not found')){
                     return; 
                 };
                 // Add the review
@@ -24,10 +24,10 @@ module.exports = {
     },
 
     readOne: function(req, res){
-        if(helperModule.isIDInRequest(req, res , "locationID", "No location ID in request")){
+        if(helper.isIDInRequest(req, res , "locationID", "No location ID in request")){
             return;
         }
-        if(helperModule.isIDInRequest(req, res , "reviewID", "No review ID in request")){
+        if(helper.isIDInRequest(req, res , "reviewID", "No review ID in request")){
             return;
         }
         // Find the parent document 
@@ -35,28 +35,28 @@ module.exports = {
             .findById(req.params.locationID)
             .select("reviews")
             .exec(function(error, location){
-                if(helperModule.isResError(error, res, 400)){ 
+                if(helper.isResError(error, res, 400)){ 
                     return; 
                 };
-                if(helperModule.isNoDocumentFound(res, location, 'Location was not found')){
+                if(helper.isNoDocumentFound(res, location, 'Location was not found')){
                     return; 
                 };
 
                 if(!(location.reviews && location.reviews.length > 0)){
-                    helperModule.sendJsonResponse(res, 404, "This location has no reviews");
+                    helper.sendJsonResponse(res, 404, "This location has no reviews");
                     return;
                 }
                 var review = location.reviews.id(req.params.reviewID);
-                helperModule.isNoDocumentFound(res, review, "No review matches the given ID");
-                helperModule.sendJsonResponse(res, 200, review);
+                helper.isNoDocumentFound(res, review, "No review matches the given ID");
+                helper.sendJsonResponse(res, 200, review);
             });  
     },
 
     updateOne: function(req, res){
-        if(helperModule.isIDInRequest(req, res , "locationID", "No location ID in request")){
+        if(helper.isIDInRequest(req, res , "locationID", "No location ID in request")){
             return;
         }
-        if(helperModule.isIDInRequest(req, res , "reviewID", "No review ID in request")){
+        if(helper.isIDInRequest(req, res , "reviewID", "No review ID in request")){
             return;
         }
 
@@ -65,29 +65,29 @@ module.exports = {
             .findById(req.params.locationID)
             .select("reviews rating")
             .exec(function(error, location){
-                if(helperModule.isResError(error, res, 400)){ 
+                if(helper.isResError(error, res, 400)){ 
                     return; 
                 };
-                if(helperModule.isNoDocumentFound(res, location, 'Location was not found')){
+                if(helper.isNoDocumentFound(res, location, 'Location was not found')){
                     return; 
                 };
 
                 if(!(location.reviews && location.reviews.length > 0)){
-                    helperModule.sendJsonResponse(res, 404, "This location has no reviews");
+                    helper.sendJsonResponse(res, 404, "This location has no reviews");
                     return;
                 };
                 var reviewID = req.params.reviewID;
                 // update the review 
                 doUpdateReview(reviewID, location, req, res);
-                helperModule.sendJsonResponse(res, 201, location.reviews.id(reviewID));
+                helper.sendJsonResponse(res, 201, location.reviews.id(reviewID));
             });
     },
 
     deleteOne: function(req, res){
-        if(helperModule.isIDInRequest(req, res , "locationID", "No location ID in request")){
+        if(helper.isIDInRequest(req, res , "locationID", "No location ID in request")){
             return;
         }
-        if(helperModule.isIDInRequest(req, res , "reviewID", "No review ID in request")){
+        if(helper.isIDInRequest(req, res , "reviewID", "No review ID in request")){
             return;
         }
         // Find the parent document 
@@ -95,17 +95,17 @@ module.exports = {
             .findById(req.params.locationID)
             .select("reviews rating")
             .exec(function(error, location){
-                if(helperModule.isResError(error, res, 400)){ 
+                if(helper.isResError(error, res, 400)){ 
                     return; 
                 };
-                if(helperModule.isNoDocumentFound(res, location, 'Location was not found')){
+                if(helper.isNoDocumentFound(res, location, 'Location was not found')){
                     return; 
                 };
 
                 // Remove subdocument and save the parent 
                 doRemoveReview(req.params.reviewID, location, res);
 
-                helperModule.sendJsonResponse(res, 204, null);
+                helper.sendJsonResponse(res, 204, null);
             });
         
     }
@@ -123,7 +123,7 @@ function doRemoveReview(reviewID, location, res){
     location.reviews.remove(reviewID); 
     // Save the parent document 
     location.save(function(error, location){
-        if(helperModule.isResError(error, res, 400)){ 
+        if(helper.isResError(error, res, 400)){ 
             return;
         };
         updateRating(location);
@@ -141,7 +141,7 @@ function doRemoveReview(reviewID, location, res){
 */
 function doUpdateReview(reviewID, location, req, res){
     var review = location.reviews.id(reviewID);
-    helperModule.isNoDocumentFound(res, review, "No review matches the given ID");
+    helper.isNoDocumentFound(res, review, "No review matches the given ID");
 
     Object.getOwnPropertyNames(req.body)
         .forEach(function(property){
@@ -152,7 +152,7 @@ function doUpdateReview(reviewID, location, req, res){
     
     // save the document
     location.save(function(error, location){
-        if(helperModule.isResError(error, res, 400)){ 
+        if(helper.isResError(error, res, 400)){ 
             return;
         };
         updateRating(location);
@@ -171,12 +171,12 @@ function doAddReview(review, location, res){
     location.reviews.push(review);
     // save the document
     location.save(function(error, location){
-        if(helperModule.isResError(error, res, 400)){ 
+        if(helper.isResError(error, res, 400)){ 
             return;
         };
         updateRating(location);
         var thisReview = location.reviews[location.reviews.length - 1];
-        helperModule.sendJsonResponse(res, 201, thisReview);
+        helper.sendJsonResponse(res, 201, thisReview);
     });  
 };
 

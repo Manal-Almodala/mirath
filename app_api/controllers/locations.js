@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-const helperModule = require('./shared-functions');
+const helper = require('./helper');
 
 var LocationModel = mongoose.model('Location');
 
@@ -7,40 +7,40 @@ module.exports = {
     readLocationsList: function(req, res){
         LocationModel.find()
             .exec(function(error, locations){
-                if(helperModule.isResError(error, res, 400)){ 
+                if(helper.isResError(error, res, 400)){ 
                     return; 
                 };
-                if(helperModule.isNoDocumentFound(res, locations, "Did not find any location!")){ 
+                if(helper.isNoDocumentFound(res, locations, "Did not find any location!")){ 
                     return;
                 };
 
-                helperModule.sendJsonResponse(res, 200, locations);
+                helper.sendJsonResponse(res, 200, locations);
             });
     },
 
     createLocation: function(req, res){
         LocationModel
             .create(req.body, function(error, location) {
-                if(helperModule.isResError(error, res, 400)){ 
+                if(helper.isResError(error, res, 400)){ 
                     return;
                 };
 
-                helperModule.sendJsonResponse(res, 201, location);
+                helper.sendJsonResponse(res, 201, location);
         });
     },
 
     readOne: function(req, res){
-        helperModule.isIDInRequest(req, res, "locationID", "No location ID in request");
+        helper.isIDInRequest(req, res, "locationID", "No location ID in request");
         LocationModel.findById(req.params.locationID)
             .exec(function(error, location){
-                if(helperModule.isResError(error, res, 404)){
+                if(helper.isResError(error, res, 404)){
                     return; 
                 };
-                if(helperModule.isNoDocumentFound(res, location, 'Location was not found')){
+                if(helper.isNoDocumentFound(res, location, 'Location was not found')){
                     return;
                 };
 
-                helperModule.sendJsonResponse(res, 200, location);
+                helper.sendJsonResponse(res, 200, location);
             });   
     },
 
@@ -50,30 +50,30 @@ module.exports = {
             .findById(req.params.locationID)
             .select("-rating -reviews -coordinates")
             .exec(function(error, location){
-                if(helperModule.isResError(error, res, 400)){
+                if(helper.isResError(error, res, 400)){
                     return;
                 }
-                if(helperModule.isNoDocumentFound(res, location, 'Location was not found')){
+                if(helper.isNoDocumentFound(res, location, 'Location was not found')){
                     return;
                 }
 
                 updateLocationData(req, location, req.body.paths);
-                helperModule.sendJsonResponse(res, 201, location);
+                helper.sendJsonResponse(res, 201, location);
             }); 
     },
 
     deleteOne: function(req, res){
-        helperModule.isIDInRequest(req, res, "locationID", "No location ID in request");
+        helper.isIDInRequest(req, res, "locationID", "No location ID in request");
         LocationModel
             .findByIdAndRemove(req.params.locationID, function(error, location){
-                if(helperModule.isResError(error, res, 404)){
+                if(helper.isResError(error, res, 404)){
                     return;
                 };
-                if(helperModule.isNoDocumentFound(res, location, "Location was not found")){
+                if(helper.isNoDocumentFound(res, location, "Location was not found")){
                     return; 
                 };
                 
-                helperModule.sendJsonResponse(res, 204, {
+                helper.sendJsonResponse(res, 204, {
                     message: "Location was successfully deleted"
                 });
             });
