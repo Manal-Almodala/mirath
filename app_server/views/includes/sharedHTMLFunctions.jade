@@ -24,10 +24,10 @@ mixin createCards(listOfWratha)
         .card-body.arabic-content
           .row
             each person in people
-              .col-12.col-sm-6.col-lg-6
+              .col-12.col-sm-6
                 .input-group.mb-2
                   span.input-group-addon.addon-checkbox-right
-                    input(aria-label='Checkbox for following text input', type='checkbox')             
+                    input(aria-label=person.relationship, type='checkbox')             
                   span.input-group-addon.removed-border-right #{person.relationship}  
                   -if(!person.isSingular)          
                     input.form-control.addon-textarea-right(name=person.relationship, 

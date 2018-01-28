@@ -1,3 +1,8 @@
+
 const people = require("../models/mirath/people");
 
-console.log(people["بنت ابن"].type);
+var array = [];
+var str = "5";
+array.push(str);
+str = null;
+console.log(array);

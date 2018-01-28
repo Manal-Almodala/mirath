@@ -11,7 +11,8 @@ router.get('/about', generalControllers.getAboutPage);
 // Routing mirath pages 
 router.get('/mirath', mirathControllers.getHome);
 router.get('/mirath/data-entry', mirathControllers.getDataPage);
-router.post('/mirath/data-entry', mirathControllers.processAlwrathaData) 
+router.post('/mirath/data-entry/alwratha', mirathControllers.processAlwrathaData) 
+router.post('/mirath/data-entry/altarika', mirathControllers.processAltarikaData) 
 router.get('/mirath/result', mirathControllers.getResultPage);
 router.get('/mirath/result/detail', mirathControllers.getDetailPage);
 

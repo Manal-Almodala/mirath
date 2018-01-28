@@ -24,10 +24,19 @@ module.exports.controllers = {
         }     
     },
 
+    addAltarikaData: function(req, res){
+        if(req.body["أموال"]){
+            altarika.money = req.body["أموال"];
+        }
+        if(req.body["عقار"]){
+            altarika.property = req.body["عقار"];
+        }
+
+        helper.sendJsonResponse(res, 201, altarika);
+    },
+
     addAlwrathaData: function(req, res){
         alwratha.data = req.body;
-        altarika.money = 10;
-        altarika.property = 15;
         helper.sendJsonResponse(res, 201, alwratha.data);
     },
 

@@ -42,6 +42,30 @@ module.exports =
         );    
     },
 
+    processAltarikaData: function(req, res)
+    { 
+        var requestOptions, apiUri;
+        apiUri = apiOptions.server + '/api/mirath/altarika';
+        requestOptions = {
+            method: 'POST',
+            json: req.body,
+            qs: {}
+        }
+        
+        request(apiUri, requestOptions, 
+            function(error, response)
+            {
+                if(response.statusCode === 201){
+                    res.render("mirath-data");
+                }
+                else
+                {
+                    console.log("API returned an error");
+                }
+            }
+        );    
+    },
+
     processAlwrathaData: function(req, res)
     { 
         var requestOptions, apiUri;

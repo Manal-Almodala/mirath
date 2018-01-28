@@ -1,8 +1,65 @@
-class Alwratha
+const validateForm = {
+    onSubmit: function(form)
+    {
+        const selector = "#" + form.Id;
+        $(selector).submit(function(event) {
+            $("input").removeClass("invalid");
+            form.invalidData = [];
+            
+            form.data =  $(selector).serializeArray();
+            
+            if(form.isEmpty() || !form.isDataValid)
+            {
+                form.invalidData.forEach(inputName => {
+                    var inputSelector = "input[name='" + inputName +"']"; 
+                    $(inputSelector).addClass("invalid"); 
+                }); 
+                event.preventDefault();
+            }
+        });
+
+    },
+
+    isEmpty: function()
+    {
+        return !this.data.length > 0;
+    },
+
+    isNumericValues: function(data)
+    {
+        var isValid = true;
+        this.data.forEach(field => {
+            if(isNaN(field.value) || field.value == "")
+            {
+                isValid = false;
+                this.addInvalidData(field.name);
+            }  
+        }); 
+        return isValid;
+    },
+
+    isValuesGreaterThanZero: function()
+    {
+        var isValid = true;
+        this.data.forEach(field => {
+            if(field.value <= 0)
+            {
+                isValid = false;
+                this.addInvalidData(field.name);
+
+            }  
+        }); 
+        return isValid;
+    }
+
+};
+
+class Form
 {
-    constructor(data){
-        this.data = data;
-        this._invalidData = new Array(this.data.length);
+    constructor(id){
+        this.Id = id;
+        this.data = [];
+        this.invalidData = [];
     }
 
     get data()
@@ -19,78 +76,48 @@ class Alwratha
     {
         return this._invalidData;
     }
+
+    set invalidData(value)
+    {
+        this._invalidData = value;
+    }
     
     addInvalidData(invalidElement)
     {
         this._invalidData.push(invalidElement);
     }
 
-    get dataIsValid()
+    get isDataValid()
     {
-        this.dataIsValid = (this.isNumericValues() && this.isValuesGreaterThanZero());
-        return this._dataIsValid;
+        this.isDataValid = (validateForm.isNumericValues.call(this) 
+                            && validateForm.isValuesGreaterThanZero.call(this));
+        return this._isDataValid;
     }
 
-    set dataIsValid(value)
+    set isDataValid(value)
     {
-        this._dataIsValid = value;
-    }
-
-    isNumericValues()
-    {
-        var isValid = true;
-        this.data.forEach(warith => {
-            if(isNaN(warith.value) || warith.value == "")
-            {
-                isValid = false;
-                this.addInvalidData(warith.name);
-            }  
-        }); 
-        return isValid;
-    }
-
-    isValuesGreaterThanZero()
-    {
-        var isValid = true;
-        this.data.forEach(warith => {
-            if(warith.value <= 0)
-            {
-                isValid = false;
-                this.addInvalidData(warith.name);
-
-            }  
-        }); 
-        return isValid;
+        this._isDataValid = value;
     }
 
     isEmpty()
     {
-        if(this.data.length > 0)
-        {
-            return false;
-        }
-        else
+        if(validateForm.isEmpty.call(this))
         {
             alert("الرجاء إدخال معلومات الورثه ومن ثم إضغط علي ذر الحساب");
             return true;
         }
+        else 
+        {
+            return false;
+        }
     }
 }
 
-$("#alwrathaData").submit(function(event) {
-    $("input").removeClass("invalid");
+var alwratha = new Form("alwrathaData");
+var altarika = new Form("altarikaData");
 
-    var alwratha = new Alwratha($("#alwrathaData").serializeArray());
-    
-    if(alwratha.isEmpty() || !alwratha.dataIsValid)
-    {
-        alwratha.invalidData.forEach(warithName => {
-            var inputSelector = "input[name='" + warithName +"']"; 
-            $(inputSelector).addClass("invalid"); 
-        }); 
-        event.preventDefault();
-    }
-});
+validateForm.onSubmit(alwratha);
+validateForm.onSubmit(altarika);
 
 $("input[type='checkbox']").change(function() {
     if(this.checked)
@@ -102,6 +129,22 @@ $("input[type='checkbox']").change(function() {
         $(this).closest("span").siblings().last().val(0);
         $(this).closest("span").siblings().last().attr("disabled", true);  
     }
+});
+
+$("input[aria-label='زوج']").change(function() {
+    if(this.checked)
+    {
+        $("input[name='زوجه']").val(0);
+        $("input[aria-label='زوجه']").prop("checked", false);
+        $("input[name='زوجه']").attr("disabled", true);
+    }  
+});
+
+$("input[aria-label='زوجه']").change(function() {
+    if(this.checked)
+    {
+        $("input[aria-label='زوج']").prop("checked", false);
+    }  
 });
 
 

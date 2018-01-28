@@ -25,7 +25,7 @@ nav a{
 }
 
 .card,.card *{
-    border-color: #0c864981;
+    border-color: #0c864981 !important;
     text-align: center;
 }
 
@@ -47,10 +47,25 @@ nav a{
     padding-right: 0rem !important;
 }
 
-.invalid
-{
+form.jumbotron{
+    border-color: #78C2AD;
+    border-style: solid;
+    text-align: center;
+}
+
+form.jumbotron select,
+form.jumbotron span,
+form.jumbotron input{
+    border-color: rgba(20, 173, 211, 0.63);
+}
+
+form.jumbotron *:not(button){
+    text-align: right;
+}
+
+.invalid{
     color: red;
-    border-color: red;
+    border-color: red !important;
 }
 @media screen and (min-width: 240px) {
     h1 {
