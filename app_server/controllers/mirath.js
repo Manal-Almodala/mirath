@@ -1,5 +1,4 @@
 var request = require('request');
-const helper = require('./helper');
 
 var apiOptions = {
     _server : "https://estihgagat.herokuapp.com",
@@ -41,7 +40,7 @@ module.exports =
                 }
                 else
                 {
-                    helper.sendJsonResponse(res,response.statusCode, error);
+                    res.render('error', error);
                 }
             }
         );    
@@ -66,7 +65,7 @@ module.exports =
                 }
                 else
                 {
-                    helper.sendJsonResponse(res, response.statusCode, error);
+                    res.render('error', error);
                 }
             }
         );    
@@ -90,7 +89,7 @@ module.exports =
                 }
                 else
                 {
-                    helper.sendJsonResponse(res,response.statusCode, error);
+                    res.render('error', error);
                 }
             }
         );    
@@ -114,7 +113,7 @@ module.exports =
                 }
                 else
                 {
-                    helper.sendJsonResponse(res,response.statusCode, error);
+                    res.render('error', error);
                 }
             }
         );    
