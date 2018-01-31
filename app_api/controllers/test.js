@@ -1,8 +1,7 @@
-
 const people = require("../models/mirath/people");
 
 var array = [];
-var str = "5";
-array.push(str);
-str = null;
+array[0] = "2";
 console.log(array);
+
+

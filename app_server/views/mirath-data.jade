@@ -2,22 +2,24 @@ extends layouts/mirath-layout
 
 block content2
   center
-    .col-12.col-sm-10.col-lg-8
-      form.jumbotron.mt-3.pb-3(
-        id="altarikaData", method="POST",
-        action= "/mirath/data-entry/altarika")
-        +displayAltarikaForm()
-        button.btn.btn-info.btn-lg.arabic-content.mt-3(
-          id="submitAltarika",type="submit",
-          aria-disabled='true',
-          style="align = center") تأكيد            
-    form.pr-0.pl-0(id="alwrathaData", method="POST",
-      action= "/mirath/data-entry/alwratha")
+    -if(!isAltarikaProcessed) 
       .col-12.col-sm-10.col-lg-8
-        +createCards(listOfAlwartha)
-      button.btn.btn-primary.btn-lg.arabic-content(
-        id="submitAlwratha", type="submit",
-        aria-disabled='true') أحسب اﻷنصبه
+        form.jumbotron.mt-3.pb-3(
+          id="altarikaData", method="POST",
+          action= "/mirath/data-entry/altarika")
+          +displayAltarikaForm()
+          button.btn.btn-info.btn-lg.arabic-content.mt-3(
+            id="submitAltarika",type="submit",
+            aria-disabled='true',
+            style="align = center") تأكيد  
+    -else          
+      form.pr-0.pl-0(id="alwrathaData", method="POST",
+        action= "/mirath/data-entry/alwratha")
+        .col-12.col-sm-10.col-lg-8
+          +createCards(listOfAlwartha)
+        button.btn.btn-primary.btn-lg.arabic-content(
+          id="submitAlwratha", type="submit",
+          aria-disabled='true') أحسب اﻷنصبه
   script(src="/javascripts/mirath-data-validation.js")
 
 

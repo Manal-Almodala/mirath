@@ -36,9 +36,8 @@ class Alwratha
 
     get grandMothersCount()
     {
-        return this.data.hasOwnProperty("أم أم") + 
-                    (!this.data.hasOwnProperty("أب")) *
-                    this.data.hasOwnProperty("أم ﻷب");
+        return this.includes("أم أم") + 
+               (!this.includes("أب")) * this.includes("أم ﻷب");
     }
 
     get hasBrothersOrSisters()
@@ -49,7 +48,7 @@ class Alwratha
         let count = 0;
         for(var brotherOrSister of brothersAndSisters)
         {
-            if(this.data.hasOwnProperty(brotherOrSister))
+            if(this.includes(brotherOrSister))
             {
                 count += this.data[brotherOrSister].count;
                 if(count > 1)
@@ -66,11 +65,12 @@ class Alwratha
     includesAnyOf(people)
     {
         var isTargetIncluded = false;
+
         if(people.length > 0)
         {
             for(var person of people)
             {
-                if(this.data.hasOwnProperty(person))
+                if(this.includes(person))
                 {
                     isTargetIncluded = true;
                     break;
@@ -81,9 +81,14 @@ class Alwratha
         return isTargetIncluded;
     }
 
+    includes(person)
+    {
+        return this.data.hasOwnProperty(person);
+    }
+
     isAlone(warithAndMhgoben)
     {
-        var isAlone = true;
+        var isEligibleAlone = true;
         if(this.size > warithAndMhgoben.length)
         {
             isEligibleAlone = false;
@@ -94,20 +99,20 @@ class Alwratha
             {
                 if(!warithAndMhgoben.includes(warith))
                 {
-                    isAlone = false;
+                    isEligibleAlone = false;
                     break;
                 }
             }
         }
-        return isAlone;   
+        return isEligibleAlone;   
     }
 
     get hasParentsAndSpouse()
     {
         const spouse = ["زوج", "زوجه"];
 
-        var hasParents = this.includesAnyOf(["أب"]) && 
-                            this.includesAnyOf(["أم"]);
+        var hasParents = this.includes("أب") && 
+                            this.includes("أم");
 
         var hasSpouse = this.includesAnyOf(spouse);
 

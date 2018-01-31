@@ -12,6 +12,8 @@ class Fortune
     {
         this.money = this.ratio * tarika.money;
         this.property = this.ratio * tarika.property;
+        
+        
     }
 
     addRemainderWorth(tarika)

@@ -58,9 +58,13 @@ module.exports = {
             {
                 fortuneRatio = 1;
             }
-            else if(alwratha.includesAnyOf("بنت"))
+            else if(alwratha.includes("بنت"))
             {
-                fortuneRatio = setRemainderRatio("ابن", fortuneRatio, 0.667);
+                var remainderRatio = 2* count * getFemaleFotuneRatio("بنت", 
+                                                                     "ابن");
+                fortuneRatio = setRemainderRatio("ابن", 
+                                                 fortuneRatio,
+                                                 remainderRatio);
             }
             else 
             {
@@ -102,9 +106,13 @@ module.exports = {
             {
                 fortuneRatio = 1;
             }
-            else if(alwratha.includesAnyOf("بنت ابن"))
+            else if(alwratha.includes("بنت ابن"))
             {
-                fortuneRatio = setRemainderRatio("ابن ابن", fortuneRatio, 0.667);
+                var remainderRatio = 2* count * getFemaleFotuneRatio("بنت ابن", 
+                                                                     "ابن ابن");
+                fortuneRatio = setRemainderRatio("ابن ابن", 
+                                                 fortuneRatio, 
+                                                 remainderRatio);
             }
             else 
             {
@@ -154,10 +162,14 @@ module.exports = {
 
                 fortuneRatio = setRemainderRatio("بنت", fortuneRatio, 1);
             }
-            else if(alwratha.includesAnyOf("ابن"))
+            else if(alwratha.includes("ابن"))
             {
                 fortuneRatio = 0;
-                fortuneRatio = setRemainderRatio("بنت", fortuneRatio, 0.333);
+                var remainderRatio = count * getFemaleFotuneRatio("بنت", 
+                                                                  "ابن");
+                fortuneRatio = setRemainderRatio("بنت",
+                                                 fortuneRatio, 
+                                                 remainderRatio);
             }
             else 
             {
@@ -176,10 +188,11 @@ module.exports = {
             if(alwratha.data["بنت"].count > 1)
             {
                 people.push("إخوه ﻷم");
-                if(!alwratha.includesAnyOf(["ابن ابن"]))
+                if(!alwratha.includes("ابن ابن"))
                 {
                     people.push("بنت ابن");
                 }   
+               
             }
             
             return people;
@@ -212,12 +225,16 @@ module.exports = {
 
                 fortuneRatio = setRemainderRatio("بنت ابن", fortuneRatio, 1);
             }
-            else if(alwratha.includesAnyOf("ابن ابن"))
+            else if(alwratha.includes("ابن ابن"))
             {
                 fortuneRatio = 0;
-                fortuneRatio = setRemainderRatio("بنت ابن", fortuneRatio, 0.333);
+                var remainderRatio = count * getFemaleFotuneRatio("بنت ابن", 
+                                                                  "ابن ابن");
+                fortuneRatio = setRemainderRatio("بنت ابن",
+                                                 fortuneRatio,
+                                                 0.333);
             }
-            else if(alwratha.includesAnyOf("بنت"))
+            else if(alwratha.includes("بنت"))
             {
                 fortuneRatio = 0.167;
             }
@@ -235,8 +252,8 @@ module.exports = {
         {
             var superiors = ["ابن"];
             
-            if(!alwratha.includesAnyOf(["ابن ابن"]) && 
-                alwratha.includesAnyOf(["بنت"]))
+            if(!alwratha.includes("ابن ابن") && 
+                alwratha.includes("بنت"))
             {
                 if(alwratha.data["بنت"].count > 1)
                 {
@@ -465,9 +482,13 @@ module.exports = {
             {
                 fortuneRatio = 1;
             }
-            else if(alwratha.includesAnyOf("أخت شقيقه"))
+            else if(alwratha.includes("أخت شقيقه"))
             {
-                fortuneRatio = setRemainderRatio("أخ شقيق", fortuneRatio, 0.667);
+                var remainderRatio = 2*count*getFemaleFotuneRatio("أخت شقيقه", 
+                                                                  "أخ شقيق");
+                fortuneRatio = setRemainderRatio("أخ شقيق", 
+                                                 fortuneRatio, 
+                                                 remainderRatio);
             }
             else 
             {
@@ -513,9 +534,13 @@ module.exports = {
             {
                 fortuneRatio = 1;
             }
-            else if(alwratha.includesAnyOf("أخت ﻷب"))
+            else if(alwratha.includes("أخت ﻷب"))
             {
-                fortuneRatio = setRemainderRatio("أخ ﻷب", fortuneRatio, 0.667);
+                var remainderRatio = 2*count*getFemaleFotuneRatio("أخت ﻷب", 
+                                                                  "أخ ﻷب");
+                fortuneRatio = setRemainderRatio("أخ ﻷب", 
+                                                 fortuneRatio, 
+                                                 remainderRatio);
             }
             else 
             {
@@ -572,10 +597,14 @@ module.exports = {
 
                 fortuneRatio = setRemainderRatio("أخت شقيقه", fortuneRatio, 1);
             }
-            else if(alwratha.includesAnyOf("أخ شقيق"))
+            else if(alwratha.includes("أخ شقيق"))
             {
                 fortuneRatio = 0;
-                fortuneRatio = setRemainderRatio("أخت شقيقه", fortuneRatio, 0.333);
+                var remainderRatio = count*getFemaleFotuneRatio("أخت شقيقه", 
+                                                                "أخ شقيق");
+                fortuneRatio = setRemainderRatio("أخت شقيقه", 
+                                                 fortuneRatio, 
+                                                 remainderRatio);
             }
             else 
             {
@@ -608,7 +637,7 @@ module.exports = {
                         "عم شقيق", "عم ﻷب", "ابن عم شقيق", "ابن عم ﻷب"];
             }
             else if(alwratha.data["أخت شقيقه"].count > 1 && 
-                        !alwratha.includesAnyOf(["أخ ﻷب"]))
+                        !alwratha.includes("أخ ﻷب"))
             {
                 people.push("أخت ﻷب");
             }
@@ -643,14 +672,18 @@ module.exports = {
 
                 fortuneRatio = setRemainderRatio("أخت ﻷب", fortuneRatio, 1);
             }
-            else if(alwratha.includesAnyOf("أخت شقيقه"))
+            else if(alwratha.includes("أخت شقيقه"))
             {
                 fortuneRatio = 0.167;
             }
-            else if(alwratha.includesAnyOf("أخ ﻷب"))
+            else if(alwratha.includes("أخ ﻷب"))
             {
                 fortuneRatio = 0;
-                fortuneRatio = setRemainderRatio("أخت ﻷب", fortuneRatio, 0.333);
+                var remainderRatio = count*getFemaleFotuneRatio("أخت ﻷب", 
+                                                                "أخ ﻷب");
+                fortuneRatio = setRemainderRatio("أخت ﻷب", 
+                                                 fortuneRatio,
+                                                 remainderRatio);
             }
             else 
             {
@@ -670,8 +703,8 @@ module.exports = {
         getSuperiors = function()
         {
             var superiors = ["ابن", "ابن ابن", "أب", "جد",  "أخ شقيق"];
-            if(!alwratha.includesAnyOf("أخ ﻷب") &&
-                    alwratha.includesAnyOf("أخت شقيقه"))
+            if(!alwratha.includes("أخ ﻷب") &&
+                    alwratha.includes("أخت شقيقه"))
             {
                 if(alwratha.data["أخت شقيقه"].count > 1 ||
                     alwratha.includesAnyOf(["بنت", "بنت ابن"]))
@@ -1073,6 +1106,14 @@ function getMhgobenBy(warith)
 
 function isBlocked(){
     return alwratha.includesAnyOf(this.getSuperiors());
+};
+
+function getFemaleFotuneRatio(femaleSibling, maleSibling)
+{
+    var femalesCount = alwratha.data[femaleSibling].count;
+    var malesCount = alwratha.data[maleSibling].count;
+
+    return 1 / (femalesCount + 2 * malesCount);
 };
 
 function publicProperties()

@@ -1,4 +1,5 @@
 var request = require('request');
+const helper = require('./helper');
 
 var apiOptions = {
     _server : "https://estihgagat.herokuapp.com",
@@ -9,7 +10,9 @@ var apiOptions = {
             }
             return this._server;
     }
-}
+};
+
+var isAltarikaProcessed = false;
 
 module.exports = 
 {
@@ -32,11 +35,13 @@ module.exports =
             function(error, response, listOfAlwratha)
             {
                 if(response.statusCode === 200){
-                    render.dataPage(req, res, listOfAlwratha);
+                    render.dataPage(req, res, listOfAlwratha, 
+                                    isAltarikaProcessed);
+                    isAltarikaProcessed = false;
                 }
                 else
                 {
-                    console.log("API returned an error");
+                    helper.sendJsonResponse(res,response.statusCode, error);
                 }
             }
         );    
@@ -56,11 +61,12 @@ module.exports =
             function(error, response)
             {
                 if(response.statusCode === 201){
-                    res.render("mirath-data");
+                    isAltarikaProcessed = true;
+                    res.redirect("back");
                 }
                 else
                 {
-                    console.log("API returned an error");
+                    helper.sendJsonResponse(res, response.statusCode, error);
                 }
             }
         );    
@@ -84,7 +90,7 @@ module.exports =
                 }
                 else
                 {
-                    console.log("API returned an error");
+                    helper.sendJsonResponse(res,response.statusCode, error);
                 }
             }
         );    
@@ -108,7 +114,7 @@ module.exports =
                 }
                 else
                 {
-                    console.log(error);
+                    helper.sendJsonResponse(res,response.statusCode, error);
                 }
             }
         );    
@@ -120,8 +126,7 @@ module.exports =
     }
 };
 
-var render = 
-{
+var render = {
     home: function(req, res, content)
     {
         res.render('mirath-home', { 
@@ -141,7 +146,8 @@ var render =
                 title: 'إدخال الورثه'
             },
             items: navItems,
-            listOfAlwartha: alwratha
+            listOfAlwartha: alwratha,
+            isAltarikaProcessed: isAltarikaProcessed
         });
     },
 

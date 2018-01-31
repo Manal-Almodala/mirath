@@ -42,13 +42,15 @@ mixin displayResultTable(result)
       tr
         th الوارث    
         th عدد اﻷفراد     
-        th نصيب الفرد
+        th نصيب الفرد (مال)
+        th نصيب الفرد (عقار)
     tbody
       each warith, warithName in result
         tr
           th(scope='row') #{warithName}      
           td #{warith.count}      
-          td #{warith.fortune.money} 
+          td #{warith.fortune.money.toFixed(2)} 
+          td #{warith.fortune.property.toFixed(2)} 
 
 mixin displayNavItems(items)
   nav.navbar.navbar-expand-sm.navbar-dark.bg-primary.arabic-content
