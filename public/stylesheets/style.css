@@ -28,9 +28,6 @@ nav a{
     border-color: #5e357952;
     text-align: center;
 }
-.td{
-    background-color: #6f4d853b;
-}
 
 .addon-checkbox-right{
     border-left: 0;
@@ -51,9 +48,13 @@ nav a{
 }
 
 form.jumbotron{
-    border-color:#5e357952;
+    border-color: #a8f6c65e;
     border-style: solid;
     text-align: center;
+}
+
+.card-header{
+    background-color: #a8f6c64f;
 }
 
 form.jumbotron select,

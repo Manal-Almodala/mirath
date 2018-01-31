@@ -19,8 +19,7 @@ mixin formatDate(timeStamp)
 mixin createCards(listOfWratha)
   each people, cluster in listOfWratha 
     .card.mb-3.mt-3
-        h5.card-header.text-center.arabic-content(
-          style='background-color: #6f4d853b;') #{cluster}  
+        h5.card-header.text-center.arabic-content #{cluster}  
         .card-body.arabic-content
           .row
             each person in people
