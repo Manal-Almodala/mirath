@@ -25,13 +25,16 @@ nav a{
 }
 
 .card,.card *{
-    border-color: #0c864981 !important;
+    border-color: #5e357952;
     text-align: center;
+}
+.td{
+    background-color: #6f4d853b;
 }
 
 .addon-checkbox-right{
     border-left: 0;
-    border-right: 1px solid #0c864981 !important;
+    border-right: 1px solid #5e357952 !important;
     border-radius: 0rem 0.4rem 0.4rem 0rem !important;
 }
 
@@ -48,7 +51,7 @@ nav a{
 }
 
 form.jumbotron{
-    border-color: #78C2AD;
+    border-color:#5e357952;
     border-style: solid;
     text-align: center;
 }
@@ -56,7 +59,7 @@ form.jumbotron{
 form.jumbotron select,
 form.jumbotron span,
 form.jumbotron input{
-    border-color: rgba(20, 173, 211, 0.63);
+    border-color:#5e357952;
 }
 
 form.jumbotron *:not(button){

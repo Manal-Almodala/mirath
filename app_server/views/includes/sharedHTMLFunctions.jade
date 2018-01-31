@@ -20,7 +20,7 @@ mixin createCards(listOfWratha)
   each people, cluster in listOfWratha 
     .card.mb-3.mt-3
         h5.card-header.text-center.arabic-content(
-          style='background-color: #c7f6a894') #{cluster}  
+          style='background-color: #6f4d853b;') #{cluster}  
         .card-body.arabic-content
           .row
             each person in people
@@ -31,10 +31,10 @@ mixin createCards(listOfWratha)
                   span.input-group-addon.removed-border-right #{person.relationship}  
                   -if(!person.isSingular)          
                     input.form-control.addon-textarea-right(name=person.relationship, 
-                      type='text', disabled, placeholder=0)  
+                      type='number', disabled, placeholder=0)  
                   -else         
                     input.form-control.addon-textarea-right(name=person.relationship, 
-                      type='text', hidden, disabled, value=1)  
+                      type='number', hidden, disabled, value=1)  
 
 mixin displayResultTable(result)
   table.table.table-hover
