@@ -48,18 +48,19 @@ nav a{
 }
 
 form.jumbotron{
-    border-color: #a8f6c65e;
+    border-color: #a8f6c6b2;
     border-style: solid;
     text-align: center;
 }
 
 .card-header{
-    background-color: #a8f6c64f;
+    background-color: #a8f6c675;
 }
 
 form.jumbotron select,
 form.jumbotron span,
-form.jumbotron input{
+form.jumbotron input,
+hr{
     border-color:#5e357952;
 }
 
