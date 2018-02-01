@@ -1,4 +1,5 @@
 extends layouts/mirath-layout
+include includes/mirath-data-mixins
 
 block content2
   center
@@ -21,33 +22,3 @@ block content2
           id="submitAlwratha", type="submit",
           aria-disabled='true') أحسب اﻷنصبه
   script(src="/javascripts/mirath-data-validation.js")
-
-
-
-
-
-mixin displayAltarikaForm()
-  - const altarikaTypes = ["أموال", "عقار"]
-  h5.arabic-content ادخل تفاصيل التركه
-  hr.my-2.col-10.mr-0
-  .col-12.col-sm-6
-  each tarikaType in altarikaTypes
-    .col-12.col-lg-10
-      .input-group.arabic-content.mb-2
-        span.input-group-addon.addon-checkbox-right
-          input(type='checkbox',
-            aria-label='Checkbox for following text input')             
-        span.input-group-addon.removed-border-right #{tarikaType}     
-        input.form-control.addon-textarea-right(name= tarikaType, 
-          type='text', disabled, placeholder=0)  
-
-mixin displaySexSelectionForm()
-  .form-group
-    h5.arabic-content اختر جنس المتوفى
-    hr.my-2.col-10.mr-0
-    .mr-2.mb-4
-      select.custom-select.arabic-content
-        option(selected= "") انقر هنا
-        option(value= "ذكر") ذكر
-        option(value= "أنثى") أنثى  
-
