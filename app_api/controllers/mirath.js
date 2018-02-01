@@ -25,6 +25,8 @@ module.exports.controllers = {
     },
 
     addAltarikaData: function(req, res){
+        altarika.reset();
+        
         if(req.body["أموال"]){
             altarika.money = req.body["أموال"];
         }

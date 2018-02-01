@@ -2,12 +2,7 @@ class Tarika
 {
     constructor()
     {
-        this.money = 0;
-        this.property = 0;
-        this.remainder = {
-            money: 0,
-            property: 0,
-        }
+        this.reset();
     }
 
     get money()
@@ -28,6 +23,16 @@ class Tarika
     set property(value)
     {
         this._property = value;
+    }
+
+    reset()
+    {
+        this.money = 0;
+        this.property = 0;
+        this.remainder = {
+            money: 0,
+            property: 0,
+        }
     }
 }
 module.exports = Tarika; 
