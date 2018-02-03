@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var controllerLocations = require('../controllers/locations');
+
 var generalControllers = require('../controllers/general');
 var mirathControllers = require('../controllers/mirath');
 
