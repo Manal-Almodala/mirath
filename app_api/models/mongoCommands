@@ -1,8 +1,8 @@
 # MLAB_URI
-    mongodb://yasso96:yass7342@ds241395.mlab.com:41395/loc8r
+    mongodb://yasso96:yass7342@ds123258.mlab.com:23258/estihgagat
 
 # configuring heroku to use MLAB_URI
-    heroku config:set MLAB_URI=mongodb://yasso96:yass7342@ds241395.mlab.com:41395/loc8r
+    heroku config:set MLAB_URI=mongodb://yasso96:yass7342@ds123258.mlab.com:23258/estihgagat
 
 # exporting the local database 
     mongodump -h localhost:27017 -d loc8r -o C:/data/temp/mongodump

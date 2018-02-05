@@ -1,9 +1,9 @@
 var mongoose = require('mongoose');
-require('./locations');
+require('./navbars');
 
 var dbURI = {
     production: process.env.MLAB_URI,
-    development: "mongodb://localhost/loc8r",
+    development: "mongodb://localhost/estihgagat",
     get: function(){
         if(process.env.NODE_ENV === 'production')
         {
@@ -13,7 +13,7 @@ var dbURI = {
     }
 };
 
-//mongoose.connect(dbURI.get());
+mongoose.connect(dbURI.get());
 
 mongoose.connection.on('connected', function () {
     console.log('Mongoose connected to ' + dbURI.get());
