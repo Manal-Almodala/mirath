@@ -45,4 +45,35 @@ mongoose.model('Navbar', navbarSchema, 'Navbars');
 	    }
 	]
 }
+
+{
+	"name": "mirath",
+	"navs":
+	[
+		{
+            "name":"الشاشه الرئيسيه",
+            "url": "/"  
+        },        
+        {
+            "name":"الميراث",
+            "url": "/mirath"
+        },
+        {
+            "name":"الذكاة",
+            "url": "/zakah"
+        },
+        {
+        	"name":"الديات",
+            "url": "/deya"
+        },
+        {
+            "name":"الفي",
+            "url": "/faye'"
+        },
+        {
+            "name":"عن البرنامج",
+            "url": "/about"  
+		},
+	]
+}
 */

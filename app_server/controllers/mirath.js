@@ -1,15 +1,5 @@
 var request = require('request');
-
-var apiOptions = {
-    _server : "https://estihgagat.herokuapp.com",
-    
-    get server() {
-            if (process.env.NODE_ENV !== 'production') { 
-                this._server = "http://localhost:3000";
-            }
-            return this._server;
-    }
-};
+require("./helper");
 
 var isAltarikaProcessed = false;
 
@@ -17,7 +7,9 @@ module.exports =
 {
     getHome: function(req, res)
     {
-        render.home(req,res);
+        var content = {};
+        content.navbar = getNavbar(req, res,"main")
+        render.home(req,res, content);
     },
 
     getDataPage: function(req, res)
@@ -129,35 +121,29 @@ var render = {
     home: function(req, res, content)
     {
         res.render('mirath-home', { 
-            pageHeader:
-            {
-                title: 'الميراث',
-            },
-            items: navItems           
+            title: "الميراث",
+            navbar: content.navbar           
         });
     },
 
-    dataPage: function(req, res, alwratha)
+    dataPage: function(req, res, content)
     {
         res.render('mirath-data', {
-            pageHeader: 
-            {
-                title: 'إدخال الورثه'
-            },
-            items: navItems,
-            listOfAlwartha: alwratha,
+            title: "إدخال الورثه",
+            navbar: content.navbar,  
+            listOfAlwartha: content.alwratha,
             isAltarikaProcessed: isAltarikaProcessed
         });
     },
 
-    resultPage: function(req, res, mirathResult)
+    resultPage: function(req, res, content)
     {
         res.render('mirath-result', { 
             pageHeader:{
                 title: 'اﻷنصبه',
             },
-            items: navItems,            
-            result: mirathResult
+            navbar: content.navbar,          
+            result: content.mirathResult
         });
     },
 
@@ -167,43 +153,7 @@ var render = {
             pageHeader:{
                 title: 'تفاصيل حساب اﻷنصبه',
             },
-            items: navItems,            
-            alwrathaDetail:[
-                {
-                    relationship: "ابن",
-                    count:"3",
-                    fortune: "النصف"
-                },
-                {
-                    relationship: "أب",
-                    count:"1",
-                    fortune: "الربع"
-                },
-                {
-                    relationship: "بنت",
-                    count:"3",
-                    fortune: "الربع"
-                }
-            ]
+            navbar: content.navbar            
         });
     },
 }
-
-var navItems = [
-    {
-        name:"الميراث",
-        url: "/mirath"  
-    },
-    {
-        name:"إدخال الورثه",
-        url: "/mirath/data-entry"
-    },
-    {
-        name:"شاشة اﻷنصبه",
-        url: "/mirath/result"
-    },
-    {
-        name:"الشاشه الرئيسيه",
-        url: "/"  
-    },
-];

@@ -1,21 +1,13 @@
 var request = require('request');
-
-var apiOptions = {
-    _server : "https://loc8r-yasso.herokuapp.com",
-    
-    get server() {
-            if (process.env.NODE_ENV !== 'production') { 
-                this._server = "http://localhost:3000";
-            }
-            return this._server;
-    }
-}
+const helper = require("./helper");
 
 module.exports = 
 {
     getHome: function(req, res)
     {
-        render.home(req,res);
+        var content = {};
+        content.navbar = helper.getNavbar(req, res,"main")
+        render.home(req, res, content);
     },
 
     getAboutPage: function(req, res)
@@ -24,40 +16,12 @@ module.exports =
     },
 };
 
-var render = 
-{
+var render = {
     home: function(req, res, content)
     {
         res.render('home', { 
-            pageHeader:{
-                title: 'اﻹستحقاقات القرءأنيه',
-            },
-            items: [
-                {
-                    name:"الشاشه الرئيسيه",
-                    url: "/"  
-                },
-                {
-                    name:"الميراث",
-                    url: "/mirath"
-                },
-                {
-                    name:"الذكاة",
-                    url: "/zakah"
-                },
-                {
-                    name:"الديات",
-                    url: "/deya"
-                },
-                {
-                    name:"الفي",
-                    url: "/faye'"
-                },
-                {
-                    name:"عن البرنامج",
-                    url: "/about"  
-                },
-            ]
+            title: 'اﻹستحقاقات القرءأنيه',
+            navbar: content.navbar
         });
     },
 
@@ -74,4 +38,6 @@ var render =
             + "Let Loc8r help find the place you're looking for."
         });
     },
-}
+};
+
+
