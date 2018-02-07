@@ -22,6 +22,7 @@ module.exports = {
         var document = {'name': req.params.navbarName};
         Navbar
             .findOne(document)
+            .select("navs")
             .exec(function(error, navbar)
             {
                 if(helper.isResError(error, res, 404))

@@ -1,21 +1,21 @@
 const request = require('request');
 
 module.exports = {
-    getNavbar: function(req, res, name)
+    requestApi: function(req, res, route, callBack)
     {
         var requestOptions, apiUri;
-        apiUri = apiOptions.server + '/api/navbar/' + name;
+        apiUri = apiOptions.server + '/api' + route;
         requestOptions = {
-            method: 'GET',
-            json: {},
-            qs: {}
+            method: req.method,
+            json: req.body,
+            qs: req.params
         }
     
         request(apiUri, requestOptions, 
-            function(error, response, navbar)
+            function(error, response)
             {
-                if(response.statusCode === 200){
-                    return navbar.navs;
+                if(response.statusCode <= 204){
+                    callBack(response.body);
                 }
                 else
                 {

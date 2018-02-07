@@ -5,9 +5,10 @@ module.exports =
 {
     getHome: function(req, res)
     {
-        var content = {};
-        content.navbar = helper.getNavbar(req, res,"main")
-        render.home(req, res, content);
+        helper.requestApi(req, res, "/navbar/main", function(content){
+            render.home(req, res, content);
+        });
+        
     },
 
     getAboutPage: function(req, res)
@@ -21,7 +22,7 @@ var render = {
     {
         res.render('home', { 
             title: 'اﻹستحقاقات القرءأنيه',
-            navbar: content.navbar
+            navbar: content.navs
         });
     },
 

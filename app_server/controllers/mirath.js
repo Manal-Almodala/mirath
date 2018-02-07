@@ -1,5 +1,5 @@
 var request = require('request');
-require("./helper");
+const helper = require("./helper");
 
 var isAltarikaProcessed = false;
 
@@ -7,9 +7,9 @@ module.exports =
 {
     getHome: function(req, res)
     {
-        var content = {};
-        content.navbar = getNavbar(req, res,"main")
-        render.home(req,res, content);
+        helper.requestApi(req, res, "/navbar/mirath", function(content){
+            render.home(req, res, content);
+        });
     },
 
     getDataPage: function(req, res)
@@ -122,7 +122,7 @@ var render = {
     {
         res.render('mirath-home', { 
             title: "الميراث",
-            navbar: content.navbar           
+            navbar: content.navs           
         });
     },
 
