@@ -1,10 +1,18 @@
 const request = require('request');
 
 module.exports = {
+    get serverUrl() 
+    {
+        if (process.env.NODE_ENV !== 'production')  
+            return "http://localhost:3000";
+        else
+            return "https://estihgagat.herokuapp.com";      
+    },
+
     requestApi: function(req, res, route, callBack)
     {
         var requestOptions, apiUri;
-        apiUri = apiOptions.server + '/api' + route;
+        apiUri = serverUrl + '/api' + route;
         requestOptions = {
             method: req.method,
             json: req.body,
@@ -27,13 +35,7 @@ module.exports = {
 };
 
 var apiOptions = {
-    get server() 
-    {
-        if (process.env.NODE_ENV !== 'production')  
-            return "http://localhost:3000";
-        else
-            return "https://estihgagat.herokuapp.com";      
-    }           
+         
 };
 
 

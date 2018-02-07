@@ -2,113 +2,46 @@ var request = require('request');
 const helper = require("./helper");
 
 var isAltarikaProcessed = false;
+var navs = [];
 
 module.exports = 
 {
     getHome: function(req, res)
     {
         helper.requestApi(req, res, "/navbar/mirath", function(content){
-            render.home(req, res, content);
+            navs = content.navs;
+            render.home(req, res);
         });
     },
 
     getDataPage: function(req, res)
     {
-        var requestOptions, apiUri;
-        apiUri = apiOptions.server + '/api/mirath/alwratha';
-        requestOptions = {
-            method: 'GET',
-            json: {},
-            qs: {}
-        }
-        
-        request(apiUri, requestOptions, 
-            function(error, response, listOfAlwratha)
-            {
-                if(response.statusCode === 200){
-                    render.dataPage(req, res, listOfAlwratha, 
-                                    isAltarikaProcessed);
-                    isAltarikaProcessed = false;
-                }
-                else
-                {
-                    res.render('error', error);
-                }
-            }
-        );    
+        helper.requestApi(req, res, "/mirath/alwratha", function(content){
+            render.dataPage(req, res, content);
+            isAltarikaProcessed = false;
+        });
     },
 
     processAltarikaData: function(req, res)
     { 
-        var requestOptions, apiUri;
-        apiUri = apiOptions.server + '/api/mirath/altarika';
-        requestOptions = {
-            method: 'POST',
-            json: req.body,
-            qs: {}
-        }
-        
-        request(apiUri, requestOptions, 
-            function(error, response)
-            {
-                if(response.statusCode === 201){
-                    isAltarikaProcessed = true;
-                    res.redirect("back");
-                }
-                else
-                {
-                    res.render('error', error);
-                }
-            }
-        );    
+        helper.requestApi(req, res, "/mirath/altarika", function(content){
+            isAltarikaProcessed = true;
+            res.redirect("back");
+        });  
     },
 
     processAlwrathaData: function(req, res)
     { 
-        var requestOptions, apiUri;
-        apiUri = apiOptions.server + '/api/mirath/alwratha';
-        requestOptions = {
-            method: 'POST',
-            json: req.body,
-            qs: {}
-        }
-        
-        request(apiUri, requestOptions, 
-            function(error, response)
-            {
-                if(response.statusCode === 201){
-                    res.redirect(apiOptions.server + "/mirath/result")
-                }
-                else
-                {
-                    res.render('error', error);
-                }
-            }
-        );    
+        helper.requestApi(req, res, "/mirath/alwratha", function(content){
+            res.redirect(helper.serverUrl + "/mirath/result");
+        });  
     },
 
     getResultPage: function(req, res)
     {
-        var requestOptions, apiUri;
-        apiUri = apiOptions.server + '/api/mirath/result';
-        requestOptions = {
-            method: 'GET',
-            json: {},
-            qs: {}
-        }
-        
-        request(apiUri, requestOptions, 
-            function(error, response, mirathResult)
-            {
-                if(response.statusCode === 200){
-                    render.resultPage(req, res, mirathResult);
-                }
-                else
-                {
-                    res.render('error', error);
-                }
-            }
-        );    
+        helper.requestApi(req, res, "/mirath/result", function(content){
+            render.resultPage(req, res, content);
+        });    
     },
 
     getDetailPage: function(req, res)
@@ -122,7 +55,7 @@ var render = {
     {
         res.render('mirath-home', { 
             title: "الميراث",
-            navbar: content.navs           
+            navbar: navs           
         });
     },
 
@@ -130,8 +63,8 @@ var render = {
     {
         res.render('mirath-data', {
             title: "إدخال الورثه",
-            navbar: content.navbar,  
-            listOfAlwartha: content.alwratha,
+            navbar: navs,  
+            listOfAlwartha: content,
             isAltarikaProcessed: isAltarikaProcessed
         });
     },
@@ -139,11 +72,9 @@ var render = {
     resultPage: function(req, res, content)
     {
         res.render('mirath-result', { 
-            pageHeader:{
-                title: 'اﻷنصبه',
-            },
-            navbar: content.navbar,          
-            result: content.mirathResult
+            title: 'اﻷنصبه',
+            navbar: navs,          
+            result: content
         });
     },
 
