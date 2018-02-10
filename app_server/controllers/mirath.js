@@ -1,4 +1,4 @@
-var request = require('request');
+const request = require('request');
 const helper = require("./helper");
 
 var isAltarikaProcessed = false;
