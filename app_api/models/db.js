@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 require('./navbars');
+require('./ayat');
 
 var dbURI = {
     production: process.env.MLAB_URI,
