@@ -24,13 +24,14 @@ module.exports = {
             }
         );    
     },
+    
     get serverUrl() 
     {
         if (process.env.NODE_ENV !== 'production')  
             return "http://localhost:3000";
         else
             return "https://estihgagat.herokuapp.com";      
-    }
+    },
 };
 
 

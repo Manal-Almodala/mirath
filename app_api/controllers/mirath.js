@@ -6,8 +6,6 @@ var alwratha = new Alwratha();
 const Tarika = require("../models/mirath/tarika");
 var altarika = new Tarika();
 
-const Aya = require('../models/aya');
-
 module.exports.alwratha = alwratha;
 module.exports.altarika = altarika;
 

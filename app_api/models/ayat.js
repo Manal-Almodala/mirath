@@ -2,9 +2,13 @@ var mongoose = require('mongoose');
 
 const ayaSchema = new mongoose.Schema({
     number:{
-        type: [Number],
+        type: Number,
         required: true
-    }
+    },
+    text: {
+        type: String,
+        required: true 
+    },
 });
 
 const ayatSchema = new mongoose.Schema({
@@ -12,7 +16,7 @@ const ayatSchema = new mongoose.Schema({
         type: String, 
         required: true
     },
-    numbers: [ayaSchema]
+    ayat: [ayaSchema]
 });
 
 mongoose.model('Ayat', ayatSchema, 'Ayat');
@@ -20,12 +24,13 @@ mongoose.model('Ayat', ayatSchema, 'Ayat');
 /* Example data 
 {
 	"topic": "mirath",
-	"list":
+	"ayat":
 	[
 	    {
-	        "number":[], 
-	    },
-	    {
+            "number":7, 
+            "text": "لِلرِّجَالِ نَصِيبٌ مِمَّا تَرَكَ الْوَالِدَانِ وَالْأَقْرَبُونَ وَلِلنِّسَاءِ
+                     نَصِيبٌ مِمَّا تَرَكَ الْوَالِدَانِ وَالْأَقْرَبُونَ مِمَّا 
+                     قَلَّ مِنْهُ أَوْ كَثُرَ ۚ نَصِيبًا مَفْرُوضًا"
         }
     ]
 }
