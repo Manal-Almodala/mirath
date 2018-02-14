@@ -73,6 +73,19 @@ form.jumbotron *:not(button){
     color: red;
     border-color: red !important;
 }
+
+#ayat-carousel{
+    width: 100%;
+    height: auto;
+    padding: 50px;
+}
+
+.carousel-content {
+    display:flex;
+    align-items:center;
+}
+
+
 @media screen and (min-width: 240px) {
     h1 {
         font-size: 1.6rem;

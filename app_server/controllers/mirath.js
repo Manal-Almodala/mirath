@@ -14,7 +14,7 @@ module.exports =
             helper.requestApi(req, res, "/ayat/mirath", 
                 function(ayat)
                 {
-                    //render.home(req, res, ayat);
+                    render.home(req, res, ayat);
                 }
             );
         });
@@ -106,41 +106,3 @@ var render = {
         });
     },
 };
-
-function requstAya(req, res, ayaNumber, callback)
-{
-    const quranApi = "http://api.alquran.cloud/ayah/";
-    var requestOptions, uri;
-    uri = quranApi + ayaNumber[0] + ":" + ayaNumber[1];
-    requestOptions = {
-        method: req.method,
-        json: req.body,
-        qs: req.params
-    }    
-    
-    request(apiUri, requestOptions, 
-        function(error, response)
-        {
-            if(response.statusCode <= 204){
-                callBack(response.body.text);
-            }
-            else
-            {
-                res.render('error', error);
-            }
-        }
-    );    
-};
-
-function getAyat(req, res, ayatNumbers)
-{
-    for(ayaNumber in ayatNumbers)
-    {
-        requstAya(req,res, ayaNumber, 
-            function(aya)
-            {
-                console.log(aya);
-            }
-        );
-    }
-}
