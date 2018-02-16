@@ -8,13 +8,13 @@ module.exports =
 {
     getHome: function(req, res)
     {
-        helper.requestApi(req, res, "/navbar/mirath", function(navbar){
-            navs = navbar.navs;
+        helper.requestApi(req, res, "/navbar/mirath", function(navsObj){
+            navs = navsObj.navs;
 
             helper.requestApi(req, res, "/ayat/mirath", 
-                function(ayat)
+                function(ayatObj)
                 {
-                    render.home(req, res, ayat);
+                    render.home(req, res, ayatObj.ayat);
                 }
             );
         });
@@ -73,7 +73,8 @@ var render = {
     {
         res.render('mirath-home', { 
             title: "الميراث",
-            navbar: navs           
+            navbar: navs,
+            ayat: content          
         });
     },
 
@@ -102,7 +103,7 @@ var render = {
             pageHeader:{
                 title: 'تفاصيل حساب اﻷنصبه',
             },
-            navbar: content.navbar            
+            navbar: navs            
         });
     },
 };

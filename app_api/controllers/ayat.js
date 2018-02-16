@@ -23,7 +23,7 @@ module.exports = {
         var document = {'topic': req.params.topic};
         Ayat
             .findOne(document)
-            .select("ayat")
+            .select("-_id ayat")
             .exec(function(error, ayat)
             {
                 if(helper.isResError(error, res, 404))

@@ -1,25 +1,28 @@
 mixin createCarousel(items)
-  #ayat-carousel.carousel.slide(data-ride='carousel')
-    // Wrapper for slides
-    .row
-      .col-12.mr-3
+  center
+    .col-12.col-sm-10
+      #ayat-carousel.carousel.slide(data-ride='carousel')
+        // Wrapper for slides
         .carousel-inner
-          .carousel-content.arabic-content
-            .carousel-item.active
-                p 1
-            .carousel-item
-                p 3
-    // Controls
-    a.carousel-control-prev(href='#ayat-carousel', role='button',
-                            data-slide='prev')
-      span.carousel-control-prev-icon(
-        style='background-image:url("/images/icon-prev.png")')
-      span.sr-only Previous
-    a.carousel-control-next(href='#ayat-carousel', role='button',
-                            data-slide='next')
-      span.carousel-control-next-icon(
-        style='background-image: url("/images/icon-next.png")')
-      span.sr-only Next
+          .carousel-content.arabic-content.pr-sm-3.pl-sm-3.pr-lg-5.pl-lg-5
+            each item, index in items
+              -if(index === 0)
+                .carousel-item.active
+                  span #{item.text}
+              -else
+                .carousel-item
+                  span #{item.text}
+        // Controls
+      a.carousel-control-prev(href='#ayat-carousel', role='button',
+                              data-slide='prev')
+        span.carousel-control-prev-icon(
+          style='background-image:url("/images/icon-prev.png")')
+        span.sr-only Previous    
+      a.carousel-control-next(href='#ayat-carousel', role='button',
+                              data-slide='next')
+        span.carousel-control-next-icon(
+          style='background-image: url("/images/icon-next.png")')
+        span.sr-only Next
 
 mixin createCards(listOfWratha)
   each people, cluster in listOfWratha 
@@ -41,13 +44,14 @@ mixin createCards(listOfWratha)
                       type='number', hidden, disabled, value=1)  
 
 mixin displayResultTable(result)
+  -
+    var tableHeaders = ["الوارث", "عدد اﻷفراد", "نصيب الفرد (مال)",
+                        "نصيب الفرد (عقار)"];
   table.table.table-hover
     thead.text-primary.bg-light
       tr
-        th الوارث    
-        th عدد اﻷفراد     
-        th نصيب الفرد (مال)
-        th نصيب الفرد (عقار)
+        each header in tableHeaders
+          th #{header}         
     tbody
       each warith, warithName in result
         tr

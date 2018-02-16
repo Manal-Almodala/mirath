@@ -9,7 +9,7 @@ module.exports = {
         {
             if(helper.isResError(error, res, 400)){ 
                 return;
-            };
+            }
 
             helper.sendJsonResponse(res, 201, navbar);
         });
@@ -22,18 +22,18 @@ module.exports = {
         var document = {'name': req.params.navbarName};
         Navbar
             .findOne(document)
-            .select("navs")
+            .select("-_id navs")
             .exec(function(error, navbar)
             {
                 if(helper.isResError(error, res, 404))
                 {
                     return; 
-                };
+                }
                 if(helper.isNoDocumentFound(res, navbar, 
                     'Navbar was not found'))
                 {
                     return;
-                };
+                }
 
                 helper.sendJsonResponse(res, 200, navbar);
             });   
@@ -49,18 +49,18 @@ module.exports = {
             if(helper.isResError(error, res, 404))
             {
                 return;
-            };
+            }
             if(helper.isNoDocumentFound(res, navbar, 
                 "Navbar was not found"))
             {
                 return; 
-            };
+            }
                 
             helper.sendJsonResponse(res, 204, {
                 message: "Navbar was successfully deleted"
             });    
         });
     }
-}
+};
 
 
