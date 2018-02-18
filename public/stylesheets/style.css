@@ -75,16 +75,18 @@ form.jumbotron *:not(button){
 }
 
 #ayat-carousel{
-    width: 100%;
+    width: auto;
     height: auto;
-    padding: 50px;
+    background: #5e357952;
 }
 
 .carousel-content {
     display:flex;
     align-items:center;
+    color: blanchedalmond;
+    font-style: italic;
+    font-size: larger;
 }
-
 
 @media screen and (min-width: 240px) {
     h1 {
