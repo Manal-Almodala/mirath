@@ -89,8 +89,8 @@ class Form
 
     get isDataValid()
     {
-        this.isDataValid = (validateForm.isNumericValues.call(this) 
-                            && validateForm.isValuesGreaterThanZero.call(this));
+        this.isDataValid = (validateForm.isNumericValues.call(this) && 
+                            validateForm.isValuesGreaterThanZero.call(this));
         return this._isDataValid;
     }
 

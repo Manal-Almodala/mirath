@@ -1,7 +1,11 @@
 var mongoose = require('mongoose');
 
 const ayaSchema = new mongoose.Schema({
-    number:{
+    sura:{
+        type: String,
+        required: true
+    },
+    verse:{
         type: Number,
         required: true
     },
@@ -27,7 +31,8 @@ mongoose.model('Ayat', ayatSchema, 'Ayat');
 	"ayat":
 	[
 	    {
-            "number":7, 
+            "sura": "النساء"
+            "verse":7, 
             "text": "لِلرِّجَالِ نَصِيبٌ مِمَّا تَرَكَ الْوَالِدَانِ وَالْأَقْرَبُونَ وَلِلنِّسَاءِ
                      نَصِيبٌ مِمَّا تَرَكَ الْوَالِدَانِ وَالْأَقْرَبُونَ مِمَّا 
                      قَلَّ مِنْهُ أَوْ كَثُرَ ۚ نَصِيبًا مَفْرُوضًا"

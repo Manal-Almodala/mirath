@@ -3,15 +3,15 @@ mixin createCarousel(items)
       #ayat-carousel.carousel.slide(data-ride='carousel').pt-4.pb-4.pr-4.pl-4.pr-sm-5.pl-sm-5
         // Wrapper for slides
         .carousel-inner
-          .carousel-content.arabic-content.pr-sm-3.pl-sm-3.pr-lg-5.pl-lg-5
+          .carousel-content.arabic-content.pr-sm-3.pl-sm-3.pr-lg-5.pl-lg-5.pb-1
             each item, index in items
               -if(index === 0)
-                .carousel-item.active.img.img-fluid
-                  p #{item.text}
+                .carousel-item.active
+                  +displayItem(item)
               -else
                 .carousel-item
-                  p #{item.text}
-        // Controls
+                  +displayItem(item)
+      // Controls
       a.carousel-control-prev(href='#ayat-carousel', role='button',
                               data-slide='prev')
         span.carousel-control-prev-icon(
@@ -22,6 +22,11 @@ mixin createCarousel(items)
         span.carousel-control-next-icon(
           style='background-image: url("/images/icon-next.png")')
         span.sr-only Next
+
+mixin displayItem(item)
+  p #{item.text}
+  span.badge-pill
+    سورة #{item.sura} اﻵيه (#{item.verse})
 
 mixin createCards(listOfWratha)
   each people, cluster in listOfWratha 

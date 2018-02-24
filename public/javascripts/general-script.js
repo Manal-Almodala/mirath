@@ -13,4 +13,3 @@ var toArabicDigits = function() {
 };
  
 window.onload = toArabicDigits();
-
