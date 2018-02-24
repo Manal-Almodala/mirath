@@ -8,7 +8,7 @@
     mongodump -h localhost:27017 -d estihgagat -o ~/tmp/mongodump
 
 # importing the local database into production 
-    mongorestore -h ds123258.mlab.com:23258 -d estihgagat -u yasso96 -p yass7342 ~/tmp/mongodump
+    mongorestore -h ds123258.mlab.com:23258 -d estihgagat -u yasso96 -p yass7342 ~/tmp/mongodump/estihgagat
 
 # connecting to production database
     mongo ds123258.mlab.com:23258/estihgagat -u yasso96 -p yass7342
