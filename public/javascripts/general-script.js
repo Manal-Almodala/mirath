@@ -11,5 +11,14 @@ var toArabicDigits = function() {
             function($0) { return map[$0] }
         );
 };
- 
+
+function setActiveNav()
+{
+	// get current URL path and assign 'active' class
+	var pathname = window.location.pathname;
+	$('.nav-link[href="'+pathname+'"]').parent().addClass("active");
+}
+
 window.onload = toArabicDigits();
+
+$(document).ready(setActiveNav()); 
