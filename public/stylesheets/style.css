@@ -91,21 +91,25 @@ form.jumbotron *:not(button){
     background: #5e357952;
 }
 
+#appName{
+    font-weight: bolder;
+}
+
 @media screen and (min-width: 240px) {
-    h1 {
-        font-size: 1.6rem;
+    #appName {
+        font-size: 1.4rem;
     }
 }
 
 @media screen and (min-width: 360px) {
-    h1 {
-        font-size: 1.8rem;
+    #appName {
+        font-size: 1.6rem;
     }
 }
 
 @media screen and (min-width: 480px) {
-    h1 {
-        font-size: 2rem;
+    #appName {
+        font-size: 1.8rem;
     }
 }
 
