@@ -1,58 +1,60 @@
-const validateForm = {
-    onSubmit: function(form)
-    {
-        const selector = "#" + form.Id;
-        $(selector).submit(function(event) {
-            $("input").removeClass("invalid");
-            form.invalidData = [];
-            
-            form.data =  $(selector).serializeArray();
-            
-            if(form.isEmpty() || !form.isDataValid)
-            {
-                form.invalidData.forEach(inputName => {
-                    var inputSelector = "input[name='" + inputName +"']"; 
-                    $(inputSelector).addClass("invalid"); 
-                }); 
-                event.preventDefault();
-            }
-        });
-
-    },
-
-    isEmpty: function()
-    {
-        return !this.data.length > 0;
-    },
-
-    isNumericValues: function(data)
-    {
-        var isValid = true;
-        this.data.forEach(field => {
-            if(isNaN(field.value) || field.value == "")
-            {
-                isValid = false;
-                this.addInvalidData(field.name);
-            }  
-        }); 
-        return isValid;
-    },
-
-    isValuesGreaterThanZero: function()
-    {
-        var isValid = true;
-        this.data.forEach(field => {
-            if(field.value <= 0)
-            {
-                isValid = false;
-                this.addInvalidData(field.name);
-
-            }  
-        }); 
-        return isValid;
+const formValidation =  require("./validation.js");
+class Form
+{
+    constructor(id){
+        this.Id = id;
+        this.data = [];
+        this.invalidData = [];
     }
-};
-var x = {
-    name: "form"
-};
-module.exports = x;
+
+    get data()
+    {
+        return this._data;
+    }
+
+    set data(value)
+    {
+        this._data = value;
+    }
+
+    get invalidData()
+    {
+        return this._invalidData;
+    }
+
+    set invalidData(value)
+    {
+        this._invalidData = value;
+    }
+    
+    addInvalidData(invalidElement)
+    {
+        this._invalidData.push(invalidElement);
+    }
+
+    get isDataValid()
+    {
+        this.isDataValid = (formValidation.isNumericValues.call(this) && 
+                            formValidation.isValuesGreaterThanZero.call(this));
+        return this._isDataValid;
+    }
+
+    set isDataValid(value)
+    {
+        this._isDataValid = value;
+    }
+
+    isEmpty()
+    {
+        if(formValidation.isEmpty.call(this))
+        {
+            // Display empty message 
+            return true;
+        }
+        else 
+        {
+            return false;
+        }
+    }
+}
+module.exports = Form;
