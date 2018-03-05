@@ -52,5 +52,7 @@ const validateForm = {
         return isValid;
     }
 };
-
-module.exports = validateForm;
+var x = {
+    name: "form"
+};
+module.exports = x;
