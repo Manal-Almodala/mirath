@@ -19,6 +19,11 @@ $("input[type='checkbox']").change(function() {
     }
 });
 
+$("input[placeholder=0]").on("click", function() {
+        $(this).val(" ");
+    }
+);
+
 $("input[aria-label='زوج']").change(function() {
     if(this.checked)
     {
