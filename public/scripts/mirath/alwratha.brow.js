@@ -39,6 +39,7 @@ $("input[aria-label='زوجه']").change(function() {
 
 },{"./helper/form.js":2,"./helper/validation.js":3}],2:[function(require,module,exports){
 const formValidation =  require("./validation.js");
+
 class Form
 {
     constructor(id){
@@ -84,9 +85,9 @@ class Form
         this._isDataValid = value;
     }
 
-    isEmpty()
+    get isEmpty()
     {
-        if(formValidation.isEmpty.call(this))
+        if(this.data.length == 0)
         {
             // Display empty message 
             return true;
@@ -109,7 +110,7 @@ module.exports = {
             
             form.data =  $(selector).serializeArray();
             
-            if(form.isEmpty() || !form.isDataValid)
+            if(form.isEmpty || !form.isDataValid)
             {
                 form.invalidData.forEach(inputName => {
                     var inputSelector = "input[name='" + inputName +"']"; 
@@ -119,11 +120,6 @@ module.exports = {
             }
         });
 
-    },
-
-    isEmpty: function()
-    {
-        return this.data.length == 0;
     },
 
     isNumericValues: function(data)

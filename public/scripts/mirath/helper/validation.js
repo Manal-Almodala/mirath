@@ -8,7 +8,7 @@ module.exports = {
             
             form.data =  $(selector).serializeArray();
             
-            if(form.isEmpty() || !form.isDataValid)
+            if(form.isEmpty || !form.isDataValid)
             {
                 form.invalidData.forEach(inputName => {
                     var inputSelector = "input[name='" + inputName +"']"; 
@@ -18,11 +18,6 @@ module.exports = {
             }
         });
 
-    },
-
-    isEmpty: function()
-    {
-        return this.data.lengt == 0;
     },
 
     isNumericValues: function(data)

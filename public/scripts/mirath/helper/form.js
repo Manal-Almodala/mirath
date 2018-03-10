@@ -1,4 +1,5 @@
 const formValidation =  require("./validation.js");
+
 class Form
 {
     constructor(id){
@@ -44,9 +45,9 @@ class Form
         this._isDataValid = value;
     }
 
-    isEmpty()
+    get isEmpty()
     {
-        if(formValidation.isEmpty.call(this))
+        if(this.data.length == 0)
         {
             // Display empty message 
             return true;
