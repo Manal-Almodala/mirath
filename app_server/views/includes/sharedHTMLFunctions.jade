@@ -41,7 +41,7 @@ mixin createCards(listOfWratha)
                   span.input-group-addon.removed-border-right #{person.relationship}  
                   -if(person.isSingular)          
                     input.form-control.addon-textarea-right(name=person.relationship, 
-                      type='number', hidden, value=1)  
+                      type='number', hidden, disabled, value=1)  
                   -else   
                     input.form-control.addon-textarea-right(name=person.relationship, 
                       type='number', disabled, placeholder=0, data-toggle="tooltip", 
