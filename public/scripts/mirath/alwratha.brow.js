@@ -20,8 +20,8 @@ $("input[type='checkbox']").change(function() {
     }
 });
 
-$("input[placeholder=0]").on("click", function() {
-        $(this).val(" ");
+$("input[placeholder=0]").on("focus", function() {
+        $(this).attr("placeholder", " ");
     }
 );
 
