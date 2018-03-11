@@ -99,6 +99,11 @@ form.jumbotron *:not(button){
     font-weight: bolder;
 }
 
+.tooltip-inner{
+    font-family:  Amiri, Droid Arabic Naskh, Times New Roman, Times;
+    background-color: #033C73;
+    font-size: medium;
+}
 @media screen and (min-width: 240px) {
     #appName {
         font-size: 1.4rem;

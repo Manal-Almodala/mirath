@@ -7,6 +7,11 @@ var altarika = new Form("altarikaData");
 formValidation.onSubmit(alwratha);
 formValidation.onSubmit(altarika);
 
+$(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    }
+);
+
 $("input[type='checkbox']").change(function() {
     if(this.checked)
     {

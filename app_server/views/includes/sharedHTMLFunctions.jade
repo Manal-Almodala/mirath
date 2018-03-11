@@ -39,12 +39,14 @@ mixin createCards(listOfWratha)
                   span.input-group-addon.addon-checkbox-right
                     input(aria-label=person.relationship, type='checkbox')             
                   span.input-group-addon.removed-border-right #{person.relationship}  
-                  -if(!person.isSingular)          
+                  -if(person.isSingular)          
                     input.form-control.addon-textarea-right(name=person.relationship, 
-                      type='number', disabled, placeholder=0)  
-                  -else         
+                      type='number', hidden, value=1)  
+                  -else   
                     input.form-control.addon-textarea-right(name=person.relationship, 
-                      type='number', hidden, disabled, value=1)  
+                      type='number', disabled, placeholder=0, data-toggle="tooltip", 
+                      data-placement="top", title="ادخل عدد اﻷفراد باﻷرقام")        
+                    
 
 mixin displayResultTable(result)
   -
