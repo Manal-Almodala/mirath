@@ -75,5 +75,18 @@ mixin displayNavItems(items)
         -for(var index = 1; index < items.length; index++)       
           li.nav-item
             a.nav-link(href= items[index].url) #{items[index].name}   
-      
-      
+
+mixin addModal()
+  #errorModal.modal.fade(tabindex='-1', role='dialog',
+   aria-labelledby='modalTitle', aria-hidden='true')
+    .modal-dialog.modal-dialog-centered(role='document')
+      .modal-content.arabic-content.text-warning
+        .modal-header.bg-warning
+          .text-right
+            h5#modalTitle.modal-title خطأ في اﻹدخال
+          .text-left
+            button.close(type='button', data-dismiss='modal', 
+            aria-label='Close')
+              span(aria-hidden='true') ×
+        .modal-body
+          span error message

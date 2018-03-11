@@ -1,7 +1,7 @@
 module.exports = {
     onSubmit: function(form)
     {
-        const selector = "#" + form.Id;
+        const selector = "#" + form.id;
         $(selector).submit(function(event) {
             $("input").removeClass("invalid");
             form.invalidData = [];
@@ -15,6 +15,7 @@ module.exports = {
                     $(inputSelector).addClass("invalid"); 
                 }); 
                 event.preventDefault();
+                showErrorMsg(form);
             }
         });
 
@@ -47,3 +48,8 @@ module.exports = {
         return isValid;
     }
 };
+
+function showErrorMsg(form){
+    $(".modal-body span").text(form.errorMsg);
+    $("#errorModal").modal("show");
+}

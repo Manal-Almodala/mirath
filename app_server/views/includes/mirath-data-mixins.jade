@@ -12,14 +12,3 @@ mixin displayAltarikaForm()
         span.input-group-addon.removed-border-right #{tarikaType}     
         input.form-control.addon-textarea-right(name= tarikaType, 
           type='text', disabled, placeholder=0)  
-
-mixin displaySexSelectionForm()
-  .form-group
-    h5.arabic-content اختر جنس المتوفى
-    hr.my-2.col-10.mr-0
-    .mr-2.mb-4
-      select.custom-select.arabic-content
-        option(selected= "") انقر هنا
-        option(value= "ذكر") ذكر
-        option(value= "أنثى") أنثى  
-

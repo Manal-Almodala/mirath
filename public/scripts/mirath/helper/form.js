@@ -2,8 +2,8 @@ const formValidation =  require("./validation.js");
 
 class Form
 {
-    constructor(id){
-        this.Id = id;
+    constructor(ID){
+        this.id = ID;
         this.data = [];
         this.invalidData = [];
     }
@@ -35,8 +35,20 @@ class Form
 
     get isDataValid()
     {
-        this.isDataValid = (formValidation.isNumericValues.call(this) && 
-                            formValidation.isValuesGreaterThanZero.call(this));
+        if(formValidation.isNumericValues.call(this) && 
+            formValidation.isValuesGreaterThanZero.call(this))
+        {
+            this.isDataValid = true;
+                
+        }
+        else
+        {
+            this.isDataValid = false;
+
+            this.errorMsg = "تأكد من إدخال تفاصيل التركه باﻷرقام!";
+            if(this.id == "alwrathaData")
+                this.errorMsg = "تأكد من إدخال عدد كل من الورثه باﻷرقام!";
+        }
         return this._isDataValid;
     }
 
@@ -49,7 +61,10 @@ class Form
     {
         if(this.data.length == 0)
         {
-            // Display empty message 
+            this.errorMsg = "الرجاء إدخال تفاصيل التركه!";
+            if(this.id == "alwrathaData")
+                this.errorMsg = "الرجاء إدخال معلومات الورثه!";
+
             return true;
         }
         else 

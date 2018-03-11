@@ -95,6 +95,10 @@ form.jumbotron *:not(button){
     font-weight: bolder;
 }
 
+#errorModal .close > span{
+    font-weight: bolder;
+}
+
 @media screen and (min-width: 240px) {
     #appName {
         font-size: 1.4rem;
