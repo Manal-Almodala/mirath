@@ -9,6 +9,12 @@ mixin displayAltarikaForm()
         span.input-group-addon.addon-checkbox-right
           input(type='checkbox', id="test",
             aria-label='Checkbox for following text input')             
-        span.input-group-addon.removed-border-right #{tarikaType}     
+        span.input-group-addon.removed-border-right #{tarikaType}
+        -var tip = "أدخل قيمة ال" + tarikaType; 
+        -if(tarikaType == "أموال")
+          -tip += " باﻷرقام"
+        -else
+          -tip += " بعدد اﻷمتار"
         input.form-control.addon-textarea-right(name= tarikaType, 
-          type='text', disabled, placeholder=0)  
+          type='text', disabled, placeholder=0, data-toggle="tooltip", 
+          data-placement="top", title=tip) 
