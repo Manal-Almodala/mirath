@@ -10,10 +10,11 @@ router.get('/about', generalControllers.getAboutPage);
 
 // Routing mirath pages 
 router.get('/mirath', mirathControllers.getHome);
-router.get('/mirath/data-entry', mirathControllers.getDataPage);
-router.post('/mirath/data-entry/alwratha', mirathControllers.processAlwrathaData) 
-router.post('/mirath/data-entry/altarika', mirathControllers.processAltarikaData) 
+router.get('/mirath/altarika', mirathControllers.getAltarikaPage);
+router.get('/mirath/alwratha', mirathControllers.getAlwrathaPage);
 router.get('/mirath/result', mirathControllers.getResultPage);
 router.get('/mirath/result/detail', mirathControllers.getDetailPage);
+router.post('/mirath/altarika', mirathControllers.processAltarikaData); 
+router.post('/mirath/alwratha', mirathControllers.processAlwrathaData);
 
 module.exports = router;

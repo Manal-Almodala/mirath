@@ -24,7 +24,7 @@ mongoose.model('Navbar', navbarSchema, 'Navbars');
 
 /* Example data 
 {
-	"name": "main",
+	"name": "mirath",
 	"navs":
 	[
 	    {
@@ -32,26 +32,30 @@ mongoose.model('Navbar', navbarSchema, 'Navbars');
 	        "url": "/mirath"  
 	    },
 	    {
-	        "name":"إدخال الورثه",
-	        "url": "/mirath/data-entry"
+	        "name":"إدخال التركة",
+	        "url": "/mirath/altarika"
+        },
+        {
+	        "name":"إدخال الورثة",
+	        "url": "/mirath/alwratha"
 	    },
 	    {
-	        "name":"شاشة اﻷنصبه",
+	        "name":"شاشة اﻷنصبة",
 	        "url": "/mirath/result"
 	    },
 	    {
-	        "name":"الشاشه الرئيسيه",
+	        "name":"الشاشة الرئيسية",
 	        "url": "/"  
 	    }
 	]
 }
 
 {
-	"name": "mirath",
+	"name": "main",
 	"navs":
 	[
 		{
-            "name":"الشاشه الرئيسيه",
+            "name":"الشاشة الرئيسية",
             "url": "/"  
         },        
         {
@@ -59,7 +63,7 @@ mongoose.model('Navbar', navbarSchema, 'Navbars');
             "url": "/mirath"
         },
         {
-            "name":"الذكاة",
+            "name":"الزكاة",
             "url": "/zakah"
         },
         {
@@ -67,7 +71,7 @@ mongoose.model('Navbar', navbarSchema, 'Navbars');
             "url": "/deya"
         },
         {
-            "name":"الفي",
+            "name":"الفيء",
             "url": "/faye'"
         },
         {

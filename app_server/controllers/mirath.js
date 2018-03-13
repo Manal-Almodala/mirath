@@ -1,7 +1,6 @@
 const request = require('request');
 const helper = require("./helper");
 
-var isAltarikaProcessed = false;
 var navs = [];
 
 module.exports = 
@@ -20,13 +19,17 @@ module.exports =
         });
     },
 
-    getDataPage: function(req, res)
+    getAltarikaPage: function(req, res)
+    {
+        render.altarikaPage(req, res);
+    },
+
+    getAlwrathaPage: function(req, res)
     {
         helper.requestApi(req, res, "/mirath/alwratha", 
             function(content)
             {
-                render.dataPage(req, res, content);
-                isAltarikaProcessed = false;
+                render.alwrathaPage(req, res, content);
             }
         );
     },
@@ -36,8 +39,7 @@ module.exports =
         helper.requestApi(req, res, "/mirath/altarika", 
             function(content)
             {
-                isAltarikaProcessed = true;
-                res.redirect("back");
+                res.redirect(helper.serverUrl + "/mirath/alwratha");
             }
         );  
     },
@@ -78,20 +80,27 @@ var render = {
         });
     },
 
-    dataPage: function(req, res, content)
+    altarikaPage: function(req, res)
     {
-        res.render('mirath-data', {
-            title: "إدخال الورثه",
+        res.render('mirath-tarika', {
+            title: "إدخال التركة",
+            navbar: navs 
+        });
+    },
+
+    alwrathaPage: function(req, res, content)
+    {
+        res.render('mirath-wratha', {
+            title: "إدخال الورثة",
             navbar: navs,  
-            listOfAlwartha: content,
-            isAltarikaProcessed: isAltarikaProcessed
+            listOfAlwartha: content
         });
     },
 
     resultPage: function(req, res, content)
     {
         res.render('mirath-result', { 
-            title: 'اﻷنصبه',
+            title: 'اﻷنصبة',
             navbar: navs,          
             result: content
         });
@@ -100,9 +109,7 @@ var render = {
     detailPage: function(req, res, content)
     {
         res.render('mirath-detail', { 
-            pageHeader:{
-                title: 'تفاصيل حساب اﻷنصبه',
-            },
+            title: 'تفاصيل حساب اﻷنصبة',
             navbar: navs            
         });
     },

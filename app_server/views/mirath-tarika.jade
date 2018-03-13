@@ -1,0 +1,18 @@
+extends layouts/mirath-layout
+include includes/mirath-mixins
+
+block content2
+  center.pb-3
+    .col-12.col-sm-10.col-lg-8
+      form.jumbotron.mt-3.pb-3(
+        id="altarikaData", method="POST",
+        action= "/mirath/altarika")
+        +displayAltarikaForm()
+        button.btn.btn-primary.btn-lg.arabic-content.mt-3(
+          id="submitAltarika",type="submit",
+          aria-disabled='true',
+          style="align = center") إدخال الورثة  
+    +addModal()
+  script(src="/scripts/mirath/alwratha.brow.js")
+
+  
