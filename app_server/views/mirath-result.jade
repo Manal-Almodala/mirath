@@ -8,11 +8,7 @@ block content2
         h5.card-header.text-center.arabic-content إستحقاق الورثه  
         .card-body.arabic-content.pl-0.pr-0.pt-0
           +displayResultTable(result)
-    .row.pb-4
-      .col-6
-        a.btn.btn-primary.btn-lg.arabic-content(href='/mirath/result',
-        role='button', aria-disabled='true') أطبع النتيجه
-      .col-5.mr-4
-        a.btn.btn-outline-info.btn-lg.arabic-content(href='/mirath/result/detail',
-        role='button', aria-disabled='true') التفاصيل
+    +createTwoButtons("أطبع النتيجة","/mirath/result", 
+      "تفاصيل اﻷنصبة","/mirath/result/detail")
+    
   script(src="/scripts/general.js")

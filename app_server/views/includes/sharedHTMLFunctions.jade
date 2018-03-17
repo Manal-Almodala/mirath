@@ -92,3 +92,12 @@ mixin addModal()
               span(aria-hidden='true') ×
         .modal-body
           span error message
+
+mixin createTwoButtons(b1Text, b1Href, b2Text, b2Href)
+  .row.pb-4
+      .col-6
+        a.btn.btn-primary.btn-lg.arabic-content(href=b1Href,
+        role='button', aria-disabled='true') #{b1Text}
+      .col-5.mr-4
+        a.btn.btn-outline-info.btn-lg.arabic-content(href=b2Href,
+        role='button', aria-disabled='true') #{b2Text}
