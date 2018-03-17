@@ -62,8 +62,8 @@ mixin displayResultTable(result)
         tr
           th(scope='row') #{warithName}      
           td #{warith.count}      
-          td #{warith.fortune.money.toFixed(2)} 
-          td #{warith.fortune.property.toFixed(2)} 
+          td #{warith.fortune.money.toFixed(2).replace('.',',')} 
+          td #{warith.fortune.property.toFixed(2).replace('.',',')} 
 
 mixin displayNavItems(items)
   nav.navbar.navbar-expand-sm.navbar-dark.bg-primary.arabic-content

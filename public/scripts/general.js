@@ -7,8 +7,7 @@ var toArabicDigits = function() {
  
     document.body.innerHTML = 
         document.body.innerHTML.replace(
-            /\d(?=[^<>]*(<|$))/g,
-            function($0) { return map[$0] }
+            /\d(?=[^<>]*(<|$))/g, function($0){return map[$0];}
         );
 };
 
