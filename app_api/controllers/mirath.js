@@ -12,18 +12,6 @@ module.exports.altarika = altarika;
 const people = require("../models/mirath/people");
 
 module.exports.controllers = {
-    readAlwrathaList: function(req, res){
-        var alwrathaList = getAlwrathaList();
-        if(alwrathaList)
-        {
-            helper.sendJsonResponse(res, 200, alwrathaList);
-        }
-        else
-        {
-            helper.sendJsonResponse(res, 500, "No data was found");
-        }     
-    },
-
     addAltarikaData: function(req, res){
         altarika.reset();
         
@@ -37,6 +25,18 @@ module.exports.controllers = {
         helper.sendJsonResponse(res, 201, altarika);
     },
 
+    readAlwrathaList: function(req, res){
+        var alwrathaList = getAlwrathaList();
+        if(alwrathaList)
+        {
+            helper.sendJsonResponse(res, 200, alwrathaList);
+        }
+        else
+        {
+            helper.sendJsonResponse(res, 500, "No data was found");
+        }     
+    },
+
     addAlwrathaData: function(req, res){
         alwratha.data = req.body;
         helper.sendJsonResponse(res, 201, alwratha.data);
@@ -44,27 +44,20 @@ module.exports.controllers = {
 
     calculateMirath: function(req, res)
     {
-        for (var warith in alwratha.data) 
+        /* When the user chooses to enter alwratha data 
+           without entering altarika. We set altarika 
+           money to 1. Therefore, mirath result come as
+           the fortune ratio of each warith 
+        */
+        if(altarika.isNotEntered)
         {
-            alwratha.data[warith].fortune.ratio = 
-                people[warith].calculateFotuneRatio();
-
-            alwratha.data[warith].fortune.calculate(altarika);
+            altarika.money = 1;
         }
 
+        giveFortunes(alwratha);
         calculateTarikaRemainder();
-
-        for(var warith in alwratha.data)
-        {
-            if(alwratha.data[warith].fortune.hasRemainder)
-            {
-                alwratha.data[warith].fortune.ratio = people[warith]
-                                                        .calculateFotuneRatio();
-
-                alwratha.data[warith].fortune.addRemainderWorth(altarika);
-            }
-        }
-
+        giveRemainderFotunes(alwratha);
+        
         helper.sendJsonResponse(res, 200, alwratha.data);
     }
 };
@@ -88,7 +81,33 @@ function getAlwrathaList()
     }
 
     return list;
-};
+}
+
+function giveFortunes(alwratha)
+{
+    for (var warith in alwratha.data) 
+    {
+        alwratha.data[warith].fortune.ratio = 
+                    people[warith].calculateFotuneRatio();
+
+        alwratha.data[warith].fortune.calculate(altarika);
+    }
+}
+
+function giveRemainderFotunes(alwratha)
+{
+    for(var warith in alwratha.data)
+    {
+        if(alwratha.data[warith].fortune.hasRemainder)
+        {
+            alwratha.data[warith].fortune.ratio = 
+                        people[warith].calculateFotuneRatio();
+
+            alwratha.data[warith].fortune.addRemainderWorth(altarika);
+        }
+    }
+
+}
 
 function calculateTarikaRemainder()
 {
@@ -106,6 +125,6 @@ function calculateTarikaRemainder()
 
     altarika.remainder.money = altarika.money - consumed.money;
     altarika.remainder.property = altarika.property - consumed.property;
-};
+}
 
 

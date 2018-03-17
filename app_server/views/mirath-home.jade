@@ -4,6 +4,13 @@ include includes/sharedHTMLFunctions
 block content2
   center(style="position: relative;")
     +createCarousel(ayat)
+    .row.pb-4
+      .col-6
+        a.btn.btn-primary.btn-lg.arabic-content(href='/mirath/altarika',
+        role='button', aria-disabled='true') إدخال التركة
+      .col-5.mr-4
+        a.btn.btn-outline-info.btn-lg.arabic-content(href='/mirath/alwratha',
+        role='button', aria-disabled='true') إدخال الورثة
   script(src="/scripts/general.js")
   
       

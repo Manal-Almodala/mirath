@@ -31,8 +31,18 @@ class Tarika
         this.property = 0;
         this.remainder = {
             money: 0,
-            property: 0,
-        }
+            property: 0
+        };
     }
+
+    get isNotEntered()
+    {
+        if(this.money == 0 && this.property == 0)
+            return true;
+        else    
+            return false;
+    }
+
+    
 }
 module.exports = Tarika; 
