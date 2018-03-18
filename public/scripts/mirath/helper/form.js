@@ -45,9 +45,9 @@ class Form
         {
             this.isDataValid = false;
 
-            this.errorMsg = "تأكد من إدخال تفاصيل التركه باﻷرقام!";
+            this.errorMsg = "تأكد من إدخال تفاصيل التركة باﻷرقام!";
             if(this.id == "alwrathaData")
-                this.errorMsg = "تأكد من إدخال عدد كل من الورثه باﻷرقام!";
+                this.errorMsg = "تأكد من إدخال عدد كل من الورثة باﻷرقام!";
         }
         return this._isDataValid;
     }
@@ -61,9 +61,9 @@ class Form
     {
         if(this.data.length == 0)
         {
-            this.errorMsg = "الرجاء إدخال تفاصيل التركه!";
+            this.errorMsg = "الرجاء إدخال تفاصيل التركة!";
             if(this.id == "alwrathaData")
-                this.errorMsg = "الرجاء إدخال معلومات الورثه!";
+                this.errorMsg = "الرجاء إدخال معلومات الورثة!";
 
             return true;
         }

@@ -4,14 +4,20 @@ include includes/mirath-mixins
 block content2
   center.pb-3
     .col-12.col-sm-10.col-lg-8
-      form.jumbotron.mt-3.pb-3(
+      form.jumbotron.mt-3.pb-1(
         id="altarikaData", method="POST",
         action= "/mirath/altarika")
         +displayAltarikaForm()
-        button.btn.btn-primary.btn-lg.arabic-content.mt-3(
-          id="submitAltarika",type="submit",
-          aria-disabled='true',
-          style="align = center") إدخال الورثة  
+        .row.pb-3.mt-3
+          .col-7
+            button.btn.btn-primary.btn-lg.arabic-content(
+              id="submitAltarika",type="submit",
+              aria-disabled='true',
+              style="align = center") إدخال الورثة 
+          .col-4
+            a.btn.btn-outline-warning.btn-lg.arabic-content(
+              href="/mirath",role='button', 
+              aria-disabled='true') رجوع 
     +addModal()
   script(src="/scripts/mirath/alwratha.brow.js")
 
