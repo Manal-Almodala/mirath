@@ -94,13 +94,13 @@ mixin addModal()
           span error message
 
 mixin createThreeButtons(b1Text, b1Href, b2Text, b2Href, backHref)
-  .row.pb-4
-    .col-3
+  .row.pb-4.justify-content-center.pr-0
+    .col-4
       a.btn.btn-outline-info.btn-lg.arabic-content(href=b2Href,
       role='button', aria-disabled='true') #{b2Text}
-    .col-4.mr-3
+    .col-4
       a.btn.btn-primary.btn-lg.arabic-content(href=b1Href,
       role='button', aria-disabled='true') #{b1Text}
-    .col-3.mr-3
+    .col-4
       a.btn.btn-outline-warning.btn-lg.arabic-content(href=backHref,
       role='button', aria-disabled='true') رجوع
