@@ -10,7 +10,7 @@ body{
     text-align: right;
     direction: rtl;
     font-size-adjust: inherit;
-    background-color: #e9ecef !important;
+    background-color: #e9ecef;
 }
 
 .ltr-content{
@@ -83,6 +83,7 @@ form.jumbotron *:not(button){
     width: auto;
     height: auto;
     border: 2px outset #5e357952;
+    background-color: #d5f7e2b9;
 }
 
 .carousel-content {
