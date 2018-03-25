@@ -45,8 +45,6 @@ $("input[aria-label='زوجه']").change(function() {
         $("input[aria-label='زوج']").prop("checked", false);
     }  
 });
-
-
 },{"./helper/form.js":2,"./helper/validation.js":3}],2:[function(require,module,exports){
 const formValidation =  require("./validation.js");
 

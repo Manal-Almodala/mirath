@@ -14,3 +14,22 @@ mixin displayAltarikaForm()
         input.form-control.addon-textarea-right(name= tarikaType, 
           type='text', disabled, placeholder=0, data-toggle="tooltip", 
           data-placement="top", title=tip) 
+
+mixin createMirathResultTable(result, fortuneType)
+  -
+    var tableHeaders = ["الوارث", "عدد اﻷفراد", "نصيب الفرد", 
+                        "مجموع اﻷنصبه"]; 
+  table.table.table-hover
+    thead.text-primary.bg-light
+      tr
+        each header in tableHeaders
+          th #{header}         
+    tbody
+      each warith, warithName in result
+        tr
+          th(scope='row') #{warithName}      
+          td #{warith.count}      
+          td #{warith.fortune[fortuneType].toFixed(2).replace('.',',')} 
+          -let totalFortune = warith.fortune[fortuneType] * warith.count; 
+          td #{totalFortune.toFixed(2).replace('.',',')}
+

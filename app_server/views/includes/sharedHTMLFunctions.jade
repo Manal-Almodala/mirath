@@ -47,24 +47,6 @@ mixin createCards(listOfWratha)
                       type='number', disabled, placeholder=0, data-toggle="tooltip", 
                       data-placement="top", title="أدخل عدد اﻷفراد باﻷرقام")        
                     
-
-mixin displayResultTable(result)
-  -
-    var tableHeaders = ["الوارث", "عدد اﻷفراد", "نصيب الفرد (مال)",
-                        "نصيب الفرد (عقار)"];
-  table.table.table-hover
-    thead.text-primary.bg-light
-      tr
-        each header in tableHeaders
-          th #{header}         
-    tbody
-      each warith, warithName in result
-        tr
-          th(scope='row') #{warithName}      
-          td #{warith.count}      
-          td #{warith.fortune.money.toFixed(2).replace('.',',')} 
-          td #{warith.fortune.property.toFixed(2).replace('.',',')} 
-
 mixin displayNavItems(items)
   nav.navbar.navbar-expand-sm.navbar-dark.bg-primary.arabic-content
     a.navbar-brand.text-secondary(href= items[0].url) #{items[0].name}      

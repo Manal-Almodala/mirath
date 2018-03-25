@@ -44,4 +44,3 @@ $("input[aria-label='زوجه']").change(function() {
         $("input[aria-label='زوج']").prop("checked", false);
     }  
 });
-
