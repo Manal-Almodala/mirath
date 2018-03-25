@@ -22,7 +22,7 @@ module.exports = {
 
     }()), 
 
-    "زوجه": (function(){
+    "زوجة": (function(){
 
         type = "أصحاب الفروض"; 
         isSingular = false;
@@ -30,7 +30,7 @@ module.exports = {
         calculateFotuneRatio = function()
         {
             var fortuneRatio = 0.25;
-            var count = alwratha.data["زوجه"].count;
+            var count = alwratha.data["زوجة"].count;
 
             if(alwratha.includesAnyOf(children))
             {
@@ -77,8 +77,8 @@ module.exports = {
         getPeopleTheyBlock = function()
         {
             var people = ["ابن ابن", "بنت ابن", "أخ شقيق", "أخ ﻷب",
-                            "ابن أخ شقيق", "ابن أخ ﻷب", "أخت شقيقه", 
-                            "أخت ﻷب", "إخوه ﻷم", "عم شقيق", "عم ﻷب",
+                            "ابن أخ شقيق", "ابن أخ ﻷب", "أخت شقيقة", 
+                            "أخت ﻷب", "إخوة ﻷم", "عم شقيق", "عم ﻷب",
                             "ابن عم شقيق", "ابن عم ﻷب"
                         ];
             return people;
@@ -131,8 +131,8 @@ module.exports = {
         getPeopleTheyBlock = function()
         {
             var people = ["أخ شقيق", "أخ ﻷب",
-                            "ابن أخ شقيق", "ابن أخ ﻷب", "أخت شقيقه", 
-                            "أخت ﻷب", "إخوه ﻷم", "عم شقيق", "عم ﻷب",
+                            "ابن أخ شقيق", "ابن أخ ﻷب", "أخت شقيقة", 
+                            "أخت ﻷب", "إخوة ﻷم", "عم شقيق", "عم ﻷب",
                             "ابن عم شقيق", "ابن عم ﻷب"
                         ];
 
@@ -187,7 +187,7 @@ module.exports = {
 
             if(alwratha.data["بنت"].count > 1)
             {
-                people.push("إخوه ﻷم");
+                people.push("إخوة ﻷم");
                 if(!alwratha.includes("ابن ابن"))
                 {
                     people.push("بنت ابن");
@@ -266,7 +266,7 @@ module.exports = {
        
         getPeopleTheyBlock = function()
         {
-            var people = ["إخوه ﻷم"];
+            var people = ["إخوة ﻷم"];
             return people;
         };
 
@@ -306,8 +306,8 @@ module.exports = {
 
         getPeopleTheyBlock = function()
         {
-            var people = ["جد", "أخ شقيق", "أخت شقيقه", "أخ ﻷب", "أخت ﻷب",
-                            "إخوه ﻷم", "ابن أخ شقيق", "ابن أخ ﻷب", "عم شقيق",
+            var people = ["جد", "أخ شقيق", "أخت شقيقة", "أخ ﻷب", "أخت ﻷب",
+                            "إخوة ﻷم", "ابن أخ شقيق", "ابن أخ ﻷب", "عم شقيق",
                             "عم ﻷب", "ابن عم شقيق", "ابن عم ﻷب"
                         ];
             return people;
@@ -354,7 +354,7 @@ module.exports = {
 
         getPeopleTheyBlock = function()
         {
-            var people = ["إخوه ﻷم", "ابن أخ شقيق", "ابن أخ ﻷب", "عم شقيق",
+            var people = ["إخوة ﻷم", "ابن أخ شقيق", "ابن أخ ﻷب", "عم شقيق",
                             "عم ﻷب", "ابن عم شقيق", "ابن عم ﻷب"
                         ];
 
@@ -482,9 +482,9 @@ module.exports = {
             {
                 fortuneRatio = 1;
             }
-            else if(alwratha.includes("أخت شقيقه"))
+            else if(alwratha.includes("أخت شقيقة"))
             {
-                var remainderRatio = 2*count*getFemaleFotuneRatio("أخت شقيقه", 
+                var remainderRatio = 2*count*getFemaleFotuneRatio("أخت شقيقة", 
                                                                   "أخ شقيق");
                 fortuneRatio = setRemainderRatio("أخ شقيق", 
                                                  fortuneRatio, 
@@ -556,7 +556,7 @@ module.exports = {
 
             if(alwratha.includesAnyOf(["بنت", "بنت ابن"]))
             {
-                superiors.push("أخت شقيقه");
+                superiors.push("أخت شقيقة");
             }
 
             return superiors;
@@ -574,7 +574,7 @@ module.exports = {
 
     }()),
 
-    "أخت شقيقه": (function(){
+    "أخت شقيقة": (function(){
 
         type = "أصحاب الفروض"; 
         isSingular = false;
@@ -582,27 +582,27 @@ module.exports = {
         calculateFotuneRatio = function()
         {
             var fortuneRatio = 0.5;
-            var count = alwratha.data["أخت شقيقه"].count;
+            var count = alwratha.data["أخت شقيقة"].count;
         
             if(isBlocked.call(this))
             {
                 fortuneRatio = 0;
             }
-            else if(alwratha.isAlone(getMhgobenBy.call(this, "أخت شقيقه")))
+            else if(alwratha.isAlone(getMhgobenBy.call(this, "أخت شقيقة")))
             {
                 if(count > 1)
                 {
                     fortuneRatio = 0.667;
                 }
 
-                fortuneRatio = setRemainderRatio("أخت شقيقه", fortuneRatio, 1);
+                fortuneRatio = setRemainderRatio("أخت شقيقة", fortuneRatio, 1);
             }
             else if(alwratha.includes("أخ شقيق"))
             {
                 fortuneRatio = 0;
-                var remainderRatio = count*getFemaleFotuneRatio("أخت شقيقه", 
+                var remainderRatio = count*getFemaleFotuneRatio("أخت شقيقة", 
                                                                 "أخ شقيق");
-                fortuneRatio = setRemainderRatio("أخت شقيقه", 
+                fortuneRatio = setRemainderRatio("أخت شقيقة", 
                                                  fortuneRatio, 
                                                  remainderRatio);
             }
@@ -611,7 +611,7 @@ module.exports = {
                 if(alwratha.includesAnyOf(["بنت", "بنت ابن"]))
                 {
                     fortuneRatio = 0;
-                    fortuneRatio = setRemainderRatio("أخت شقيقه", fortuneRatio, 1);
+                    fortuneRatio = setRemainderRatio("أخت شقيقة", fortuneRatio, 1);
                 }
                 else if(count > 1){
                     fortuneRatio = 0.667;
@@ -636,7 +636,7 @@ module.exports = {
                 people = ["أخ ﻷب", "أخت ﻷب", "ابن أخ شقيق", "ابن أخ ﻷب",
                         "عم شقيق", "عم ﻷب", "ابن عم شقيق", "ابن عم ﻷب"];
             }
-            else if(alwratha.data["أخت شقيقه"].count > 1 && 
+            else if(alwratha.data["أخت شقيقة"].count > 1 && 
                         !alwratha.includes("أخ ﻷب"))
             {
                 people.push("أخت ﻷب");
@@ -672,7 +672,7 @@ module.exports = {
 
                 fortuneRatio = setRemainderRatio("أخت ﻷب", fortuneRatio, 1);
             }
-            else if(alwratha.includes("أخت شقيقه"))
+            else if(alwratha.includes("أخت شقيقة"))
             {
                 fortuneRatio = 0.167;
             }
@@ -704,12 +704,12 @@ module.exports = {
         {
             var superiors = ["ابن", "ابن ابن", "أب", "جد",  "أخ شقيق"];
             if(!alwratha.includes("أخ ﻷب") &&
-                    alwratha.includes("أخت شقيقه"))
+                    alwratha.includes("أخت شقيقة"))
             {
-                if(alwratha.data["أخت شقيقه"].count > 1 ||
+                if(alwratha.data["أخت شقيقة"].count > 1 ||
                     alwratha.includesAnyOf(["بنت", "بنت ابن"]))
                 {
-                    superiors.push("أخت شقيقه");
+                    superiors.push("أخت شقيقة");
                 }
             } 
             return superiors;
@@ -732,7 +732,7 @@ module.exports = {
 
     }()),
     
-    "إخوه ﻷم": (function(){
+    "إخوة ﻷم": (function(){
 
         type = "أصحاب الفروض"; 
         isSingular = false;
@@ -740,20 +740,20 @@ module.exports = {
         calculateFotuneRatio = function()
         {
             var fortuneRatio = 0.167;
-            var count = alwratha.data["إخوه ﻷم"].count;
+            var count = alwratha.data["إخوة ﻷم"].count;
         
             if(isBlocked.call(this))
             {
                 fortuneRatio = 0;
             }
-            else if(alwratha.isAlone(getMhgobenBy.call(this, "إخوه ﻷم")))
+            else if(alwratha.isAlone(getMhgobenBy.call(this, "إخوة ﻷم")))
             {
                 if(count > 1)
                 {
                     fortuneRatio = 0.333;
                 }
 
-                fortuneRatio = setRemainderRatio("إخوه ﻷم", fortuneRatio, 1);
+                fortuneRatio = setRemainderRatio("إخوة ﻷم", fortuneRatio, 1);
             }
             else 
             {
@@ -809,7 +809,7 @@ module.exports = {
             
             if(alwratha.includesAnyOf(["بنت ابن", "بنت"]))
             {
-                superiors.push("أخت شقيقه");
+                superiors.push("أخت شقيقة");
                 superiors.push("أخت ﻷب");
             }
 
@@ -861,7 +861,7 @@ module.exports = {
             
             if(alwratha.includesAnyOf(["بنت ابن", "بنت"]))
             {
-                superiors.push("أخت شقيقه");
+                superiors.push("أخت شقيقة");
                 superiors.push("أخت ﻷب");
             }
 
@@ -913,7 +913,7 @@ module.exports = {
             
             if(alwratha.includesAnyOf(["بنت ابن", "بنت"]))
             {
-                superiors.push("أخت شقيقه");
+                superiors.push("أخت شقيقة");
                 superiors.push("أخت ﻷب");
             }
 
@@ -965,7 +965,7 @@ module.exports = {
             
             if(alwratha.includesAnyOf(["بنت ابن", "بنت"]))
             {
-                superiors.push("أخت شقيقه");
+                superiors.push("أخت شقيقة");
                 superiors.push("أخت ﻷب");
             }
 
@@ -1017,7 +1017,7 @@ module.exports = {
             
             if(alwratha.includesAnyOf(["بنت ابن", "بنت"]))
             {
-                superiors.push("أخت شقيقه");
+                superiors.push("أخت شقيقة");
                 superiors.push("أخت ﻷب");
             }
 
@@ -1069,7 +1069,7 @@ module.exports = {
             
             if(alwratha.includesAnyOf(["بنت ابن", "بنت"]))
             {
-                superiors.push("أخت شقيقه");
+                superiors.push("أخت شقيقة");
                 superiors.push("أخت ﻷب");
             }
 
@@ -1079,12 +1079,12 @@ module.exports = {
         return publicProperties.call(this);  
 
     }()),
-}
+};
 
 var children = ["ابن", "ابن ابن", "بنت ابن", "بنت"]
 var maleChildren = ["ابن", "ابن ابن"];
 var fathers = ["أب", "جد"];
-var siblings = ["أخت شقيقه", "أخ شقيق"];
+var siblings = ["أخت شقيقة", "أخ شقيق"];
 
 function setRemainderRatio(person, fortuneRatio, value)
 {
@@ -1106,7 +1106,7 @@ function getMhgobenBy(warith)
 
 function isBlocked(){
     return alwratha.includesAnyOf(this.getSuperiors());
-};
+}
 
 function getFemaleFotuneRatio(femaleSibling, maleSibling)
 {
@@ -1114,7 +1114,7 @@ function getFemaleFotuneRatio(femaleSibling, maleSibling)
     var malesCount = alwratha.data[maleSibling].count;
 
     return 1 / (femalesCount + 2 * malesCount);
-};
+}
 
 function publicProperties()
 {
@@ -1150,4 +1150,4 @@ function publicProperties()
          */
         isSingular: this.isSingular,
     };       
-};
+}
