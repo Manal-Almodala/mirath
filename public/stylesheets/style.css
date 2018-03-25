@@ -12,8 +12,8 @@ body{
     font-size-adjust: inherit;
 }
 
-.jumbotron-main{
-    height: 100rem;
+.jumbotron-fluid{
+    height: 110rem;
 }
 
 .ltr-content{
@@ -27,6 +27,10 @@ nav a{
 
 .navbar-brand{
     font-size: x-large;
+}
+
+tr{
+    font-style: normal !important;
 }
 
 .card,.card *{

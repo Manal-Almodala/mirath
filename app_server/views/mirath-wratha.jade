@@ -1,20 +1,19 @@
 extends layouts/mirath-layout
 include includes/mirath-mixins
 
-block content2
-  center         
-    form.pr-0.pl-0(id="alwrathaData", method="POST",
-      action= "/mirath/alwratha")
-      .col-12.col-sm-10.col-lg-8
-        +createCards(listOfAlwartha)
-      .row.pb-3.mt-3.justify-content-center
-        .col-6
-          button.btn.btn-primary.btn-lg.arabic-content.mb-4(
-            id="submitAlwratha", type="submit",
-            aria-disabled='true') أحسب اﻷنصبة
-        .col-4.mr-5.col-sm-6.mr-sm-0
-          a.btn.btn-outline-warning.btn-lg.arabic-content(
-            href="/mirath/altarika",role='button', 
-            aria-disabled='true') رجوع 
-    +addModal()
+block content2        
+  form.pr-0.pl-0.mb-4(id="alwrathaData", method="POST",
+    action= "/mirath/alwratha")
+    .col-12.col-sm-10.col-lg-8
+      +createCards(listOfAlwartha)
+    .row.pb-3.mt-3.justify-content-center
+      .col-6
+        button.btn.btn-primary.btn-lg.arabic-content(
+          id="submitAlwratha", type="submit",
+          aria-disabled='true') أحسب اﻷنصبة
+      .col-4.mr-5.col-sm-6.mr-sm-0
+        a.btn.btn-outline-warning.btn-lg.arabic-content(
+          href="/mirath/altarika",role='button', 
+          aria-disabled='true') رجوع 
+  +addModal()
   script(src="/scripts/mirath/alwratha.brow.js")

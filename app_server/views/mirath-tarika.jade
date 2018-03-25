@@ -2,23 +2,22 @@ extends layouts/mirath-layout
 include includes/mirath-mixins
 
 block content2
-  center.pb-3
-    .col-12.col-sm-10.col-lg-8
-      form.jumbotron.mt-3.pb-1(
-        id="altarikaData", method="POST",
-        action= "/mirath/altarika")
-        +displayAltarikaForm()
-        .row.pb-3.mt-3.justify-content-center
-          .col-6
-            button.btn.btn-primary.btn-lg.arabic-content(
-              id="submitAltarika",type="submit",
-              aria-disabled='true',
-              style="align = center") إدخال الورثة 
-          .col-5.mr-2.col-sm-6.mr-sm-0
-            a.btn.btn-outline-warning.btn-lg.arabic-content(
-              href="/mirath",role='button', 
-              aria-disabled='true') رجوع 
-    +addModal()
+  .col-12.col-sm-10.col-lg-8.pb-3
+    form.jumbotron.mt-3.pb-1(
+      id="altarikaData", method="POST",
+      action= "/mirath/altarika")
+      +displayAltarikaForm()
+      .row.pb-3.mt-3.justify-content-center
+        .col-6
+          button.btn.btn-primary.btn-lg.arabic-content(
+            id="submitAltarika",type="submit",
+            aria-disabled='true',
+            style="align = center") إدخال الورثة 
+        .col-5.mr-2.col-sm-6.mr-sm-0
+          a.btn.btn-outline-warning.btn-lg.arabic-content(
+            href="/mirath",role='button', 
+            aria-disabled='true') رجوع 
+  +addModal()
   script(src="/scripts/mirath/alwratha.brow.js")
 
   

@@ -2,20 +2,19 @@ extends layouts/mirath-layout
 include includes/mirath-mixins
 
 block content2
-  center
-    .container-fluid.pr-0.pl-0(align="middle")
-      .col-12.col-sm-10.col-lg-8
-        .card.mb-3.mt-3
-          h3.card-header.text-center.arabic-content.text-info 
-            إستحقاق الورثة من اﻷموال  
-          .card-body.arabic-content.pl-0.pr-0.pt-0
-            +createMirathResultTable(result, "money")
-      .col-12.col-sm-10.col-lg-8
-        .card.mb-3.mt-3
-          h3.card-header.text-center.arabic-content.text-info 
-            إستحقاق الورثة من العقار  
-          .card-body.arabic-content.pl-0.pr-0.pt-0
-            +createMirathResultTable(result, "property")
-    +createThreeButtons("أطبع النتيجة", "/mirath/result", 
-      "التفاصيل", "/mirath/result/detail", "/mirath/alwratha")
+  .container-fluid.pr-0.pl-0(align="middle")
+    .col-12.col-sm-10.col-lg-8
+      .card.mb-3.mt-3
+        h3.card-header.text-center.arabic-content.text-info 
+          إستحقاق الورثة من اﻷموال  
+        .card-body.arabic-content.pl-0.pr-0.pt-0
+          +createMirathResultTable(result, "money")
+    .col-12.col-sm-10.col-lg-8
+      .card.mb-3.mt-3
+        h3.card-header.text-center.arabic-content.text-info 
+          إستحقاق الورثة من العقار  
+        .card-body.arabic-content.pl-0.pr-0.pt-0
+          +createMirathResultTable(result, "property")
+  +createThreeButtons("أطبع النتيجة", "/mirath/result", 
+    "التفاصيل", "/mirath/result/detail", "/mirath/alwratha")
   script(src="/scripts/general.js")
