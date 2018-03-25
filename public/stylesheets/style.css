@@ -10,10 +10,7 @@ body{
     text-align: right;
     direction: rtl;
     font-size-adjust: inherit;
-}
-
-.jumbotron-fluid{
-    height: 110rem;
+    background-color: #e9ecef !important;
 }
 
 .ltr-content{
