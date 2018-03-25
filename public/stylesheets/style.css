@@ -12,6 +12,10 @@ body{
     font-size-adjust: inherit;
 }
 
+.jumbotron-main{
+    height: 100rem;
+}
+
 .ltr-content{
     direction: ltr;
 }
