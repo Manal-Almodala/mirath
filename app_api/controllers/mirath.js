@@ -65,9 +65,9 @@ module.exports.controllers = {
 function getAlwrathaList()
 {
     var list = {
-        "أصحاب فروض وعصبات": [],
+        "أصحاب الفروض":[],
         "العصبات": [],
-        "أصحاب الفروض":[]
+        "أصحاب فروض وعصبات": []
     };
 
     for(var person in people)
