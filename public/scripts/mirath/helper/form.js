@@ -6,6 +6,8 @@ class Form
         this.id = ID;
         this.data = [];
         this.invalidData = [];
+        this.emptyFormMsg = "";
+        this.invalidDataMsg = "";
     }
 
     get data()
@@ -44,10 +46,7 @@ class Form
         else
         {
             this.isDataValid = false;
-
-            this.errorMsg = "تأكد من إدخال تفاصيل التركة باﻷرقام!";
-            if(this.id == "alwrathaData")
-                this.errorMsg = "تأكد من إدخال عدد كل من الورثة باﻷرقام!";
+            this.errorMsg = this.invalidDataMsg;
         }
         return this._isDataValid;
     }
@@ -61,10 +60,7 @@ class Form
     {
         if(this.data.length == 0)
         {
-            this.errorMsg = "الرجاء إدخال تفاصيل التركة!";
-            if(this.id == "alwrathaData")
-                this.errorMsg = "الرجاء إدخال معلومات الورثة!";
-
+            this.errorMsg = this.emptyFormMsg;
             return true;
         }
         else 
