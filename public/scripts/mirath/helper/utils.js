@@ -26,9 +26,3 @@ var crossPageUtilities = {
     }
 };
 module.exports = crossPageUtilities;
-
-
-
-
-
-

@@ -11,25 +11,6 @@ var tarika = new Form("tarikaForm");
 tarika.emptyFormMsg = "الرجاء إدخال تفاصيل التركة!";
 // Error message to be displayed when user submits invalid tarika data   
 tarika.invalidDataMsg = "تأكد من إدخال تفاصيل التركة باﻷرقام!";
+tarika.restoreState();
 
 formValidation.onSubmit(tarika);
-
-
-
-
-
-
-/*
-$("#submitTarika").on("click", function(){
-    var tarikaHtml = $("#tarikaForm").html();
-    localStorage.setItem("tarika", tarikaHtml);
-});
-
-$(document).ready(function(){
-    var tarikaHtml = localStorage.getItem("tarika");
-    if(tarikaHtml != null)
-    {
-        $("#tarikaForm").html(tarikaHtml);
-    }
-}); 
-*/

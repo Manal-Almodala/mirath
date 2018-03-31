@@ -4,7 +4,7 @@ class Form
 {
     constructor(ID){
         this.id = ID;
-        this.data = [];
+        this.restoreData();
         this.invalidData = [];
         this.emptyFormMsg = "";
         this.invalidDataMsg = "";
@@ -68,5 +68,37 @@ class Form
             return false;
         }
     }
+
+    saveData()
+    {
+        sessionStorage.setItem(this.id, JSON.stringify(this.data));
+    }
+
+    restoreData()
+    {
+        this.data = JSON.parse(sessionStorage.getItem(this.id));
+        if(this.data == null)
+            this.data = [];
+    }
+
+    restoreState()
+    {
+        if(this.data.length > 0)
+        {
+            for(var record of this.data)
+            {
+                //console.log(inputField);
+                var formInputField = $("input[name=record.name]");
+                formInputField.val(record.value);
+                activateCheckbox(formInputField); 
+            } 
+        }  
+    }
 }
 module.exports = Form;
+
+function activateCheckbox(formInputField)
+{  
+    formInputField.prevAll(".addon-checkbox-right")
+        .children("input[type='checkbox']").click();
+}

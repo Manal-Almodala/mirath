@@ -5,7 +5,7 @@ class Form
 {
     constructor(ID){
         this.id = ID;
-        this.data = [];
+        this.restoreData();
         this.invalidData = [];
         this.emptyFormMsg = "";
         this.invalidDataMsg = "";
@@ -69,8 +69,40 @@ class Form
             return false;
         }
     }
+
+    saveData()
+    {
+        sessionStorage.setItem(this.id, JSON.stringify(this.data));
+    }
+
+    restoreData()
+    {
+        this.data = JSON.parse(sessionStorage.getItem(this.id));
+        if(this.data == null)
+            this.data = [];
+    }
+
+    restoreState()
+    {
+        if(this.data.length > 0)
+        {
+            for(var record of this.data)
+            {
+                //console.log(inputField);
+                var formInputField = $("input[name=record.name]");
+                formInputField.val(record.value);
+                activateCheckbox(formInputField); 
+            } 
+        }  
+    }
 }
 module.exports = Form;
+
+function activateCheckbox(formInputField)
+{  
+    formInputField.prevAll(".addon-checkbox-right")
+        .children("input[type='checkbox']").click();
+}
 },{"./validation.js":3}],2:[function(require,module,exports){
 var crossPageUtilities = {
     enableTooltips: function(){
@@ -100,13 +132,6 @@ var crossPageUtilities = {
     }
 };
 module.exports = crossPageUtilities;
-
-
-
-
-
-
-
 },{}],3:[function(require,module,exports){
 module.exports = {
     onSubmit: function(form)
@@ -127,6 +152,9 @@ module.exports = {
                 event.preventDefault();
                 showErrorMsg(form);
             }
+
+            form.saveData();
+            //form.restoreState();
         });
 
     },
@@ -177,26 +205,7 @@ var tarika = new Form("tarikaForm");
 tarika.emptyFormMsg = "الرجاء إدخال تفاصيل التركة!";
 // Error message to be displayed when user submits invalid tarika data   
 tarika.invalidDataMsg = "تأكد من إدخال تفاصيل التركة باﻷرقام!";
+tarika.restoreState();
 
 formValidation.onSubmit(tarika);
-
-
-
-
-
-
-/*
-$("#submitTarika").on("click", function(){
-    var tarikaHtml = $("#tarikaForm").html();
-    localStorage.setItem("tarika", tarikaHtml);
-});
-
-$(document).ready(function(){
-    var tarikaHtml = localStorage.getItem("tarika");
-    if(tarikaHtml != null)
-    {
-        $("#tarikaForm").html(tarikaHtml);
-    }
-}); 
-*/
 },{"./helper/form.js":1,"./helper/utils.js":2,"./helper/validation.js":3}]},{},[4]);
