@@ -11,6 +11,8 @@ var tarika = new Form("tarikaForm");
 tarika.emptyFormMsg = "الرجاء إدخال تفاصيل التركة!";
 // Error message to be displayed when user submits invalid tarika data   
 tarika.invalidDataMsg = "تأكد من إدخال تفاصيل التركة باﻷرقام!";
+// When the user returns to page by clicking back button 
+// This restores the data that had been entered by user 
 tarika.restoreState();
 
 formValidation.onSubmit(tarika);

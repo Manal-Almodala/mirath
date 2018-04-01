@@ -88,8 +88,7 @@ class Form
         {
             for(var record of this.data)
             {
-                //console.log(inputField);
-                var formInputField = $("input[name=record.name]");
+                var formInputField = $("input[name=" + "'" + record.name + "'" + "]");
                 formInputField.val(record.value);
                 activateCheckbox(formInputField); 
             } 
@@ -154,7 +153,6 @@ module.exports = {
             }
 
             form.saveData();
-            //form.restoreState();
         });
 
     },
@@ -205,6 +203,8 @@ var tarika = new Form("tarikaForm");
 tarika.emptyFormMsg = "الرجاء إدخال تفاصيل التركة!";
 // Error message to be displayed when user submits invalid tarika data   
 tarika.invalidDataMsg = "تأكد من إدخال تفاصيل التركة باﻷرقام!";
+// When the user returns to page by clicking back button 
+// This restores the data that had been entered by user 
 tarika.restoreState();
 
 formValidation.onSubmit(tarika);

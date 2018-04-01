@@ -5,7 +5,7 @@ class Form
 {
     constructor(ID){
         this.id = ID;
-        this.data = [];
+        this.restoreData();
         this.invalidData = [];
         this.emptyFormMsg = "";
         this.invalidDataMsg = "";
@@ -69,8 +69,39 @@ class Form
             return false;
         }
     }
+
+    saveData()
+    {
+        sessionStorage.setItem(this.id, JSON.stringify(this.data));
+    }
+
+    restoreData()
+    {
+        this.data = JSON.parse(sessionStorage.getItem(this.id));
+        if(this.data == null)
+            this.data = [];
+    }
+
+    restoreState()
+    {
+        if(this.data.length > 0)
+        {
+            for(var record of this.data)
+            {
+                var formInputField = $("input[name=" + "'" + record.name + "'" + "]");
+                formInputField.val(record.value);
+                activateCheckbox(formInputField); 
+            } 
+        }  
+    }
 }
 module.exports = Form;
+
+function activateCheckbox(formInputField)
+{  
+    formInputField.prevAll(".addon-checkbox-right")
+        .children("input[type='checkbox']").click();
+}
 },{"./validation.js":3}],2:[function(require,module,exports){
 var crossPageUtilities = {
     enableTooltips: function(){
@@ -100,13 +131,6 @@ var crossPageUtilities = {
     }
 };
 module.exports = crossPageUtilities;
-
-
-
-
-
-
-
 },{}],3:[function(require,module,exports){
 module.exports = {
     onSubmit: function(form)
@@ -127,6 +151,8 @@ module.exports = {
                 event.preventDefault();
                 showErrorMsg(form);
             }
+
+            form.saveData();
         });
 
     },
@@ -177,6 +203,9 @@ var wratha = new Form("wrathaForm");
 wratha.emptyFormMsg = "الرجاء إدخال معلومات الورثة!";
 // Error message to be displayed when user submits invalid wratha counts   
 wratha.invalidDataMsg = "تأكد من إدخال عدد كل من الورثة باﻷرقام!";
+// When the user returns to page by clicking back button 
+// This restores the data that had been entered by user 
+wratha.restoreState();
 
 formValidation.onSubmit(wratha);
 

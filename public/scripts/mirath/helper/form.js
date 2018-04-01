@@ -87,8 +87,7 @@ class Form
         {
             for(var record of this.data)
             {
-                //console.log(inputField);
-                var formInputField = $("input[name=record.name]");
+                var formInputField = $("input[name=" + "'" + record.name + "'" + "]");
                 formInputField.val(record.value);
                 activateCheckbox(formInputField); 
             } 

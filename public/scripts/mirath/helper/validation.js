@@ -19,7 +19,6 @@ module.exports = {
             }
 
             form.saveData();
-            //form.restoreState();
         });
 
     },

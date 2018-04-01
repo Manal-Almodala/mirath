@@ -21,5 +21,3 @@ function setActiveNav()
 window.onload = toArabicDigits();
 
 $(document).ready(setActiveNav()); 
-
-sessionStorage.clear();

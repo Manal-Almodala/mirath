@@ -11,6 +11,9 @@ var wratha = new Form("wrathaForm");
 wratha.emptyFormMsg = "الرجاء إدخال معلومات الورثة!";
 // Error message to be displayed when user submits invalid wratha counts   
 wratha.invalidDataMsg = "تأكد من إدخال عدد كل من الورثة باﻷرقام!";
+// When the user returns to page by clicking back button 
+// This restores the data that had been entered by user 
+wratha.restoreState();
 
 formValidation.onSubmit(wratha);
 
