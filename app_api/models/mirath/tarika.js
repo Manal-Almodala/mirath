@@ -43,6 +43,11 @@ class Tarika
             return false;
     }
 
+    get hasRemainder()
+    {
+        var remainder = this.remainder.money + this.remainder.property;
+        return remainder > 0;
+    }
     
 }
 module.exports = Tarika; 

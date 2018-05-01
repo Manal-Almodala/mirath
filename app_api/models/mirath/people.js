@@ -60,8 +60,8 @@ module.exports = {
             }
             else if(alwratha.includes("بنت"))
             {
-                var remainderRatio = 2* count * getFemaleFotuneRatio("بنت", 
-                                                                     "ابن");
+                var remainderRatio = 2 * count * getFemaleFotuneRatio("بنت", 
+                                                                      "ابن");
                 fortuneRatio = setRemainderRatio("ابن", 
                                                  fortuneRatio,
                                                  remainderRatio);
@@ -281,7 +281,7 @@ module.exports = {
        
         calculateFotuneRatio = function()
         {
-            var fortuneRatio = 0.167;
+            var fortuneRatio = 0;
             
             if(alwratha.isAlone(getMhgobenBy.call(this, "أب")))
             {
@@ -289,7 +289,6 @@ module.exports = {
             }
             else if(alwratha.hasParentsAndSpouse)
             {
-                fortuneRatio = 0;
                 fortuneRatio = setRemainderRatio("أب", fortuneRatio, 0.667);
             }
             else if(alwratha.includesAnyOf(maleChildren))
@@ -298,6 +297,7 @@ module.exports = {
             }
             else 
             {
+                fortuneRatio = 0.167;
                 fortuneRatio = setRemainderRatio("أب", fortuneRatio, 1);
             }
                 
@@ -1081,20 +1081,20 @@ module.exports = {
     }()),
 };
 
-var children = ["ابن", "ابن ابن", "بنت ابن", "بنت"]
+var children = ["ابن", "ابن ابن", "بنت ابن", "بنت"];
 var maleChildren = ["ابن", "ابن ابن"];
 var fathers = ["أب", "جد"];
 var siblings = ["أخت شقيقة", "أخ شقيق"];
 
-function setRemainderRatio(person, fortuneRatio, value)
+function setRemainderRatio(person, ratio, value)
 {
     if(alwratha.data[person].fortune.hasRemainder)
     {
-        fortuneRatio = value; 
+        ratio = value; 
     }
     alwratha.data[person].fortune.hasRemainder = true;
 
-    return fortuneRatio;
+    return ratio;
 }
 
 function getMhgobenBy(warith)

@@ -1,6 +1,6 @@
 const people = require("../models/mirath/people");
 
 var num = "1.44";
-console.log(num.replace('.',','));
+console.log(Math.floor(2.5));
 
 
