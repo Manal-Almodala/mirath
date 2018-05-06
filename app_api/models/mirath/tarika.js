@@ -48,6 +48,11 @@ class Tarika
         var remainder = this.remainder.money + this.remainder.property;
         return remainder > 0;
     }
-    
+
+    deduct(money, property)
+    {
+        this.remainder.money = this.money - money;
+        this.remainder.property = this.property - property;
+    }
 }
 module.exports = Tarika; 

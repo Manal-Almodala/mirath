@@ -120,15 +120,21 @@ function giveRemainderToAsabat(alwratha)
 
 function giveForodRemainder(alwratha)
 {
-    var sharesOrigin = getTotalShares(alwratha);
-    var shareRatio = 1 / sharesOrigin;
-
-    for (var warithType in alwratha.data) 
+    if(alwratha.hasSpouse)
     {
-        let warith = alwratha.data[warithType];
-        warith.fortune.ratio = warith.share * shareRatio / warith.count;
-                        
-        warith.fortune.calculate(altarika);
+        altarika.deduct();
+    }
+    else
+    {
+        var sharesOrigin = getTotalShares(alwratha);
+        var shareRatio = 1 / sharesOrigin;
+
+        for (var warithType in alwratha.data) 
+        {
+            let warith = alwratha.data[warithType];
+            warith.fortune.ratio = warith.share * shareRatio / warith.count;         
+            warith.fortune.calculate(altarika);
+        }
     }
 }
 
@@ -158,6 +164,5 @@ function calculateTarikaRemainder()
         consumed.property += warith.count * warith.fortune.property;
     }
 
-    altarika.remainder.money = altarika.money - consumed.money;
-    altarika.remainder.property = altarika.property - consumed.property;
+    altarika.deduct(consumed.money, consumed.property);
 }

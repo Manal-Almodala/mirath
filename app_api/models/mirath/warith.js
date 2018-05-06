@@ -27,7 +27,7 @@ class Warith
 {
     constructor(){
         this.count = 0;
-        this.fortune = new Fortune();
+        this.fortune = new Fortune();        
     }
 
     get share()

@@ -109,14 +109,16 @@ class Alwratha
 
     get hasParentsAndSpouse()
     {
-        const spouse = ["زوج", "زوجه"];
-
         var hasParents = this.includes("أب") && 
                             this.includes("أم");
 
-        var hasSpouse = this.includesAnyOf(spouse);
+        return (hasParents && this.hasSpouse);
+    }
 
-        return (hasParents && hasSpouse);
+    get hasSpouse()
+    {
+        const spouse = ["زوج", "زوجه"];
+        return this.includesAnyOf(spouse);
     }
 };
 
