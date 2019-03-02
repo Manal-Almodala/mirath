@@ -4,7 +4,7 @@ require('./ayat');
 
 var dbURI = {
     production: process.env.MLAB_URI,
-    development: "mongodb://localhost/estihgagat",
+    development: "mongodb://yasso96:yass7342@ds123258.mlab.com:23258/estihgagat", //"mongodb://localhost/estihgagat",
     get: function(){
         if(process.env.NODE_ENV === 'production')
         {
