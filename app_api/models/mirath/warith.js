@@ -32,8 +32,8 @@ class Warith
 
     get share()
     {
-        let shareValue = 6 * this.count * this.fortune.ratio;
-        shareValue = Number(shareValue.toFixed(2));
+        let shareValue =  6 * this.count * this.fortune.ratio;
+        shareValue = Number(shareValue.toFixed(3));
         return shareValue;
     }
 }

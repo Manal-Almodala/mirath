@@ -165,11 +165,8 @@ module.exports = {
             else if(alwratha.includes("ابن"))
             {
                 fortuneRatio = 0;
-                var remainderRatio = count * getFemaleFotuneRatio("بنت", 
-                                                                  "ابن");
-                fortuneRatio = setRemainderRatio("بنت",
-                                                 fortuneRatio, 
-                                                 remainderRatio);
+                var remainderRatio = count * getFemaleFotuneRatio("بنت", "ابن");
+                fortuneRatio = setRemainderRatio("بنت", fortuneRatio, remainderRatio);
             }
             else 
             {

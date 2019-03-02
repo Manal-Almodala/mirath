@@ -29,7 +29,7 @@ mixin createMirathResultTable(result, fortuneType)
         tr
           th(scope='row') #{warithName}      
           td #{warith.count}      
-          td #{warith.fortune[fortuneType].toFixed(2).replace('.',',')} 
+          td #{warith.fortune[fortuneType].toFixed(3).replace('.',',')} 
           -let totalFortune = warith.fortune[fortuneType] * warith.count; 
-          td #{totalFortune.toFixed(2).replace('.',',')}
+          td #{totalFortune.toFixed(3).replace('.',',')}
 

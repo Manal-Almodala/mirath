@@ -1,1 +1,0 @@
-console.error("Error: Cannot find module '/mnt/hgfs/yasso-HD/git-repo/web-development/estihgagat/public/scripts/mirath/alwratha.js' from '/mnt/hgfs/yasso-HD/git-repo/web-development/estihgagat/public/scripts/mirath'");

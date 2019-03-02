@@ -92,25 +92,25 @@ function giveFortunes(alwratha)
         altarika.money = 1;
     }
 
-    for (var warithType in alwratha.data) 
+    for (var person in alwratha.data) 
     {
-        let warith = alwratha.data[warithType];
+        let warith = alwratha.data[person];
 
-        warith.fortune.ratio = people[warithType].calculateFotuneRatio();
+        warith.fortune.ratio = people[person].calculateFotuneRatio();
         warith.fortune.calculate(altarika);
     }
 }
 
 function giveRemainderToAsabat(alwratha)
 {
-    for(var warithType in alwratha.data)
+    for(var person in alwratha.data)
     {
-        let warith = alwratha.data[warithType];
+        let warith = alwratha.data[person];
 
         if(warith.fortune.hasRemainder)
         {
             warith.fortune.remainderRatio = 
-                        people[warithType].calculateFotuneRatio();
+                        people[person].calculateFotuneRatio();
 
             warith.fortune.addRemainderWorth(altarika);
         }
@@ -120,22 +120,24 @@ function giveRemainderToAsabat(alwratha)
 
 function giveForodRemainder(alwratha)
 {
+    var sharesOrigin = getTotalShares(alwratha);
+    var shareRatio = 1 / sharesOrigin;
+
     if(alwratha.hasSpouse)
     {
-        altarika.deduct();
+        var spouse = alwratha.data[alwratha.spouse]
+        shareRatio = 1 / sharesOrigin * (1 - spouse.fortune.ratio);
     }
-    else
-    {
-        var sharesOrigin = getTotalShares(alwratha);
-        var shareRatio = 1 / sharesOrigin;
 
-        for (var warithType in alwratha.data) 
+    for (var person in alwratha.data) 
+    {
+        if(!["زوج", "زوجة"].includes(person))
         {
-            let warith = alwratha.data[warithType];
+            let warith = alwratha.data[person];
             warith.fortune.ratio = warith.share * shareRatio / warith.count;         
-            warith.fortune.calculate(altarika);
-        }
-    }
+            warith.fortune.calculate(altarika); 
+        } 
+    }  
 }
 
 function getTotalShares(alwratha)
@@ -143,12 +145,14 @@ function getTotalShares(alwratha)
     var totalShares = 0;
     for(var warith in alwratha.data)
     {
-        totalShares += alwratha.data[warith].share;                 
+        if(!["زوج", "زوجة"].includes(warith))
+        {
+            totalShares += alwratha.data[warith].share; 
+        }              
     }
 
     return Math.floor(totalShares);
 }
-
 
 function calculateTarikaRemainder()
 {
@@ -157,9 +161,9 @@ function calculateTarikaRemainder()
         property: 0
     };
 
-    for(var warithType in alwratha.data)
+    for(var person in alwratha.data)
     {
-        let warith = alwratha.data[warithType];
+        let warith = alwratha.data[person];
         consumed.money += warith.count * warith.fortune.money;
         consumed.property += warith.count * warith.fortune.property;
     }

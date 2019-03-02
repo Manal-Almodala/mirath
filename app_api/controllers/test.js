@@ -1,6 +1,16 @@
 const people = require("../models/mirath/people");
 
 var num = "1.44";
-console.log(Math.floor(2.5));
+
+x = 'trr'
+if("yes" == "no")
+{
+    console.log('yes');
+}
+else
+{
+    console.log('no');
+}
+
 
 

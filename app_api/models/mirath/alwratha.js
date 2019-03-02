@@ -42,10 +42,11 @@ class Alwratha
 
     get hasBrothersOrSisters()
     {
-        const brothersAndSisters = ["أخ شقيق", "أخ ﻷب", "أخت شقيقه",
-                                 ,"أخت ﻷب", "إخوه ﻷم"];
+        const brothersAndSisters = ["أخ شقيق", "أخ ﻷب", "أخت شقيقة", "أخت ﻷب", "إخوة ﻷم"];
+
         var hasBrothersOrSisters = false;
         let count = 0;
+        
         for(var brotherOrSister of brothersAndSisters)
         {
             if(this.includes(brotherOrSister))
@@ -117,8 +118,20 @@ class Alwratha
 
     get hasSpouse()
     {
-        const spouse = ["زوج", "زوجه"];
+        const spouse = ["زوج", "زوجة"];
         return this.includesAnyOf(spouse);
+    }
+
+    get spouse()
+    {
+        if(this.includes("زوج"))
+        {
+            return "زوج";
+        }
+        else
+        {
+            return "زوجة";
+        }
     }
 };
 
