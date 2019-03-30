@@ -30,7 +30,7 @@ module.exports = {
         if (process.env.NODE_ENV !== 'production')  
             return "http://localhost:3000";
         else
-            return "https://estihgagat.herokuapp.com";      
+            return "https://mirath.herokuapp.com";      
     },
 };
 
