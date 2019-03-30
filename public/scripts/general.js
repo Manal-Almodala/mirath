@@ -21,3 +21,7 @@ function setActiveNav()
 window.onload = toArabicDigits();
 
 $(document).ready(setActiveNav()); 
+
+var printPage = function(){
+    window.print();
+}

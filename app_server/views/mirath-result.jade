@@ -15,6 +15,7 @@ block content2
           إستحقاق الورثة من العقار  
         .card-body.arabic-content.pl-0.pr-0.pt-0
           +createMirathResultTable(result, "property")
-  +createThreeButtons("أطبع النتيجة", "/mirath/result", 
+  +createThreeButtons("أطبع النتيجة", "", 'printPage()',
     "التفاصيل", "/mirath/result/detail", "/mirath/alwratha")
+
   script(src="/scripts/general.js")  
