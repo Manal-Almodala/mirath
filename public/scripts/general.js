@@ -23,5 +23,10 @@ window.onload = toArabicDigits();
 $(document).ready(setActiveNav()); 
 
 var printPage = function(){
+    // Hide elements that are not needed for printing 
+    $("#appSummary").hide();
+    $("#appNavs").hide();
+    $("#buttons").hide();
+
     window.print();
 }

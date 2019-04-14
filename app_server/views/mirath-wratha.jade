@@ -6,7 +6,8 @@ block content2
     action= "/mirath/alwratha")
     .col-12.col-sm-10.col-lg-8
       +createCards(listOfAlwartha)
-    .row.pb-3.mt-3.justify-content-center
+    +createTwoButtons("أحسب الأنصبة", "submitWratha", "/mirath/altarika")
+    //.row.pb-3.mt-3.justify-content-center
       .col-6
         button.btn.btn-primary.btn-lg.arabic-content(
           id="submitWratha", type="submit",

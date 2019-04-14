@@ -48,7 +48,7 @@ mixin createCards(listOfWratha)
                       data-placement="top", title="أدخل عدد اﻷفراد باﻷرقام")        
                     
 mixin displayNavItems(items)
-  nav.navbar.navbar-expand-sm.navbar-dark.bg-primary.arabic-content
+  nav#appNavs.navbar.navbar-expand-sm.navbar-dark.bg-primary.arabic-content
     a.navbar-brand.text-secondary(href= items[0].url) #{items[0].name}      
     button.navbar-toggler.hidden-lg-up(type='button', data-toggle='collapse',
       data-target='#collapsibleNavId', aria-controls='collapsibleNavId', 
@@ -76,7 +76,7 @@ mixin addModal()
           span error message
 
 mixin createThreeButtons(b1Text, b1Href, onClick, b2Text, b2Href, backHref)
-  .row.pb-4.justify-content-center.pr-0
+  #buttons.row.pb-4.justify-content-center.pr-0
     .col-4
       a.btn.btn-outline-info.btn-lg.arabic-content(href=b2Href,
       role='button', aria-disabled='true') #{b2Text}
@@ -86,3 +86,13 @@ mixin createThreeButtons(b1Text, b1Href, onClick, b2Text, b2Href, backHref)
     .col-4
       a.btn.btn-outline-warning.btn-lg.arabic-content(href=backHref,
       role='button', aria-disabled='true') رجوع
+
+mixin createTwoButtons(b1Text, b1ID, backHref)
+  #buttons.row.pb-3.mt-3.justify-content-center
+    .col-6
+      button.btn.btn-primary.btn-lg.arabic-content(
+        id=b1ID, type="submit",
+        aria-disabled='true') #{b1Text}
+    .col-4.mr-5.col-sm-6.mr-sm-0
+      a.btn.btn-outline-warning.btn-lg.arabic-content(href=backHref, 
+      role='button', aria-disabled='true') رجوع 

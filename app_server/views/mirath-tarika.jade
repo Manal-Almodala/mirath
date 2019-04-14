@@ -7,7 +7,8 @@ block content2
       id="tarikaForm", method="POST",
       action= "/mirath/altarika")
       +displayAltarikaForm()
-      .row.pb-3.mt-3.justify-content-center
+      +createTwoButtons("إدخال الورثة", "submitTarika", "/mirath")
+      //.row.pb-3.mt-3.justify-content-center
         .col-6
           button.btn.btn-primary.btn-lg.arabic-content(
             id="submitTarika",type="submit",
