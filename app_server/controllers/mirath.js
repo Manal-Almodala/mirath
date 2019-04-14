@@ -1,6 +1,8 @@
 const request = require('request');
 const helper = require("./helper");
 
+var altarika = require('../../app_api/controllers/mirath.js').altarika;
+
 var navs = [];
 
 module.exports = 
@@ -14,8 +16,11 @@ module.exports =
                 function(ayatObj)
                 {
                     render.home(req, res, ayatObj.ayat);
+                    
                 }
             );
+
+            altarika.reset();
         });
     },
 
