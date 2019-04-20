@@ -8,11 +8,11 @@ module.exports = {
         
         calculateFotuneRatio = function()
         {
-            var fortuneRatio = 0.5;
+            var fortuneRatio = 1 / 2;
 
             if(alwratha.includesAnyOf(children))
             {
-                fortuneRatio = 0.25;
+                fortuneRatio = 1 / 4;
             }
                 
             return fortuneRatio;
@@ -29,12 +29,12 @@ module.exports = {
         
         calculateFotuneRatio = function()
         {
-            var fortuneRatio = 0.25;
+            var fortuneRatio = 1 / 4;
             var count = alwratha.data["زوجة"].count;
 
             if(alwratha.includesAnyOf(children))
             {
-                fortuneRatio = 0.125;
+                fortuneRatio = 1 / 8;
             }
                 
             return fortuneRatio / count;
@@ -150,14 +150,14 @@ module.exports = {
         
         calculateFotuneRatio = function()
         {
-            var fortuneRatio = 0.5;
+            var fortuneRatio = 1 / 2;
             var count = alwratha.data["بنت"].count;
             
             if(alwratha.isAlone(getMhgobenBy.call(this, "بنت")))
             {
                 if(count > 1)
                 {
-                    fortuneRatio = 0.667;
+                    fortuneRatio = 2 / 3;
                 }
 
                 fortuneRatio = setRemainderRatio("بنت", fortuneRatio, 1);
@@ -171,7 +171,7 @@ module.exports = {
             else 
             {
                 if(count > 1){
-                    fortuneRatio = 0.667;
+                    fortuneRatio = 2 / 3;
                 } 
             }
                 
@@ -206,7 +206,7 @@ module.exports = {
     
         calculateFotuneRatio = function()
         {
-            var fortuneRatio = 0.5;
+            var fortuneRatio = 1 / 2;
             var count = alwratha.data["بنت ابن"].count;
 
             if(isBlocked.call(this))
@@ -217,7 +217,7 @@ module.exports = {
             {
                 if(count > 1)
                 {
-                    fortuneRatio = 0.667;
+                    fortuneRatio = 2 / 3;
                 }
 
                 fortuneRatio = setRemainderRatio("بنت ابن", fortuneRatio, 1);
@@ -229,16 +229,16 @@ module.exports = {
                                                                   "ابن ابن");
                 fortuneRatio = setRemainderRatio("بنت ابن",
                                                  fortuneRatio,
-                                                 0.333);
+                                                 1 / 3);
             }
             else if(alwratha.includes("بنت"))
             {
-                fortuneRatio = 0.167;
+                fortuneRatio = 1 / 6;
             }
             else 
             {
                 if(count > 1){
-                    fortuneRatio = 0.667;
+                    fortuneRatio = 2 / 3;
                 } 
             }
             
@@ -286,15 +286,15 @@ module.exports = {
             }
             else if(alwratha.hasParentsAndSpouse)
             {
-                fortuneRatio = setRemainderRatio("أب", fortuneRatio, 0.667);
+                fortuneRatio = setRemainderRatio("أب", fortuneRatio, 2 / 3);
             }
             else if(alwratha.includesAnyOf(maleChildren))
             {
-                fortuneRatio = 0.167;
+                fortuneRatio = 1 / 6;
             }
             else 
             {
-                fortuneRatio = 0.167;
+                fortuneRatio = 1 / 6;
                 fortuneRatio = setRemainderRatio("أب", fortuneRatio, 1);
             }
                 
@@ -321,7 +321,7 @@ module.exports = {
        
         calculateFotuneRatio = function()
         {
-            var fortuneRatio = 0.167;
+            var fortuneRatio = 1 / 6;
             
             if(isBlocked.call(this))
             {
@@ -333,7 +333,7 @@ module.exports = {
             }
             else if(alwratha.includesAnyOf(maleChildren))
             {
-                fortuneRatio = 0.167;
+                fortuneRatio = 1 / 6;
             }
             else 
             {
@@ -369,7 +369,7 @@ module.exports = {
 
         calculateFotuneRatio = function()
         {
-            var fortuneRatio = 0.333;
+            var fortuneRatio = 1 / 3;
             
             if(alwratha.isAlone(getMhgobenBy.call(this, "أم")))
             {
@@ -378,12 +378,12 @@ module.exports = {
             else if(alwratha.hasParentsAndSpouse)
             {
                 fortuneRatio = 0;
-                fortuneRatio = setRemainderRatio("أم", fortuneRatio, 0.333);
+                fortuneRatio = setRemainderRatio("أم", fortuneRatio, 1 / 3);
             }
             else if(alwratha.includesAnyOf(children) || 
                         alwratha.hasBrothersOrSisters)
             {
-                fortuneRatio = 0.167;
+                fortuneRatio = 1 / 6;
             }
                 
             return fortuneRatio;
@@ -406,7 +406,7 @@ module.exports = {
         
         calculateFotuneRatio = function()
         {
-            var fortuneRatio = 0.167; 
+            var fortuneRatio = 1 / 6; 
             
             if(isBlocked.call(this))
             {
@@ -437,7 +437,7 @@ module.exports = {
         
         calculateFotuneRatio = function()
         {
-            var fortuneRatio = 0.167; 
+            var fortuneRatio = 1 / 6; 
             
             if(isBlocked.call(this))
             {
@@ -578,7 +578,7 @@ module.exports = {
         
         calculateFotuneRatio = function()
         {
-            var fortuneRatio = 0.5;
+            var fortuneRatio = 1 / 2;
             var count = alwratha.data["أخت شقيقة"].count;
         
             if(isBlocked.call(this))
@@ -589,7 +589,7 @@ module.exports = {
             {
                 if(count > 1)
                 {
-                    fortuneRatio = 0.667;
+                    fortuneRatio = 2 / 3;
                 }
 
                 fortuneRatio = setRemainderRatio("أخت شقيقة", fortuneRatio, 1);
@@ -611,7 +611,7 @@ module.exports = {
                     fortuneRatio = setRemainderRatio("أخت شقيقة", fortuneRatio, 1);
                 }
                 else if(count > 1){
-                    fortuneRatio = 0.667;
+                    fortuneRatio = 2 / 3;
                 } 
             }
             
@@ -653,7 +653,7 @@ module.exports = {
         
         calculateFotuneRatio = function()
         {
-            var fortuneRatio = 0.5;
+            var fortuneRatio = 1 / 2;
             var count = alwratha.data["أخت ﻷب"].count;
         
             if(isBlocked.call(this))
@@ -664,14 +664,14 @@ module.exports = {
             {
                 if(count > 1)
                 {
-                    fortuneRatio = 0.667;
+                    fortuneRatio = 2 / 3;
                 }
 
                 fortuneRatio = setRemainderRatio("أخت ﻷب", fortuneRatio, 1);
             }
             else if(alwratha.includes("أخت شقيقة"))
             {
-                fortuneRatio = 0.167;
+                fortuneRatio = 1 / 6;
             }
             else if(alwratha.includes("أخ ﻷب"))
             {
@@ -690,7 +690,7 @@ module.exports = {
                     fortuneRatio = setRemainderRatio("أخت ﻷب", fortuneRatio, 1);
                 }
                 else if(count > 1){
-                    fortuneRatio = 0.667;
+                    fortuneRatio = 2 / 3;
                 } 
             }
             
@@ -736,7 +736,7 @@ module.exports = {
        
         calculateFotuneRatio = function()
         {
-            var fortuneRatio = 0.167;
+            var fortuneRatio = 1 / 6;
             var count = alwratha.data["إخوة ﻷم"].count;
         
             if(isBlocked.call(this))
@@ -747,7 +747,7 @@ module.exports = {
             {
                 if(count > 1)
                 {
-                    fortuneRatio = 0.333;
+                    fortuneRatio = 1 / 3;
                 }
 
                 fortuneRatio = setRemainderRatio("إخوة ﻷم", fortuneRatio, 1);
@@ -755,7 +755,7 @@ module.exports = {
             else 
             {
                 if(count > 1){
-                    fortuneRatio = 0.333;
+                    fortuneRatio = 1 / 3;
                 } 
             }
             
