@@ -32,9 +32,14 @@ class Warith
 
     get share()
     {
-        let shareValue =  6 * this.count * this.fortune.ratio;
+        let shareValue =  6 * this.getRatio();
         shareValue = Number(shareValue.toFixed(3));
         return shareValue;
+    }
+
+    getRatio()
+    {
+        return this.fortune.ratio * this.count;
     }
 }
 module.exports.warith = Warith;

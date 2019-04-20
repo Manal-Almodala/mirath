@@ -12,63 +12,72 @@ module.exports.altarika = altarika;
 const people = require("../models/mirath/people");
 
 module.exports.controllers = {
-    addAltarikaData: function(req, res){
+    addAltarikaData: function (req, res) {
         altarika.reset();
-        
-        if(req.body["أموال"]){
+
+        if (req.body["أموال"]) {
             altarika.money = req.body["أموال"];
         }
-        if(req.body["عقار"]){
+        if (req.body["عقار"]) {
             altarika.property = req.body["عقار"];
         }
 
         helper.sendJsonResponse(res, 201, altarika);
     },
 
-    readAlwrathaList: function(req, res){
+    readAlwrathaList: function (req, res) {
         var alwrathaList = getAlwrathaList();
-        if(alwrathaList)
-        {
+        if (alwrathaList) {
             helper.sendJsonResponse(res, 200, alwrathaList);
         }
-        else
-        {
+        else {
             helper.sendJsonResponse(res, 500, "No data was found");
-        }     
+        }
     },
 
-    addAlwrathaData: function(req, res){
+    addAlwrathaData: function (req, res) {
         alwratha.data = req.body;
         helper.sendJsonResponse(res, 201, alwratha.data);
     },
 
-    calculateMirath: function(req, res)
-    {
-        giveFortunes(alwratha);
+    calculateMirath: function (req, res) {
+        setFortuneRatio(alwratha);
+        distributeFortunes(alwratha);
 
-        calculateTarikaRemainder();
-        giveRemainderToAsabat(alwratha);
+        var fortuneRatioSum = alwratha.sumRatios();
 
-        calculateTarikaRemainder();
-        if(altarika.hasRemainder)
-        {
-            giveForodRemainder(alwratha);
+        // Alawal cases 
+        if (fortuneRatioSum > 1) {
+            // Adjust fortune ratios based on the new case origin  
+            var { adjOrigin, oldOrigin } = alwratha.adjShareOrigin();
+            updateFortuneRatio(alwratha, adjOrigin, oldOrigin);
+
+            distributeFortunes(alwratha);
         }
-        
+        else if (fortuneRatioSum < 1) {
+            calculateTarikaRemainder();
+
+            giveRemainderToAsabat(alwratha);
+
+            // Alrad cases
+            calculateTarikaRemainder();
+            if (altarika.hasRemainder) {
+                giveForodRemainder(alwratha);
+            }
+        }
+
         helper.sendJsonResponse(res, 200, alwratha.data);
     }
 };
 
-function getAlwrathaList()
-{
+function getAlwrathaList() {
     var list = {
-        "أصحاب الفروض":[],
+        "أصحاب الفروض": [],
         "العصبات": [],
         "أصحاب فروض وعصبات": []
     };
 
-    for(var person in people)
-    {
+    for (var person in people) {
         var relative = {
             relationship: person,
             isSingular: people[person].isSingular,
@@ -80,37 +89,55 @@ function getAlwrathaList()
     return list;
 }
 
-function giveFortunes(alwratha)
-{
+
+function distributeFortunes(alwratha) {
     /* When the user chooses to enter alwratha data 
        without entering altarika. We set altarika 
        money to 1. Therefore, mirath result come as
        the fortune ratio of each warith 
     */
-    if(altarika.isNotEntered)
-    {
+
+    if (altarika.isNotEntered) {
         altarika.money = 1;
     }
 
+    for (var person in alwratha.data) {
+        let warith = alwratha.data[person];
+
+        warith.fortune.calculate(altarika);
+    }
+}
+
+function setFortuneRatio(alwratha) 
+{
     for (var person in alwratha.data) 
     {
         let warith = alwratha.data[person];
 
         warith.fortune.ratio = people[person].calculateFotuneRatio();
-        warith.fortune.calculate(altarika);
     }
 }
 
-function giveRemainderToAsabat(alwratha)
+function updateFortuneRatio(alwratha, adjOrigin, oldOrigin) 
 {
-    for(var person in alwratha.data)
+    for (var person in alwratha.data) 
     {
         let warith = alwratha.data[person];
 
-        if(warith.fortune.hasRemainder)
+        warith.fortune.ratio *= oldOrigin / adjOrigin;
+    }
+}
+
+function giveRemainderToAsabat(alwratha) 
+{
+    for (var person in alwratha.data) 
+    {
+        let warith = alwratha.data[person];
+
+        if (warith.fortune.hasRemainder) 
         {
-            warith.fortune.remainderRatio = 
-                        people[person].calculateFotuneRatio();
+            warith.fortune.remainderRatio =
+                people[person].calculateFotuneRatio();
 
             warith.fortune.addRemainderWorth(altarika);
         }
@@ -118,12 +145,12 @@ function giveRemainderToAsabat(alwratha)
 
 }
 
-function giveForodRemainder(alwratha)
+function giveForodRemainder(alwratha) 
 {
     var sharesOrigin = getTotalShares(alwratha);
     var shareRatio = 1 / sharesOrigin;
 
-    if(alwratha.hasSpouse)
+    if (alwratha.hasSpouse) 
     {
         var spouse = alwratha.data[alwratha.spouse]
         shareRatio = 1 / sharesOrigin * (1 - spouse.fortune.ratio);
@@ -131,37 +158,38 @@ function giveForodRemainder(alwratha)
 
     for (var person in alwratha.data) 
     {
-        if(!["زوج", "زوجة"].includes(person))
+        if (!["زوج", "زوجة"].includes(person)) 
         {
             let warith = alwratha.data[person];
-            warith.fortune.ratio = warith.share * shareRatio / warith.count;         
-            warith.fortune.calculate(altarika); 
-        } 
-    }  
+            warith.fortune.ratio = warith.share * shareRatio / warith.count;
+            warith.fortune.calculate(altarika);
+        }
+    }
 }
 
-function getTotalShares(alwratha)
+function getTotalShares(alwratha) 
 {
     var totalShares = 0;
-    for(var warith in alwratha.data)
+    for (var warith in alwratha.data) 
     {
-        if(!["زوج", "زوجة"].includes(warith))
+        if (!["زوج", "زوجة"].includes(warith)) 
         {
-            totalShares += alwratha.data[warith].share; 
-        }              
+            totalShares += alwratha.data[warith].share;
+        }
     }
 
     return Math.floor(totalShares);
 }
 
-function calculateTarikaRemainder()
+function calculateTarikaRemainder() 
 {
-    var consumed = {
+    var consumed = 
+    {
         money: 0,
         property: 0
     };
 
-    for(var person in alwratha.data)
+    for (var person in alwratha.data) 
     {
         let warith = alwratha.data[person];
         consumed.money += warith.count * warith.fortune.money;

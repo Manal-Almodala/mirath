@@ -1,4 +1,6 @@
 const Warith = require("./warith").warith;
+const math = require('mathjs')
+const Fraction = require('fraction.js');
 
 class Alwratha 
 {
@@ -132,6 +134,56 @@ class Alwratha
         {
             return "زوجة";
         }
+    }
+
+    sumRatios()
+    {
+        let result = 0;
+    
+        for(var person in this.data)
+        {
+            let warith = this.data[person];
+            result += warith.getRatio();
+        }
+    
+        return result;
+    }
+
+    get ratioDenoms()
+    {
+        var denominators = [];
+    
+        for(var person in this.data)
+        {
+            let warith = this.data[person];
+            let ratio = Fraction(warith.getRatio());
+
+            denominators.push(ratio.d);
+        }
+
+        return denominators;
+    }
+
+    get shareOrigin()
+    {
+        let denominators = this.ratioDenoms;
+        return math.lcm(...denominators);
+    }
+
+    adjShareOrigin()
+    {
+        let adjOrigin = 0;
+        let oldOrigin = this.shareOrigin;
+    
+        for(var person in this.data)
+        {
+            let warith = this.data[person];
+            let ratio = warith.getRatio();
+
+            adjOrigin += math.round(ratio * oldOrigin);
+        }
+
+        return {adjOrigin, oldOrigin};
     }
 };
 
