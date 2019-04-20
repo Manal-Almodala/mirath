@@ -46,7 +46,7 @@ module.exports.controllers = {
 
         var fortuneRatioSum = alwratha.sumRatios();
 
-        // Alawal cases 
+        // Alawl cases 
         if (fortuneRatioSum > 1) {
             // Adjust fortune ratios based on the new case origin  
             var { adjOrigin, oldOrigin } = alwratha.adjShareOrigin();
