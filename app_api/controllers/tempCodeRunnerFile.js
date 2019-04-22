@@ -1,6 +1,2 @@
-const Fraction = require('fraction.js');
-
-var fraction = Fraction(2 / 3)
-
-
-console.log(fraction.d);
+var test = {x: 1, y:3}
+console.log(Object.keys(test)[0]);

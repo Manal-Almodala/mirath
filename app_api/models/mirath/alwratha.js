@@ -124,6 +124,21 @@ class Alwratha
         return this.includesAnyOf(spouse);
     }
 
+    get hasAsbat()
+    {
+        for(var person in this.data)
+        {
+            let warith = this.data[person];
+            
+            if(warith.fortune.hasRemainder)
+            {
+                return true;
+            }
+        }
+    
+        return false;
+    }
+
     get spouse()
     {
         if(this.includes("زوج"))
@@ -167,23 +182,31 @@ class Alwratha
     get shareOrigin()
     {
         let denominators = this.ratioDenoms;
-        return math.lcm(...denominators);
+
+        if(denominators.length == 1)
+        {
+            return denominators[0];
+        }
+        else
+        {
+            return math.lcm(...denominators);
+        }
     }
 
     adjShareOrigin()
     {
         let adjOrigin = 0;
-        let oldOrigin = this.shareOrigin;
+        let shareOrigin = this.shareOrigin;
     
         for(var person in this.data)
         {
             let warith = this.data[person];
             let ratio = warith.getRatio();
 
-            adjOrigin += math.round(ratio * oldOrigin);
+            adjOrigin += math.round(ratio * shareOrigin);
         }
 
-        return {adjOrigin, oldOrigin};
+        return {adjOrigin, shareOrigin};
     }
 };
 

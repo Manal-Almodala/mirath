@@ -17,6 +17,7 @@
     "fraction": "^0.2.0",
     "history": "4.7.2",
     "jade": "1.11.0",
+    "kwargs": "0.0.2",
     "mathjs": "^5.9.0",
     "mongodb": "2.2.33",
     "mongoose": "4.12.4",

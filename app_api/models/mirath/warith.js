@@ -30,9 +30,9 @@ class Warith
         this.fortune = new Fortune();        
     }
 
-    get share()
+    calcShare(shareOrigin)
     {
-        let shareValue =  6 * this.getRatio();
+        let shareValue =  shareOrigin * this.getRatio();
         shareValue = Number(shareValue.toFixed(3));
         return shareValue;
     }

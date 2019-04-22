@@ -1,12 +1,10 @@
 const people = require("../models/mirath/people");
 
 const math = require('mathjs');
-const Fraction = require('fraction.js');
 
-var fraction = Fraction(2 / 3)
+var test = {x: 1, y:3}
+console.log(Object.keys(test)[0]);
 
-
-console.log(fraction.d);
 
 
 [husband, sister, stepSister]
@@ -16,3 +14,8 @@ console.log(fraction.d);
 [husband, 2 * daughter, mother]
 [husband, 2 * daughter, mother, father]
 [3 * wife, 2 * granny, sisterFromMother, father]
+
+// Examples for alrd
+[granny]
+[4 * granddaughter]
+[mother, daughter, granddaughter]
