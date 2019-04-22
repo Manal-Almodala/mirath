@@ -17,5 +17,8 @@ console.log(Object.keys(test)[0]);
 
 // Examples for alrd
 [granny]
-[4 * granddaughter]
+[4 * granddaughter] 
 [mother, daughter, granddaughter]
+[wife, 3 * daughter]
+[husband, daughter, granddaughter]
+[wife, mother, 3 * sisterFromMother]

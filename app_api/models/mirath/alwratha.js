@@ -124,13 +124,13 @@ class Alwratha
         return this.includesAnyOf(spouse);
     }
 
-    get hasAsbat()
+    hasAsbat(people)
     {
         for(var person in this.data)
         {
-            let warith = this.data[person];
+            let warithType = people[person].type;
             
-            if(warith.fortune.hasRemainder)
+            if(warithType != "أصحاب الفروض")
             {
                 return true;
             }

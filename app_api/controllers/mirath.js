@@ -49,11 +49,11 @@ module.exports.controllers = {
 
         var fortuneRatioSum = alwratha.sumRatios();
 
+        var { adjOrigin, shareOrigin } = alwratha.adjShareOrigin();
+
         // Alawl cases 
         if (fortuneRatioSum > 1) 
         {  
-            var { adjOrigin, shareOrigin } = alwratha.adjShareOrigin();
-
             updateFortuneRatio(alwratha, adjOrigin, shareOrigin, 'alawl');
             
             distributeFortunes(alwratha);
@@ -62,16 +62,13 @@ module.exports.controllers = {
         {
             calculateTarikaRemainder();
 
-            if(alwratha.hasAsbat)
+            if(alwratha.hasAsbat(people))
             {
                 kwargs(updateFortuneRatio, {alwratha: alwratha, reason: 'altaseb'});
             }
             else
             {
-                var shareOrigin = alwratha.shareOrigin;
-
-                kwargs(updateFortuneRatio, {alwratha: alwratha, 
-                    shareOrigin: shareOrigin, reason: 'alrd'});
+                updateFortuneRatio(alwratha, adjOrigin, shareOrigin, 'alrd');
 
                 distributeFortunes(alwratha);
             }
@@ -140,7 +137,7 @@ function updateFortuneRatio(alwratha, adjOrigin, shareOrigin, reason)
         break;
 
         case String('alrd'):
-        alrdUpdate(alwratha, shareOrigin);
+        alrdUpdate(alwratha, adjOrigin, shareOrigin);
         break;
 
         case String('alawl'):
@@ -160,7 +157,7 @@ function alawlUpdate(alwratha, adjOrigin, oldOrigin)
     }
 }
 
-function alrdUpdate(alwratha, shareOrigin)
+function alrdUpdate(alwratha, adjOrigin, oldOrigin)
 {
     if(alwratha.size == 1)
     {
@@ -171,13 +168,13 @@ function alrdUpdate(alwratha, shareOrigin)
     }
     else
     {
-        var shareRatio = 1 / shareOrigin;
+        var shareRatio = 1 / adjOrigin;
 
         if (alwratha.hasSpouse) 
         {
             var spouse = alwratha.data[alwratha.spouse]
-            shareOrigin -= spouse.calcShare(shareOrigin);
-            shareRatio = 1 / shareOrigin * (1 - spouse.fortune.ratio);
+            adjOrigin -= spouse.calcShare(oldOrigin);
+            shareRatio = 1 / adjOrigin * (1 - spouse.fortune.ratio);
         }
 
         for (var person in alwratha.data) 
@@ -185,7 +182,7 @@ function alrdUpdate(alwratha, shareOrigin)
             if (!["زوج", "زوجة"].includes(person)) 
             {
                 let warith = alwratha.data[person];
-                warith.fortune.ratio = warith.calcShare(shareOrigin) * shareRatio / warith.count;
+                warith.fortune.ratio = warith.calcShare(oldOrigin) * shareRatio / warith.count;
             }
         }
     }
@@ -223,40 +220,4 @@ function calculateTarikaRemainder()
     }
 
     altarika.deduct(consumed.money, consumed.property);
-}
-
-function giveForodRemainder(alwratha) 
-{
-    var sharesOrigin = getTotalShares(alwratha);
-    var shareRatio = 1 / sharesOrigin;
-
-    if (alwratha.hasSpouse) 
-    {
-        var spouse = alwratha.data[alwratha.spouse]
-        shareRatio = 1 / sharesOrigin * (1 - spouse.fortune.ratio);
-    }
-
-    for (var person in alwratha.data) 
-    {
-        if (!["زوج", "زوجة"].includes(person)) 
-        {
-            let warith = alwratha.data[person];
-            warith.fortune.ratio = warith.share * shareRatio / warith.count;
-            warith.fortune.calculate(altarika);
-        }
-    }
-}
-
-function getTotalShares(alwratha) 
-{
-    var totalShares = 0;
-    for (var warith in alwratha.data) 
-    {
-        if (!["زوج", "زوجة"].includes(warith)) 
-        {
-            totalShares += alwratha.data[warith].share;
-        }
-    }
-
-    return Math.floor(totalShares);
 }
