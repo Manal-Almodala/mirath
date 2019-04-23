@@ -153,16 +153,7 @@ module.exports = {
             var fortuneRatio = 1 / 2;
             var count = alwratha.data["بنت"].count;
             
-            if(alwratha.isAlone(getMhgobenBy.call(this, "بنت")))
-            {
-                if(count > 1)
-                {
-                    fortuneRatio = 2 / 3;
-                }
-
-                fortuneRatio = setRemainderRatio("بنت", fortuneRatio, 1);
-            }
-            else if(alwratha.includes("ابن"))
+            if(alwratha.includes("ابن"))
             {
                 fortuneRatio = 0;
                 var remainderRatio = count * getFemaleFotuneRatio("بنت", "ابن");
@@ -213,33 +204,20 @@ module.exports = {
             {
                 fortuneRatio = 0;
             }
-            else if(alwratha.isAlone(getMhgobenBy.call(this, "بنت ابن")))
-            {
-                if(count > 1)
-                {
-                    fortuneRatio = 2 / 3;
-                }
-
-                fortuneRatio = setRemainderRatio("بنت ابن", fortuneRatio, 1);
-            }
             else if(alwratha.includes("ابن ابن"))
             {
                 fortuneRatio = 0;
-                var remainderRatio = count * getFemaleFotuneRatio("بنت ابن", 
-                                                                  "ابن ابن");
-                fortuneRatio = setRemainderRatio("بنت ابن",
-                                                 fortuneRatio,
-                                                 1 / 3);
+                var remainderRatio = count * getFemaleFotuneRatio("بنت ابن", "ابن ابن");
+
+                fortuneRatio = setRemainderRatio("بنت ابن", fortuneRatio, remainderRatio);
             }
             else if(alwratha.includes("بنت"))
             {
                 fortuneRatio = 1 / 6;
             }
-            else 
+            else if(count > 1)
             {
-                if(count > 1){
-                    fortuneRatio = 2 / 3;
-                } 
+                fortuneRatio = 2 / 3;
             }
             
             return fortuneRatio / count;
@@ -371,17 +349,12 @@ module.exports = {
         {
             var fortuneRatio = 1 / 3;
             
-            if(alwratha.isAlone(getMhgobenBy.call(this, "أم")))
-            {
-                fortuneRatio = setRemainderRatio("أم", fortuneRatio, 1);
-            }
-            else if(alwratha.hasParentsAndSpouse)
+            if(alwratha.hasParentsAndSpouse)
             {
                 fortuneRatio = 0;
                 fortuneRatio = setRemainderRatio("أم", fortuneRatio, 1 / 3);
             }
-            else if(alwratha.includesAnyOf(children) || 
-                        alwratha.hasBrothersOrSisters)
+            else if(alwratha.includesAnyOf(children) || alwratha.hasBrothersOrSisters)
             {
                 fortuneRatio = 1 / 6;
             }
@@ -412,10 +385,6 @@ module.exports = {
             {
                 fortuneRatio = 0;
             }
-            else if(alwratha.isAlone(["أم أم", "أم ﻷب"]))
-            {
-                fortuneRatio = setRemainderRatio("أم أم", fortuneRatio, 1);
-            }
                 
             return fortuneRatio / alwratha.grandMothersCount;
         };
@@ -442,10 +411,6 @@ module.exports = {
             if(isBlocked.call(this))
             {
                 fortuneRatio = 0;
-            }
-            else if(alwratha.isAlone(["أم أم", "أم ﻷب"]))
-            {
-                fortuneRatio = setRemainderRatio("أم ﻷب", fortuneRatio, 1);
             }
                 
             return fortuneRatio / alwratha.grandMothersCount;
@@ -585,23 +550,12 @@ module.exports = {
             {
                 fortuneRatio = 0;
             }
-            else if(alwratha.isAlone(getMhgobenBy.call(this, "أخت شقيقة")))
-            {
-                if(count > 1)
-                {
-                    fortuneRatio = 2 / 3;
-                }
-
-                fortuneRatio = setRemainderRatio("أخت شقيقة", fortuneRatio, 1);
-            }
             else if(alwratha.includes("أخ شقيق"))
             {
                 fortuneRatio = 0;
-                var remainderRatio = count*getFemaleFotuneRatio("أخت شقيقة", 
-                                                                "أخ شقيق");
-                fortuneRatio = setRemainderRatio("أخت شقيقة", 
-                                                 fortuneRatio, 
-                                                 remainderRatio);
+                var remainderRatio = count*getFemaleFotuneRatio("أخت شقيقة", "أخ شقيق");
+
+                fortuneRatio = setRemainderRatio("أخت شقيقة", fortuneRatio, remainderRatio);
             }
             else 
             {
@@ -610,7 +564,8 @@ module.exports = {
                     fortuneRatio = 0;
                     fortuneRatio = setRemainderRatio("أخت شقيقة", fortuneRatio, 1);
                 }
-                else if(count > 1){
+                else if(count > 1)
+                {
                     fortuneRatio = 2 / 3;
                 } 
             }
@@ -660,15 +615,6 @@ module.exports = {
             {
                 fortuneRatio = 0;
             }
-            else if(alwratha.isAlone(getMhgobenBy.call(this, "أخت ﻷب")))
-            {
-                if(count > 1)
-                {
-                    fortuneRatio = 2 / 3;
-                }
-
-                fortuneRatio = setRemainderRatio("أخت ﻷب", fortuneRatio, 1);
-            }
             else if(alwratha.includes("أخت شقيقة"))
             {
                 fortuneRatio = 1 / 6;
@@ -676,11 +622,9 @@ module.exports = {
             else if(alwratha.includes("أخ ﻷب"))
             {
                 fortuneRatio = 0;
-                var remainderRatio = count*getFemaleFotuneRatio("أخت ﻷب", 
-                                                                "أخ ﻷب");
-                fortuneRatio = setRemainderRatio("أخت ﻷب", 
-                                                 fortuneRatio,
-                                                 remainderRatio);
+                var remainderRatio = count*getFemaleFotuneRatio("أخت ﻷب", "أخ ﻷب");
+
+                fortuneRatio = setRemainderRatio("أخت ﻷب", fortuneRatio, remainderRatio);
             }
             else 
             {
@@ -689,7 +633,8 @@ module.exports = {
                     fortuneRatio = 0;
                     fortuneRatio = setRemainderRatio("أخت ﻷب", fortuneRatio, 1);
                 }
-                else if(count > 1){
+                else if(count > 1)
+                {
                     fortuneRatio = 2 / 3;
                 } 
             }
@@ -743,20 +688,9 @@ module.exports = {
             {
                 fortuneRatio = 0;
             }
-            else if(alwratha.isAlone(getMhgobenBy.call(this, "إخوة ﻷم")))
+            else if(count > 1)
             {
-                if(count > 1)
-                {
-                    fortuneRatio = 1 / 3;
-                }
-
-                fortuneRatio = setRemainderRatio("إخوة ﻷم", fortuneRatio, 1);
-            }
-            else 
-            {
-                if(count > 1){
-                    fortuneRatio = 1 / 3;
-                } 
+                fortuneRatio = 1 / 3; 
             }
             
             return fortuneRatio / count;
@@ -1080,8 +1014,6 @@ module.exports = {
 
 var children = ["ابن", "ابن ابن", "بنت ابن", "بنت"];
 var maleChildren = ["ابن", "ابن ابن"];
-var fathers = ["أب", "جد"];
-var siblings = ["أخت شقيقة", "أخ شقيق"];
 
 function setRemainderRatio(person, ratio, value)
 {

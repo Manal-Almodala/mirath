@@ -12,31 +12,39 @@ module.exports.altarika = altarika;
 
 const people = require("../models/mirath/people");
 
-module.exports.controllers = {
-    addAltarikaData: function (req, res) {
+module.exports.controllers = 
+{
+    addAltarikaData: function (req, res) 
+    {
         altarika.reset();
 
-        if (req.body["أموال"]) {
+        if (req.body["أموال"]) 
+        {
             altarika.money = req.body["أموال"];
         }
-        if (req.body["عقار"]) {
+        if (req.body["عقار"])
+        {
             altarika.property = req.body["عقار"];
         }
 
         helper.sendJsonResponse(res, 201, altarika);
     },
 
-    readAlwrathaList: function (req, res) {
+    readAlwrathaList: function (req, res) 
+    {
         var alwrathaList = getAlwrathaList();
-        if (alwrathaList) {
+        if (alwrathaList) 
+        {
             helper.sendJsonResponse(res, 200, alwrathaList);
         }
-        else {
+        else 
+        {
             helper.sendJsonResponse(res, 500, "No data was found");
         }
     },
 
-    addAlwrathaData: function (req, res) {
+    addAlwrathaData: function (req, res) 
+    {
         alwratha.data = req.body;
         helper.sendJsonResponse(res, 201, alwratha.data);
     },
@@ -60,10 +68,10 @@ module.exports.controllers = {
         }
         else if (fortuneRatioSum < 1)
         {
-            calculateTarikaRemainder();
-
-            if(alwratha.hasAsbat(people))
+            if(alwratha.hasAsbat)
             {
+                calculateTarikaRemainder();
+
                 kwargs(updateFortuneRatio, {alwratha: alwratha, reason: 'altaseb'});
             }
             else
